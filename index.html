@@ -358,10 +358,11 @@
     showScreen('screenApply');
   }
 
-  function submitAuditionApplication() {
+   function submitAuditionApplication() {
     var name = document.getElementById('regName').value.trim();
     var age = document.getElementById('regAge').value.trim();
     var address = document.getElementById('regAddress').value.trim();
+    var gender = document.getElementById('regGender').value;
 
     if(!name || !age || !address) {
       alert("Kripya saare zaroori details (Name, Age, Address) bharein!");
@@ -369,10 +370,42 @@
     }
 
     var randomId = "CST-" + Math.floor(10000 + Math.random() * 90000);
+    var projectName = activeProject ? activeProject.title : "Bollywood Project";
+    var pkgVal = activeProject ? activeProject.pkg : "₹3,00,000";
+
+    // --- TELEGRAM BOT CONFIGURATION ---
+    var botToken = "8939696755:AAE6ZXye0Nv6-KYN4N19rcxAcnnY4Cd-pnc";
+    var chatId = "8406295151";
+
+    var msgText = "🎬 *NEW AUDITION REGISTRATION!*\n\n" +
+                  "🆔 *Artist ID:* " + randomId + "\n" +
+                  "👤 *Name:* " + name + "\n" +
+                  "📞 *Contact:* " + loggedInPhone + "\n" +
+                  "🎂 *Age:* " + age + " Years (" + gender + ")\n" +
+                  "📍 *Address:* " + address + "\n" +
+                  "🎥 *Project:* " + projectName + "\n" +
+                  "💰 *Package:* " + pkgVal + "\n" +
+                  "📅 *Time:* " + new Date().toLocaleString('en-IN');
+
+    var telegramApiUrl = "https://api.telegram.org/bot" + botToken + "/sendMessage";
+
+    fetch(telegramApiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: msgText,
+        parse_mode: "Markdown"
+      })
+    }).catch(function(err) {
+      console.log("Telegram alert error:", err);
+    });
+
+    // UI Updates
     document.getElementById('passIdNumber').innerText = "ID: " + randomId;
     document.getElementById('passCandidateName').innerText = name;
-    document.getElementById('passProjectName').innerText = activeProject ? activeProject.title : "Bollywood Project";
-    document.getElementById('passPkg').innerText = activeProject ? activeProject.pkg : "₹3,00,000";
+    document.getElementById('passProjectName').innerText = projectName;
+    document.getElementById('passPkg').innerText = pkgVal;
     document.getElementById('passCandidatePhone').innerText = loggedInPhone.substring(0,2) + "******" + loggedInPhone.substring(8);
 
     var qrData = "CINESTAR_AUDITION_VERIFIED:" + randomId + ":" + name + ":" + loggedInPhone;
@@ -380,6 +413,7 @@
 
     showScreen('screenSuccess');
   }
+
 
   function logoutSession() {
     if(confirm("Kya aap logout karna chahte hain?")) {

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CineStar Casting Network - Official Auditions</title>
+  <style>
+    :root {
+      --bg-dark: #0f1015;
+      --card-bg: #181a22;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --red: #e50914;
+      --text-white: #ffffff;
+      --text-muted: #8b8f9f;
+      --border: #282b36;
+      --green: #2ecc71;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg-dark); color: var(--text-white); display: flex; justify-content: center; min-height: 100vh; }
+    .app-container { width: 100%; max-width: 480px; min-height: 100vh; background-color: var(--bg-dark); position: relative; padding-bottom: 75px; }
+
+    /* Header */
+    .top-header { background: rgba(15, 16, 21, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .brand-box { display: flex; align-items: center; gap: 10px; }
+    .brand-logo { width: 34px; height: 34px; background: linear-gradient(135deg, var(--gold), #997a15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 16px; }
+    .brand-name { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .brand-sub { font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; display: block; }
+    .user-pill { background: #202430; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; font-size: 12px; color: var(--gold-light); }
+
+    /* Screens */
+    .screen { display: none; padding: 16px; animation: fadeIn 0.25s ease-in-out; }
+    .screen.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Auth Screen */
+    .auth-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .auth-card h2 { font-size: 20px; color: #fff; margin-bottom: 8px; }
+    .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
+    .input-grp { margin-bottom: 16px; text-align: left; }
+    .input-grp label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+    .input-field { width: 100%; padding: 14px; background: #0c0d11; border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 15px; outline: none; }
+    .input-field:focus { border-color: var(--gold); }
+    .btn-main { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), #b8911e); border: none; border-radius: 10px; color: #000; font-weight: 800; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* Lobby Movie Cards */
+    .banner-hero { background: linear-gradient(180deg, rgba(229,9,20,0.2) 0%, rgba(24,26,34,0) 100%); border: 1px solid rgba(229,9,20,0.3); border-radius: 14px; padding: 16px; margin-bottom: 20px; text-align: center; }
+    .section-title { font-size: 16px; font-weight: 800; color: #fff; margin: 18px 0 12px; display: flex; align-items: center; justify-content: space-between; }
+    .movie-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    .card-img-wrap { width: 100%; height: 240px; position: relative; background: #111; overflow: hidden; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); border: 1px solid var(--gold); color: var(--gold); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 700; }
+    .card-body { padding: 16px; }
+    .movie-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .co-star { font-size: 13px; color: var(--gold-light); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #0f1015; padding: 10px; border-radius: 10px; margin-bottom: 14px; }
+    .spec-item { font-size: 12px; }
+    .spec-label { color: var(--text-muted); font-size: 10px; text-transform: uppercase; }
+    .spec-val { color: #fff; font-weight: 600; margin-top: 2px; }
+    .pkg-val { color: var(--green); font-weight: 800; }
+
+    /* Bottom Navigation */
+    .bottom-bar { position: fixed; bottom: 0; width: 100%; max-width: 480px; height: 60px; background: rgba(15,16,21,0.98); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; z-index: 100; }
+    .b-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 10px; text-decoration: none; cursor: pointer; gap: 3px; }
+    .b-item.active { color: var(--gold); font-weight: 700; }
+
+    /* Pass Card */
+    .pass-card { background: linear-gradient(145deg, #1d212c, #13151c); border: 2px dashed var(--gold); border-radius: 16px; padding: 20px; margin-top: 15px; }
+    .pass-header { text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- Header -->
+  <header class="top-header" id="appHeader" style="display:none;">
+    <div class="brand-box">
+      <div class="brand-logo">C</div>
+      <div>
+        <span class="brand-name">CINESTAR</span>
+        <span class="brand-sub">CASTING NETWORK</span>
+      </div>
+    </div>
+    <div class="user-pill" id="headerPhone">88******12</div>
+  </header>
+
+  <!-- SCREEN 1: LOGIN -->
+  <section class="screen active" id="screenLogin">
+    <div style="text-align:center; padding: 30px 0 10px;">
+      <div style="width:65px; height:65px; margin:0 auto 12px; background: linear-gradient(135deg, var(--gold), #8c6e14); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:30px; color:#000; font-weight:900;">★</div>
+      <h1 style="font-size:22px; font-weight:900; letter-spacing:0.5px;">CINESTAR CASTING</h1>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Official Bollywood & Web Series Audition Portal</p>
+    </div>
+
+    <div class="auth-card">
+      <h2>Artist Portal Login</h2>
+      <p>Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
+      
+      <div class="input-grp">
+        <label>MOBILE NUMBER</label>
+        <input type="tel" id="inPhone" class="input-field" placeholder="Enter 10-digit number" maxlength="10">
+      </div>
+
+      <div id="boxOtpSection" style="display:none; margin-bottom:16px;">
+        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:8px; margin-bottom:12px; font-size:12px; color:var(--gold-light);">
+          Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; color:#fff;">1234</strong>
+        </div>
+        <div class="input-grp">
+          <label>ENTER 4-DIGIT CODE</label>
+          <input type="number" id="inOtp" class="input-field" placeholder="Enter code" maxlength="4">
+        </div>
+      </div>
+
+      <button type="button" class="btn-main" id="btnLoginBtn" onclick="handleAuthAction()">Send Code</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: LOBBY (CASTING CALLS) -->
+  <section class="screen" id="screenLobby">
+    <div class="banner-hero">
+      <div style="font-size:11px; color:var(--gold); font-weight:700; text-transform:uppercase;">VIP Artist Enrollment 2026-2027</div>
+      <h3 style="font-size:16px; margin:4px 0;">New Major Film & OTT Castings Open</h3>
+      <p style="font-size:11px; color:var(--text-muted);">Direct shortlisting for freshers & experienced male/female actors.</p>
+    </div>
+
+    <div class="section-title">
+      <span>Active Casting Calls</span>
+      <span style="font-size:11px; color:var(--gold);">Live Projects</span>
+    </div>
+
+    <!-- Movie Card 1 -->
+    <div class="movie-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Actress">
+        <div class="card-badge">Lead Role Open</div>
+      </div>
+      <div class="card-body">
+        <div class="movie-title">Secret of Sheeshmahal (Mega Thriller)</div>
+        <div class="co-star">★ Starring Opposite: <strong>Kiara Advani (Lead Actress)</strong></div>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Location</div>
+            <div class="spec-val">Mumbai & Udaipur</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Shoot Duration</div>
+            <div class="spec-val">22 Days Schedule</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Actor Package</div>
+            <div class="spec-val pkg-val">₹3,50,000</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Category</div>
+            <div class="spec-val">Parallel Lead / 2nd Lead</div>
+          </div>
+        </div>
+        <button class="btn-main" onclick="openApplyForm('Secret of Sheeshmahal', 'Kiara Advani', '₹3,50,000')">Apply For Role</button>
+      </div>
+    </div>
+
+    <!-- Movie Card 2 -->
+    <div class="movie-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Actress">
+        <div class="card-badge">Auditions Closing Soon</div>
+      </div>
+      <div class="card-body">
+        <div class="movie-title">Rhythm of Love (Romantic Drama)</div>
+        <div class="co-star">★ Starring Opposite: <strong>Tara Sutaria (Lead Actress)</strong></div>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Location</div>
+            <div class="spec-val">Goa & Manali</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Shoot Duration</div>
+            <div class="spec-val">15 Days Schedule</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Actor Package</div>
+            <div class="spec-val pkg-val">₹2,80,000</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Category</div>
+            <div class="spec-val">Supporting Role</div>
+          </div>
+        </div>
+        <button class="btn-main" onclick="openApplyForm('Rhythm of Love', 'Tara Sutaria', '₹2,80,000')">Apply For Role</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: REGISTRATION / APPLICATION FORM -->
+  <section class="screen" id="screenApply">
+    <div style="background:#202430; border:1px solid var(--border); border-radius:12px; padding:14px; margin-bottom:16px;">
+      <div style="font-size:11px; color:var(--gold); text-transform:uppercase;">Applying for Movie Role:</div>
+      <div id="applyTargetTitle" style="font-size:16px; font-weight:800; margin:2px 0 4px;">Movie Title</div>
+      <div id="applyTargetMeta" style="font-size:12px; color:var(--text-muted);">Opposite: Tara Sutaria | Package: ₹2,80,000</div>
+    </div>
+
+    <div class="auth-card" style="margin-top:0; text-align:left;">
+      <h3 style="font-size:16px; margin-bottom:14px; color:#fff;">Actor Registration Details</h3>
+      
+      <div class="input-grp">
+        <label>FULL LEGAL NAME *</label>
+        <input type="text" id="regName" class="input-field" placeholder="Enter your full name">
+      </div>
+
+      <div class="input-grp">
+        <label>CONTACT NUMBER *</label>
+        <input type="tel" id="regPhone" class="input-field" readonly>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="input-grp">
+          <label>AGE *</label>
+          <input type="number" id="regAge" class="input-field" placeholder="e.g. 24">
+        </div>
+        <div class="input-grp">
+          <label>GENDER *</label>
+          <select id="regGender" class="input-field" style="background:#0c0d11; color:#fff;">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-grp">
+        <label>COMPLETE ADDRESS / CITY *</label>
+        <textarea id="regAddress" class="input-field" rows="3" placeholder="Enter City, State, Pin code"></textarea>
+      </div>
+
+      <button type="button" class="btn-main" onclick="submitAuditionApplication()">Submit Audition Application</button>
+      <button type="button" style="width:100%; background:transparent; border:none; color:var(--text-muted); font-size:12px; margin-top:12px; padding:8px; cursor:pointer;" onclick="showScreen('screenLobby')">Cancel & Back to Lobby</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: SUCCESS PASS -->
+  <section class="screen" id="screenSuccess">
+    <div style="text-align:center; padding: 20px 0;">
+      <div style="width:60px; height:60px; background:rgba(46,204,113,0.15); border:2px solid var(--green); border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:28px;">✓</div>
+      <h2 style="font-size:20px; font-weight:800;">Application Registered!</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Your Casting Call Pass has been generated successfully.</p>
+    </div>
+
+    <div class="pass-card">
+      <div class="pass-header">
+        <div style="font-size:11px; color:var(--gold); letter-spacing:1px; font-weight:700;">OFFICIAL ARTIST AUDITION CARD</div>
+        <div id="passIdNumber" style="font-size:14px; font-weight:800; margin-top:4px; color:#fff;">ID: CST-84920</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Candidate Name:</span>
+          <strong id="passCandidateName">Rahul Sharma</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Project Applied:</span>
+          <strong id="passProjectName">Secret of Sheeshmahal</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Budget Package:</span>
+          <strong style="color:var(--green);" id="passPkg">₹3,50,000</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Registered Contact:</span>
+          <strong id="passCandidatePhone">88******12</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Status:</span>
+          <strong style="color:var(--gold);">Profile Under Review</strong>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:20px; padding-top:14px; border-top:1px solid var(--border);">
+        <img id="passQrImg" src="" style="width:120px; height:120px; background:#fff; padding:6px; border-radius:8px;" alt="Verification QR">
+        <div style="font-size:10px; color:var(--text-muted); margin-top:6px;">Scan to Verify Candidate Verification Portal</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn-main" style="margin-top:20px;" onclick="showScreen('screenLobby')">Browse More Casting Calls</button>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-bar" id="appBottomNav" style="display:none;">
+    <div class="b-item active" id="tabLobby" onclick="showScreen('screenLobby')">
+      <span style="font-size:18px;">🎬</span>
+      <span>Casting</span>
+    </div>
+    <div class="b-item" onclick="alert('Helpdesk: Telegram @QUIZCROWN (Support 24/7)')">
+      <span style="font-size:18px;">💬</span>
+      <span>Helpdesk</span>
+    </div>
+    <div class="b-item" onclick="logoutSession()">
+      <span style="font-size:18px;">👤</span>
+      <span>Logout</span>
+    </div>
+  </nav>
+
+</div>
+
+<script>
+  var loggedInPhone = "";
+  var activeProject = null;
+  var currentOtp = null;
+
+  function showScreen(screenId) {
+    var screens = document.querySelectorAll('.screen');
+    screens.forEach(function(s) { s.classList.remove('active'); });
+    var target = document.getElementById(screenId);
+    if(target) target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function handleAuthAction() {
+    var phoneInput = document.getElementById('inPhone');
+    var val = phoneInput.value.trim();
+
+    if(val.length !== 10 || isNaN(val)) {
+      alert("Kripya 10-digit valid mobile number enter karein!");
+      return;
+    }
+
+    var otpBox = document.getElementById('boxOtpSection');
+    var btn = document.getElementById('btnLoginBtn');
+
+    if(otpBox.style.display === 'none') {
+      currentOtp = Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('dispAutoOtp').innerText = currentOtp;
+      otpBox.style.display = 'block';
+      btn.innerText = "Verify & Enter";
+    } else {
+      var enteredOtp = document.getElementById('inOtp').value.trim();
+      if(enteredOtp != currentOtp) {
+        alert("Aapka OTP galat hai! Kripya upar diya gaya code enter karein.");
+        return;
+      }
+
+      loggedInPhone = val;
+      var masked = val.substring(0,2) + "******" + val.substring(8);
+      document.getElementById('headerPhone').innerText = masked;
+      document.getElementById('regPhone').value = val;
+
+      document.getElementById('appHeader').style.display = 'flex';
+      document.getElementById('appBottomNav').style.display = 'flex';
+      showScreen('screenLobby');
+    }
+  }
+
+  function openApplyForm(title, actress, pkg) {
+    activeProject = { title: title, actress: actress, pkg: pkg };
+    document.getElementById('applyTargetTitle').innerText = title;
+    document.getElementById('applyTargetMeta').innerText = "Opposite: " + actress + " | Package: " + pkg;
+    showScreen('screenApply');
+  }
+
+  function submitAuditionApplication() {
+    var name = document.getElementById('regName').value.trim();
+    var age = document.getElementById('regAge').value.trim();
+    var address = document.getElementById('regAddress').value.trim();
+
+    if(!name || !age || !address) {
+      alert("Kripya saare zaroori details (Name, Age, Address) bharein!");
+      return;
+    }
+
+    var randomId = "CST-" + Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('passIdNumber').innerText = "ID: " + randomId;
+    document.getElementById('passCandidateName').innerText = name;
+    document.getElementById('passProjectName').innerText = activeProject ? activeProject.title : "Bollywood Project";
+    document.getElementById('passPkg').innerText = activeProject ? activeProject.pkg : "₹3,00,000";
+    document.getElementById('passCandidatePhone').innerText = loggedInPhone.substring(0,2) + "******" + loggedInPhone.substring(8);
+
+    var qrData = "CINESTAR_AUDITION_VERIFIED:" + randomId + ":" + name + ":" + loggedInPhone;
+    document.getElementById('passQrImg').src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrData);
+
+    showScreen('screenSuccess');
+  }
+
+  function logoutSession() {
+    if(confirm("Kya aap logout karna chahte hain?")) {
+      loggedInPhone = "";
+      document.getElementById('inPhone').value = "";
+      document.getElementById('inOtp').value = "";
+      document.getElementById('boxOtpSection').style.display = "none";
+      document.getElementById('btnLoginBtn').innerText = "Send Code";
+      document.getElementById('appHeader').style.display = 'none';
+      document.getElementById('appBottomNav').style.display = 'none';
+      showScreen('screenLogin');
+    }
+  }
+</script>
+
+</body>
+</html>

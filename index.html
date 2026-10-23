@@ -20,7 +20,37 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
     body { background-color: var(--bg-dark); color: var(--text-white); display: flex; justify-content: center; min-height: 100vh; }
     .app-container { width: 100%; max-width: 480px; min-height: 100vh; background-color: var(--bg-dark); position: relative; padding-bottom: 75px; }
+/* Layout Fix & Translate Fix */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+.skiptranslate iframe {
+  display: none !important;
+}
+body > .skiptranslate {
+  display: none !important;
+}
+.app-container {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  margin: 0 auto !important;
+}
+#screenCasting {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+.casting-card {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
 
+    
     /* Header */
     .top-header { background: rgba(15, 16, 21, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     .brand-box { display: flex; align-items: center; gap: 10px; }
@@ -641,7 +671,7 @@
       showScreen('screenLogin');
     }
   }
-      var currentGalleryImages = [];
+     var currentGalleryImages = [];
   var currentImageIndex = 0;
 
   function openMediaPreview(name, videosArray, imagesArray) {
@@ -769,23 +799,22 @@
     <img id="fullImageView" src="" style="max-width:92vw; max-height:80vh; object-fit:contain; border-radius:8px; box-shadow:0 0 25px rgba(0,0,0,0.9);">
     <button type="button" onclick="nextSlide(event)" style="position:absolute; right:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:22px; cursor:pointer; z-index:10;">&#10095;</button>
   </div>
-  <p style="color:#888; font-size:12px; margin-top:14px;">Slide karne ke liye arrows tap karein ya screen tap karke close karein</p>
+  <p style="color:#888; font-size:12px; margin-top:14px;">Slide karne ke liye arrows tap karein</p>
 </div>
 
-<!-- GOOGLE MULTI-LANGUAGE TRANSLATOR WIDGET (Hindi, English, Bengali, Odia, Marathi, Gujarati) -->
+<!-- TRANSLATOR BUTTON -->
+<div id="google_translate_element" style="position:fixed; bottom:70px; right:10px; z-index:999; transform:scale(0.85); transform-origin:bottom right;"></div>
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'hi',
       includedLanguages: 'hi,en,bn,or,mr,gu',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
     }, 'google_translate_element');
   }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<div id="google_translate_element" style="position:fixed; bottom:65px; right:15px; z-index:9999; background:rgba(24,26,34,0.9); padding:4px 8px; border-radius:6px; border:1px solid #d4af37;"></div>
-
 </body>
 </html>
-  

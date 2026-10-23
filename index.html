@@ -215,8 +215,9 @@
             <div class="spec-val">Lead Male/Female</div>
           </div>
         </div>
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Srimoyee', 'video1.mp4')">
-          🎬 Watch Audition Clip & Preview
+             
+        <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Srimoyee', '759be8a585da407b84ee20f455b39c79.mp4', ['IMG_3930.jpeg', 'IMG_3931.jpeg', 'IMG_3932.jpeg', 'IMG_3933.jpeg', 'IMG_3934.jpeg', 'IMG_3935.jpeg', 'IMG_3936.jpeg', 'IMG_3937.jpeg'])">
+          🎬 Watch Audition Clip & Photos
         </button>
 
         <button class="btn-main" onclick="openApplyForm('Project Crimson Desire', 'Srimoyee', '₹3,50,000')">Apply For Role</button>
@@ -611,9 +612,41 @@
     function openMediaPreview(name, videoSrc) {
     document.getElementById('previewArtistName').innerText = name + " - Screen Test Clip";
     var video = document.getElementById('previewVideoPlayer');
+      function openMediaPreview(name, videoSrc, imagesArray) {
+    document.getElementById('previewArtistName').innerText = name + " - Screen Test & Photos";
+    var video = document.getElementById('previewVideoPlayer');
     var source = document.getElementById('previewVideoSource');
-    source.src = videoSrc;
-    video.load();
+    
+    if (videoSrc) {
+      document.getElementById('videoContainerBox').style.display = 'block';
+      source.src = videoSrc;
+      video.load();
+    } else {
+      document.getElementById('videoContainerBox').style.display = 'none';
+    }
+
+    var strip = document.getElementById('previewGalleryStrip');
+   <!-- MEDIA PREVIEW POPUP -->
+  <div class="preview-modal" id="mediaPreviewModal">
+    <div class="preview-content">
+      <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
+      <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:12px; font-size:16px;">Audition Clip</h4>
+      
+      <div class="preview-video-container" id="videoContainerBox">
+        <video id="previewVideoPlayer" controls playsinline>
+          <source id="previewVideoSource" src="" type="video/mp4">
+          Browser video support nahi karta.
+        </video>
+      </div>
+
+      <!-- Photos Strip -->
+      <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos</div>
+      <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
+
+      <p style="font-size:11px; color:#8b8f9f; margin-top:8px;">★ Official Audition Tape & Portfolio</p>
+    </div>
+  </div>
+
     document.getElementById('mediaPreviewModal').style.display = 'flex';
   }
 
@@ -623,6 +656,7 @@
     video.pause();
     modal.style.display = 'none';
   }
+
 
 </script>
   <!-- MEDIA PREVIEW POPUP -->

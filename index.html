@@ -252,13 +252,13 @@
             <div class="spec-val">Parallel Lead</div>
           </div>
         </div>
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', 'video2.mp4')">
+            <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', 'video2.mp4')">
           🎬 Watch Audition Clip & Preview
         </button>
 
                 <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', ['79bc879b-8f4d-4d29-8234-58a4369e59d9.mp4'], ['IMG_3901.jpeg', 'IMG_3902.jpeg', 'IMG_3903.jpeg', 'IMG_3904.jpeg', 'IMG_3905.jpeg', 'IMG_3906.jpeg', 'IMG_3907.jpeg', 'IMG_3908.jpeg', 'IMG_3909.jpeg', 'IMG_3910.jpeg', 'IMG_3911.jpeg', 'IMG_3912.jpeg', 'IMG_3913.jpeg', 'IMG_3914.jpeg', 'IMG_3916.jpeg', 'IMG_3917.jpeg', 'IMG_3918.jpeg', 'IMG_3919.jpeg', 'IMG_3920.jpeg', 'IMG_3921.jpeg', 'IMG_3922.jpeg', 'IMG_3923.jpeg', 'IMG_3924.jpeg'])">
           🎬 Watch Audition Clip & Photos
-        </button>
+        </button>    
 
         <button class="btn-main" onclick="openApplyForm('Midnight Passion', 'Tejashwini', '₹2,80,000')">Apply For Role</button>
       </div>
@@ -620,9 +620,9 @@
     var vSelector = document.getElementById('previewVideoTabs');
     vSelector.innerHTML = '';
 
-    // Multiple Videos Setup
     if (videosArray && videosArray.length > 0) {
       document.getElementById('videoContainerBox').style.display = 'block';
+      video.src = videosArray[0];
       source.src = videosArray[0];
       video.load();
 
@@ -632,6 +632,7 @@
         btn.innerText = 'Clip ' + (index + 1);
         btn.style.cssText = 'background:#242733; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600;';
         btn.onclick = function() {
+          video.src = vSrc;
           source.src = vSrc;
           video.load();
           video.play();
@@ -641,6 +642,25 @@
     } else {
       document.getElementById('videoContainerBox').style.display = 'none';
     }
+
+    var strip = document.getElementById('previewGalleryStrip');
+    strip.innerHTML = '';
+    if (imagesArray && imagesArray.length > 0) {
+      imagesArray.forEach(function(imgUrl) {
+        var imgTag = document.createElement('img');
+        imgTag.src = imgUrl;
+        imgTag.style.width = '80px';
+        imgTag.style.height = '105px';
+        imgTag.style.objectFit = 'cover';
+        imgTag.style.borderRadius = '6px';
+        imgTag.style.border = '1px solid #444';
+        strip.appendChild(imgTag);
+      });
+    }
+
+    document.getElementById('mediaPreviewModal').style.display = 'flex';
+  }
+
 
     // Gallery Images Setup
     var strip = document.getElementById('previewGalleryStrip');

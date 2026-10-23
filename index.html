@@ -216,7 +216,7 @@
           </div>
         </div>
              
-        <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Srimoyee', '759be8a585da407b84ee20f455b39c79.mp4', ['IMG_3930.jpeg', 'IMG_3931.jpeg', 'IMG_3932.jpeg', 'IMG_3933.jpeg', 'IMG_3934.jpeg', 'IMG_3935.jpeg', 'IMG_3936.jpeg', 'IMG_3937.jpeg'])">
+           <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Srimoyee', ['759be8a585da407b84ee20f455b39c79.mp4', '528269e5de944c71858851103ea4a55c.mp4', 'b10919b3b2e6474f88e706c3e1c0a002.mp4', 'fc1a1212333e40fca3b517117202395e.mp4'], ['IMG_3930.jpeg', 'IMG_3931.jpeg', 'IMG_3932.jpeg', 'IMG_3933.jpeg', 'IMG_3934.jpeg', 'IMG_3935.jpeg', 'IMG_3936.jpeg', 'IMG_3937.jpeg'])">
           🎬 Watch Audition Clip & Photos
         </button>
 
@@ -609,19 +609,36 @@
       showScreen('screenLogin');
     }
   }
-      function openMediaPreview(name, videoSrc, imagesArray) {
+   function openMediaPreview(name, videosArray, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Screen Test & Photos";
     var video = document.getElementById('previewVideoPlayer');
     var source = document.getElementById('previewVideoSource');
-    
-    if (videoSrc) {
+    var vSelector = document.getElementById('previewVideoTabs');
+    vSelector.innerHTML = '';
+
+    // Multiple Videos Setup
+    if (videosArray && videosArray.length > 0) {
       document.getElementById('videoContainerBox').style.display = 'block';
-      source.src = videoSrc;
+      source.src = videosArray[0];
       video.load();
+
+      videosArray.forEach(function(vSrc, index) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.innerText = 'Clip ' + (index + 1);
+        btn.style.cssText = 'background:#242733; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600;';
+        btn.onclick = function() {
+          source.src = vSrc;
+          video.load();
+          video.play();
+        };
+        vSelector.appendChild(btn);
+      });
     } else {
       document.getElementById('videoContainerBox').style.display = 'none';
     }
 
+    // Gallery Images Setup
     var strip = document.getElementById('previewGalleryStrip');
     strip.innerHTML = '';
     if (imagesArray && imagesArray.length > 0) {
@@ -652,8 +669,11 @@
 <div class="preview-modal" id="mediaPreviewModal">
   <div class="preview-content">
     <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:12px; font-size:16px;">Audition Clip</h4>
+    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:16px;">Audition Clip</h4>
     
+    <!-- Video Tabs -->
+    <div id="previewVideoTabs" style="display:flex; gap:6px; justify-content:center; margin-bottom:8px; flex-wrap:wrap;"></div>
+
     <div class="preview-video-container" id="videoContainerBox">
       <video id="previewVideoPlayer" controls playsinline>
         <source id="previewVideoSource" src="" type="video/mp4">
@@ -670,3 +690,4 @@
 
 </body>
 </html>
+     

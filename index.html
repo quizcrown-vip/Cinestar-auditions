@@ -609,9 +609,6 @@
       showScreen('screenLogin');
     }
   }
-    function openMediaPreview(name, videoSrc) {
-    document.getElementById('previewArtistName').innerText = name + " - Screen Test Clip";
-    var video = document.getElementById('previewVideoPlayer');
       function openMediaPreview(name, videoSrc, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Screen Test & Photos";
     var video = document.getElementById('previewVideoPlayer');
@@ -626,26 +623,19 @@
     }
 
     var strip = document.getElementById('previewGalleryStrip');
-   <!-- MEDIA PREVIEW POPUP -->
-  <div class="preview-modal" id="mediaPreviewModal">
-    <div class="preview-content">
-      <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-      <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:12px; font-size:16px;">Audition Clip</h4>
-      
-      <div class="preview-video-container" id="videoContainerBox">
-        <video id="previewVideoPlayer" controls playsinline>
-          <source id="previewVideoSource" src="" type="video/mp4">
-          Browser video support nahi karta.
-        </video>
-      </div>
-
-      <!-- Photos Strip -->
-      <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos</div>
-      <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
-
-      <p style="font-size:11px; color:#8b8f9f; margin-top:8px;">★ Official Audition Tape & Portfolio</p>
-    </div>
-  </div>
+    strip.innerHTML = '';
+    if (imagesArray && imagesArray.length > 0) {
+      imagesArray.forEach(function(imgUrl) {
+        var imgTag = document.createElement('img');
+        imgTag.src = imgUrl;
+        imgTag.style.width = '80px';
+        imgTag.style.height = '105px';
+        imgTag.style.objectFit = 'cover';
+        imgTag.style.borderRadius = '6px';
+        imgTag.style.border = '1px solid #444';
+        strip.appendChild(imgTag);
+      });
+    }
 
     document.getElementById('mediaPreviewModal').style.display = 'flex';
   }
@@ -656,23 +646,27 @@
     video.pause();
     modal.style.display = 'none';
   }
-
-
 </script>
-  <!-- MEDIA PREVIEW POPUP -->
-  <div class="preview-modal" id="mediaPreviewModal">
-    <div class="preview-content">
-      <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-      <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:12px; font-size:16px;">Audition Clip</h4>
-      <div class="preview-video-container">
-        <video id="previewVideoPlayer" controls playsinline>
-          <source id="previewVideoSource" src="" type="video/mp4">
-          Browser video support nahi karta.
-        </video>
-      </div>
-      <p style="font-size:11px; color:#8b8f9f; margin-top:10px;">★ Official Casting Portfolio Clip</p>
+
+<!-- MEDIA PREVIEW POPUP -->
+<div class="preview-modal" id="mediaPreviewModal">
+  <div class="preview-content">
+    <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
+    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:12px; font-size:16px;">Audition Clip</h4>
+    
+    <div class="preview-video-container" id="videoContainerBox">
+      <video id="previewVideoPlayer" controls playsinline>
+        <source id="previewVideoSource" src="" type="video/mp4">
+        Browser video support nahi karta.
+      </video>
     </div>
+
+    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos</div>
+    <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
+
+    <p style="font-size:11px; color:#8b8f9f; margin-top:8px;">★ Official Audition Tape & Portfolio</p>
   </div>
+</div>
 
 </body>
 </html>

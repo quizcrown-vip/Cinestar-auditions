@@ -663,10 +663,14 @@
 
   function loadVideoDirect(url) {
     var video = document.getElementById('previewVideoPlayer');
-    var mime = url.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
-    video.innerHTML = '<source src="' + url + '" type="' + mime + '">';
+    video.removeAttribute('src');
+    video.innerHTML = '';
+    
+    // Direct src assignment works better across mobile Safari for .mov
+    video.src = url;
     video.load();
   }
+
 
   function openFullImage(imgUrl) {
     document.getElementById('fullImageView').src = imgUrl;

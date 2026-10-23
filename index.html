@@ -613,18 +613,15 @@
       showScreen('screenLogin');
     }
   }
-    function openMediaPreview(name, videosArray, imagesArray) {
+      function openMediaPreview(name, videosArray, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Screen Test & Photos";
     var video = document.getElementById('previewVideoPlayer');
-    var source = document.getElementById('previewVideoSource');
     var vSelector = document.getElementById('previewVideoTabs');
     vSelector.innerHTML = '';
 
     if (videosArray && videosArray.length > 0) {
       document.getElementById('videoContainerBox').style.display = 'block';
-      video.src = videosArray[0];
-      source.src = videosArray[0];
-      video.load();
+      loadVideoDirect(videosArray[0]);
 
       videosArray.forEach(function(vSrc, index) {
         var btn = document.createElement('button');
@@ -632,9 +629,7 @@
         btn.innerText = 'Clip ' + (index + 1);
         btn.style.cssText = 'background:#242733; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600;';
         btn.onclick = function() {
-          video.src = vSrc;
-          source.src = vSrc;
-          video.load();
+          loadVideoDirect(vSrc);
           video.play();
         };
         vSelector.appendChild(btn);
@@ -654,11 +649,32 @@
         imgTag.style.objectFit = 'cover';
         imgTag.style.borderRadius = '6px';
         imgTag.style.border = '1px solid #444';
+        imgTag.style.cursor = 'pointer';
+        // Full screen view on photo tap
+        imgTag.onclick = function() {
+          openFullImage(imgUrl);
+        };
         strip.appendChild(imgTag);
       });
     }
 
     document.getElementById('mediaPreviewModal').style.display = 'flex';
+  }
+
+  function loadVideoDirect(url) {
+    var video = document.getElementById('previewVideoPlayer');
+    var mime = url.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+    video.innerHTML = '<source src="' + url + '" type="' + mime + '">';
+    video.load();
+  }
+
+  function openFullImage(imgUrl) {
+    document.getElementById('fullImageView').src = imgUrl;
+    document.getElementById('fullImageModal').style.display = 'flex';
+  }
+
+  function closeFullImage() {
+    document.getElementById('fullImageModal').style.display = 'none';
   }
 
   function closeMediaPreview() {
@@ -679,20 +695,25 @@
     <div id="previewVideoTabs" style="display:flex; gap:6px; justify-content:center; margin-bottom:8px; flex-wrap:wrap;"></div>
 
     <div class="preview-video-container" id="videoContainerBox">
-      <video id="previewVideoPlayer" controls playsinline>
-        <source id="previewVideoSource" src="" type="video/mp4">
+      <video id="previewVideoPlayer" controls playsinline preload="auto">
         Browser video support nahi karta.
       </video>
     </div>
 
-    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos</div>
+    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos (Tap to enlarge)</div>
     <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
 
     <p style="font-size:11px; color:#8b8f9f; margin-top:8px;">★ Official Audition Tape & Portfolio</p>
   </div>
 </div>
 
+<!-- FULL SCREEN IMAGE VIEWER -->
+<div id="fullImageModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:99999; justify-content:center; align-items:center; flex-direction:column; padding:15px;" onclick="closeFullImage()">
+  <span style="position:absolute; top:20px; right:25px; color:#fff; font-size:32px; cursor:pointer;">&times;</span>
+  <img id="fullImageView" src="" style="max-width:95%; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow:0 0 20px rgba(0,0,0,0.8);">
+  <p style="color:#aaa; font-size:12px; margin-top:12px;">Screen par tap karke band karein</p>
+</div>
+
 </body>
 </html>
 
-        

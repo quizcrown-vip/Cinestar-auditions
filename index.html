@@ -160,6 +160,31 @@ body > .skiptranslate {
       justify-content: center;
       gap: 6px;
     }
+/* FORCE MOBILE VERTICAL FIX */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+.app-container, #screenLobby, #screenAuth, .screen {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  margin: 0 auto !important;
+}
+.screen:not(.active) {
+  display: none !important;
+}
+.casting-card {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  margin: 0 0 20px 0 !important;
+  box-sizing: border-box !important;
+}
 
   </style>
 </head>

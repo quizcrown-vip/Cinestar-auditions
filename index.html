@@ -204,36 +204,42 @@ html, body {
     <div class="user-pill" id="headerPhone">88******12</div>
   </header>
 
-  <!-- SCREEN 1: LOGIN -->
-  <section class="screen active" id="screenLogin">
-    <div style="text-align:center; padding: 30px 0 10px;">
-      <div style="width:65px; height:65px; margin:0 auto 12px; background: linear-gradient(135deg, var(--gold), #8c6e14); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:30px; color:#000; font-weight:900;">★</div>
-      <h1 style="font-size:22px; font-weight:900; letter-spacing:0.5px;">CINESTAR CASTING</h1>
-      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Official Bollywood & Web Series Audition Portal</p>
+ <!-- SCREEN 1: LOGIN -->
+<section class="screen active" id="screenLogin">
+  <div style="text-align:center; padding: 30px 15px 10px;">
+    <div style="width:65px; height:65px; margin:0 auto 12px; background:var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(212,175,55,0.25);">
+      <span style="font-size:32px;">★</span>
+    </div>
+    <h1 style="font-size:22px; font-weight:800; letter-spacing:1px; margin-bottom:4px;">CINESTAR CASTING</h1>
+    <p style="font-size:12px; color:var(--text-muted);">Official Bollywood & Web Series Audition Portal</p>
+  </div>
+
+  <div class="auth-card">
+    <h2>Artist Portal Login</h2>
+    <p>Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
+    
+    <div class="input-grp">
+      <label>MOBILE NUMBER</label>
+      <input type="tel" id="inPhone" placeholder="Enter 10-digit number" maxlength="10">
     </div>
 
-    <div class="auth-card">
-      <h2>Artist Portal Login</h2>
-      <p>Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
-      
+    <div id="boxOtpSection" style="display:none; margin-top:14px;">
+      <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:12px; color:var(--gold);">
+        Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
+      </div>
       <div class="input-grp">
-        <label>MOBILE NUMBER</label>
-        <input type="tel" id="inPhone" class="input-field" placeholder="Enter 10-digit number" maxlength="10">
+        <label>ENTER 4-DIGIT CODE</label>
+        <input type="number" id="inOtp" placeholder="Enter OTP" maxlength="4">
       </div>
-
-      <div id="boxOtpSection" style="display:none; margin-bottom:16px;">
-        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:8px; margin-bottom:12px; font-size:12px; color:var(--gold-light);">
-          Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; color:#fff;">1234</strong>
-        </div>
-        <div class="input-grp">
-          <label>ENTER 4-DIGIT CODE</label>
-          <input type="number" id="inOtp" class="input-field" placeholder="Enter code" maxlength="4">
-        </div>
-      </div>
-
-      <button type="button" class="btn-main" id="btnLoginBtn" onclick="handleAuthAction()">Send Code</button>
     </div>
-  </section>
+
+    <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;">SEND CODE</button>
+  </div>
+</section>
+
+<!-- SCREEN 2: LOBBY (CASTING CALLS) -->
+<section class="screen" id="screenLobby">
+
 
   <!-- SCREEN 2: LOBBY (CASTING CALLS) -->
 

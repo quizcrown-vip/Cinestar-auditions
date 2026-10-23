@@ -295,7 +295,7 @@
       <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;" data-i18n="btn_send">SEND CODE</button>
     </div>
   </section>
-  <!-- SCREEN 2: LOBBY -->
+    <!-- SCREEN 2: LOBBY -->
   <section class="screen" id="screenLobby">
 
     <!-- Hero Announcement -->
@@ -325,7 +325,7 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Srimoyee', ['b10919b3b2e6474f88e706c6f7af4f88e706c3a1', 'fc1a1212333e40fca3b517117183e23b'], ['IMG_3930.jpeg', 'IMG_3931.jpeg', 'IMG_3932.jpeg', 'IMG_3933.jpeg', 'IMG_3934.jpeg', 'IMG_3935.jpeg', 'IMG_3936.jpeg', 'IMG_3937.jpeg'])">
+        <button class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
         <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
@@ -347,7 +347,7 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Tejashwini', ['0ed270b3-223d-4fc3-855b-43d9b0a9446d', '19235ad0-b949-45ef-b78c-02cfb69e5d77'], ['IMG_3901.jpeg', 'IMG_3902.jpeg', 'IMG_3903.jpeg', 'IMG_3904.jpeg', 'IMG_3905.jpeg', 'IMG_3906.jpeg', 'IMG_3907.jpeg', 'IMG_3908.jpeg'])">
+        <button class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
         <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
@@ -369,14 +369,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Tina Nandy', ['528269e5de944c718588511d7cbca388', '759be8a585da407b84ee20f0f5b9d33b'], ['IMG_3854.jpeg', 'IMG_3855.jpeg', 'IMG_3856.jpeg', 'IMG_3857.jpeg', 'IMG_3858.jpeg', 'IMG_3859.jpeg', 'IMG_3861.jpeg', 'IMG_3862.jpeg'])">
+        <button class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
         <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 4: Anjali (IMG 3938 to 3978) -->
+    <!-- Profile 4: Anjali (IMG 3938 to 3979) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_comm">Commercial</span>
@@ -391,7 +391,7 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Anjali', ['79bc879b-8f4d-4d29-8234-fc56ef4bc2d9'], ['IMG_3938.jpeg', 'IMG_3939.jpeg', 'IMG_3940.jpeg', 'IMG_3941.jpeg', 'IMG_3942.jpeg', 'IMG_3943.jpeg', 'IMG_3944.jpeg', 'IMG_3945.jpeg'])">
+        <button class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3979)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
         <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
@@ -399,6 +399,7 @@
     </div>
 
   </section>
+
 
 </div>
 
@@ -676,32 +677,26 @@
   var currentGalleryImages = [];
   var currentImageIndex = 0;
 
+    /* Auto-generate full range of images */
+  function openModelGallery(name, startNum, endNum) {
+    var images = [];
+    for (var i = startNum; i <= endNum; i++) {
+      images.push('IMG_' + i + '.jpeg');
+    }
+    openMediaPreview(name, [], images);
+  }
+
   function openMediaPreview(name, videosArray, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
-    var video = document.getElementById('previewVideoPlayer');
+    var videoBox = document.getElementById('videoContainerBox');
     var vSelector = document.getElementById('previewVideoTabs');
     vSelector.innerHTML = '';
     currentGalleryImages = imagesArray || [];
 
     if (videosArray && videosArray.length > 0) {
-      document.getElementById('videoContainerBox').style.display = 'block';
-      video.src = videosArray[0];
-      video.load();
-
-      videosArray.forEach(function(vSrc, index) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.innerText = 'Clip ' + (index + 1);
-        btn.style.cssText = 'background:#242733; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600;';
-        btn.onclick = function() {
-          video.src = vSrc;
-          video.load();
-          video.play();
-        };
-        vSelector.appendChild(btn);
-      });
+      videoBox.style.display = 'block';
     } else {
-      document.getElementById('videoContainerBox').style.display = 'none';
+      videoBox.style.display = 'none';
     }
 
     var strip = document.getElementById('previewGalleryStrip');
@@ -710,8 +705,15 @@
       currentGalleryImages.forEach(function(imgUrl, idx) {
         var imgTag = document.createElement('img');
         imgTag.src = imgUrl;
+        imgTag.onerror = function() { this.style.display = 'none'; };
         imgTag.style.cssText = 'width:80px; height:105px; object-fit:cover; border-radius:6px; border:1px solid #444; cursor:pointer; flex-shrink:0;';
         imgTag.onclick = function() { openFullImage(idx); };
+        strip.appendChild(imgTag);
+      });
+    }
+    document.getElementById('mediaPreviewModal').style.display = 'flex';
+  }
+
         strip.appendChild(imgTag);
       });
     }

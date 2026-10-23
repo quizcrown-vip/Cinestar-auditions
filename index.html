@@ -32,23 +32,29 @@ body > .skiptranslate {
   display: none !important;
 }
 .app-container {
-  display: flex !important;
-  flex-direction: column !important;
+  display: block !important;
   width: 100% !important;
   max-width: 480px !important;
   margin: 0 auto !important;
 }
-#screenCasting {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
+.screen {
+  display: none !important;
+  width: 100% !important;
+}
+.screen.active {
+  display: block !important;
+  width: 100% !important;
+}
+#screenLobby {
   width: 100% !important;
 }
 .casting-card {
   width: 100% !important;
   display: block !important;
+  margin-bottom: 20px !important;
   box-sizing: border-box !important;
 }
+
 
     
     /* Header */
@@ -205,7 +211,7 @@ body > .skiptranslate {
   </section>
 
   <!-- SCREEN 2: LOBBY (CASTING CALLS) -->
-   <!-- SCREEN 2: LOBBY (CASTING CALLS) -->
+
   <section class="screen" id="screenLobby">
     <div class="banner-hero">
       <div style="font-size:11px; color:var(--gold); font-weight:700; text-transform:uppercase;">VIP Artist Enrollment 2026-2027</div>

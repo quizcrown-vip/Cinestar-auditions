@@ -33,6 +33,7 @@
       min-height: 100vh;
       background-color: var(--bg-dark);
       position: relative;
+      padding-bottom: 70px;
     }
 
     /* Top Header */
@@ -116,8 +117,8 @@
       display: block !important;
       box-sizing: border-box !important;
     }
-    .card-img-wrap { position: relative; width: 100%; height: 260px; overflow: hidden; background: #000; }
-    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-img-wrap { position: relative; width: 100%; height: 280px; overflow: hidden; background: #12131a; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-badge {
       position: absolute;
       top: 10px;
@@ -129,6 +130,7 @@
       border-radius: 20px;
       font-size: 11px;
       font-weight: 600;
+      z-index: 2;
     }
     .card-body { padding: 14px; }
     .card-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
@@ -154,7 +156,7 @@
       background: #202430;
       color: var(--gold);
       border: 1px solid var(--gold);
-      padding: 10px;
+      padding: 11px;
       border-radius: 8px;
       font-size: 12px;
       font-weight: 600;
@@ -183,7 +185,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.88);
       z-index: 10000;
       justify-content: center;
       align-items: center;
@@ -197,7 +199,7 @@
       max-width: 440px;
       padding: 16px;
       position: relative;
-      max-height: 90vh;
+      max-height: 85vh;
       overflow-y: auto;
     }
     .preview-close {
@@ -208,6 +210,37 @@
       font-size: 26px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    /* Sticky Language Bar */
+    .lang-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 16, 21, 0.98);
+      border-top: 1px solid var(--border);
+      padding: 8px 10px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 999;
+      overflow-x: auto;
+    }
+    .lang-btn {
+      background: #181a22;
+      color: #fff;
+      border: 1px solid #333745;
+      border-radius: 4px;
+      padding: 5px 9px;
+      font-size: 11px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .lang-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: bold;
     }
   </style>
 </head>
@@ -249,8 +282,8 @@
       </div>
 
       <div id="boxOtpSection" style="display:none; margin-top:14px;">
-        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:12px; color:var(--gold);">
-          Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
+        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:13px; color:var(--gold);">
+          OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
         </div>
         <div class="input-grp">
           <label>ENTER 4-DIGIT CODE</label>
@@ -280,7 +313,7 @@
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge">VIP Casting</span>
-        <img src="srimoyee.jpg" alt="Srimoyee">
+        <img src="./srimoyee.jpg" onerror="this.src='./srimoyee1.jpg'" alt="Srimoyee">
       </div>
       <div class="card-body">
         <div class="card-title">Velvet Secrets (Bold Drama)</div>
@@ -291,7 +324,7 @@
           <div class="meta-item"><span>SHOOT DURATION</span><strong>3 Days</strong></div>
           <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Srimoyee', ['srimoyee1.mov', 'srimoyee2.mov'], ['srimoyee.jpg', 'srimoyee1.jpg', 'srimoyee2.jpg', 'srimoyee3.jpg'])">
+        <button class="btn-watch" onclick="openMediaPreview('Srimoyee', ['./srimoyee1.mov', './srimoyee2.mov'], ['./srimoyee.jpg', './srimoyee1.jpg', './srimoyee2.jpg', './srimoyee3.jpg'])">
           🎬 Watch Audition Clip & Photos
         </button>
         <button class="btn-apply">APPLY FOR ROLE</button>
@@ -302,7 +335,7 @@
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge">New Shoot</span>
-        <img src="tejashwini.jpg" alt="Tejashwini">
+        <img src="./tejashwini.jpg" onerror="this.src='./tejashwini1.jpg'" alt="Tejashwini">
       </div>
       <div class="card-body">
         <div class="card-title">Urban Seduction (OTT Web Film)</div>
@@ -313,7 +346,7 @@
           <div class="meta-item"><span>SHOOT DURATION</span><strong>2 Days</strong></div>
           <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Tejashwini', ['tejashwini1.mov', 'tejashwini2.mov'], ['tejashwini.jpg', 'tejashwini1.jpg', 'tejashwini2.jpg', 'tejashwini3.jpg'])">
+        <button class="btn-watch" onclick="openMediaPreview('Tejashwini', ['./tejashwini1.mov', './tejashwini2.mov'], ['./tejashwini.jpg', './tejashwini1.jpg', './tejashwini2.jpg', './tejashwini3.jpg'])">
           🎬 Watch Audition Clip & Photos
         </button>
         <button class="btn-apply">APPLY FOR ROLE</button>
@@ -324,7 +357,7 @@
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge">Mega Budget</span>
-        <img src="tina.jpg" alt="Tina Nandy">
+        <img src="./tina.jpg" onerror="this.src='./tina1.jpg'" alt="Tina Nandy">
       </div>
       <div class="card-body">
         <div class="card-title">Golden Mirage (Feature Film)</div>
@@ -335,7 +368,7 @@
           <div class="meta-item"><span>SHOOT DURATION</span><strong>3 Days</strong></div>
           <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Tina Nandy', ['tina1.mov', 'tina2.mov'], ['tina.jpg', 'tina1.jpg', 'tina2.jpg', 'tina3.jpg'])">
+        <button class="btn-watch" onclick="openMediaPreview('Tina Nandy', ['./tina1.mov', './tina2.mov'], ['./tina.jpg', './tina1.jpg', './tina2.jpg', './tina3.jpg'])">
           🎬 Watch Audition Clip & Photos
         </button>
         <button class="btn-apply">APPLY FOR ROLE</button>
@@ -346,7 +379,7 @@
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge">Commercial</span>
-        <img src="anjali.jpg" alt="Anjali">
+        <img src="./anjali.jpg" onerror="this.src='./anjali1.jpg'" alt="Anjali">
       </div>
       <div class="card-body">
         <div class="card-title">Desire & Destiny (Romantic Thriller)</div>
@@ -357,7 +390,7 @@
           <div class="meta-item"><span>SHOOT DURATION</span><strong>2 Days</strong></div>
           <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openMediaPreview('Anjali', ['anjali1.mov', 'anjali2.mov'], ['anjali.jpg', 'anjali1.jpg', 'anjali2.jpg', 'anjali3.jpg'])">
+        <button class="btn-watch" onclick="openMediaPreview('Anjali', ['./anjali1.mov', './anjali2.mov'], ['./anjali.jpg', './anjali1.jpg', './anjali2.jpg', './anjali3.jpg'])">
           🎬 Watch Audition Clip & Photos
         </button>
         <button class="btn-apply">APPLY FOR ROLE</button>
@@ -380,7 +413,7 @@
       <video id="previewVideoPlayer" controls playsinline style="width:100%; height:100%; object-fit:contain;"></video>
     </div>
 
-    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos (Tap to enlarge)</div>
+    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos (Tap to slide full screen)</div>
     <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
   </div>
 </div>
@@ -395,6 +428,16 @@
     <img id="fullImageView" src="" style="max-width:92vw; max-height:80vh; object-fit:contain; border-radius:8px;">
     <button type="button" onclick="nextSlide(event)" style="position:absolute; right:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:20px; cursor:pointer; z-index:10;">❯</button>
   </div>
+</div>
+
+<!-- LANGUAGE SELECTION BAR (Sticky Bottom) -->
+<div class="lang-bar">
+  <button type="button" class="lang-btn active" onclick="changeLang('en')">English</button>
+  <button type="button" class="lang-btn" onclick="changeLang('hi')">हिन्दी</button>
+  <button type="button" class="lang-btn" onclick="changeLang('bn')">বাংলা</button>
+  <button type="button" class="lang-btn" onclick="changeLang('or')">ଓଡ଼ିଆ</button>
+  <button type="button" class="lang-btn" onclick="changeLang('mr')">मराठी</button>
+  <button type="button" class="lang-btn" onclick="changeLang('gu')">ગુજરાતી</button>
 </div>
 
 <!-- JAVASCRIPT -->
@@ -421,7 +464,7 @@
         document.getElementById('screenLobby').classList.add('active');
         window.scrollTo(0,0);
       } else {
-        alert("Galat code! Demo Code: 1234 enter karein.");
+        alert("Galat code! OTP 1234 enter karein.");
       }
     }
   }
@@ -430,7 +473,7 @@
   var currentImageIndex = 0;
 
   function openMediaPreview(name, videosArray, imagesArray) {
-    document.getElementById('previewArtistName').innerText = name + " - Media & Portfolio";
+    document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
     var video = document.getElementById('previewVideoPlayer');
     var vSelector = document.getElementById('previewVideoTabs');
     vSelector.innerHTML = '';
@@ -505,6 +548,11 @@
     var video = document.getElementById('previewVideoPlayer');
     video.pause();
     modal.style.display = 'none';
+  }
+
+  function changeLang(code) {
+    var cleanUrl = window.location.href.split('#')[0];
+    window.location.href = 'https://translate.google.com/translate?sl=auto&tl=' + code + '&u=' + encodeURIComponent(cleanUrl);
   }
 </script>
 

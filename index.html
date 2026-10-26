@@ -432,7 +432,8 @@
         </div>
 
         <!-- Prominent Big Preview Button -->
-               <div class="preview-btn-row" onclick="openModelGallery('Tina Nandy', 3854, 3900, ['7bcd292e-fc84-433e-b034-cc8af5b297f7.mp4', 'a38517f8-de75-41b7-a97c-1b9c80898b68.mp4', 'e9a6c6f1-904f-4445-835e-a3fee76d5942.mp4', '19235ad0-b949-45ef-b78c-3d9e32ba6ba6.mp4', '17eeb217-5a16-4ddf-b9e7-988e5e4096a1.mp4', '0ed270b3-223d-4fc3-855b-f574fa63ba32.mp4', '396e8f1c-7703-4864-b970-d74fce97030d.mov'])">
+        <div class="preview-btn-row" onclick="openModelGallery('Tina Nandy', 3854, 3900, ['7bcd292e-fc84-433e-b034-cc8af5b297f7.mp4', 'a38517f8-de75-41b7-a97c-1b9c80898b68.mp4', 'e9a6c6f1-904f-4445-835e-a3fee76d5942.mp4', '19235ad0-b949-45ef-b78c-3d9e32ba6ba6.mp4', '17eeb217-5a16-4ddf-b9e7-988e5e4096a1.mp4', '0ed270b3-223d-4fc3-855b-f574fa63ba32.mp4', '396e8f1c-7703-4864-b970-d74fce97030d.mov'])">
+
 
           <span class="preview-hint-txt">Click the button 👉</span>
           <span class="preview-action-txt">🎬 <span data-i18n="btn_watch">Watch Audition Clip & Photos</span></span>
@@ -814,7 +815,7 @@
   var currentGeneratedOtp = "";
   var userEnteredMobile = "";
 
-  function handleAuth() {
+   function handleAuth() {
     var phoneInput = document.getElementById('inPhone');
     var btn = document.getElementById('btnAuthAction');
     var otpBox = document.getElementById('boxOtpSection');
@@ -829,7 +830,6 @@
         return;
       }
       userEnteredMobile = phone;
-      // Har baar ek truly random 4-digit code generate hoga
       currentGeneratedOtp = Math.floor(1000 + Math.random() * 9000).toString();
       document.getElementById('dispAutoOtp').innerText = currentGeneratedOtp;
 
@@ -847,6 +847,7 @@
       }
     }
   }
+
 
   /* 4. DEDICATED REGISTRATION SCREEN ROUTING */
   var currentSelectedRole = "";

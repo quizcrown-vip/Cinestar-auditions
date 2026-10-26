@@ -554,7 +554,8 @@
 
     <!-- Prominent Video Container -->
     <div id="videoContainerBox" style="width: 100%; height: 260px; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
-      <video id="previewVideoPlayer" controls playsinline webkit-playsinline style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+     <video id="previewVideoPlayer" controls playsinline webkit-playsinline muted preload="auto" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+
     </div>
 
     <div style="font-size: 12px; color: var(--gold); margin: 14px 0 8px; text-align: left; font-weight: 700;" data-i18n="preview_gallery_hint">Portfolio Photos (Tap to slide full screen)</div>
@@ -923,7 +924,7 @@
     openMediaPreview(name, videoList, images);
   }
 
-  function openMediaPreview(name, videosArray, imagesArray) {
+    function openMediaPreview(name, videosArray, imagesArray) {
     document.getElementById('previewArtistName').innerText = name + " - Media & Audition Clips";
     var videoBox = document.getElementById('videoContainerBox');
     var videoTag = document.getElementById('previewVideoPlayer');
@@ -933,8 +934,30 @@
 
     if (videosArray && videosArray.length > 0) {
       videoBox.style.display = 'block';
-      videoTag.src = videosArray[0];
-      videoTag.load();
+
+      // Helper function to safely set and play video on iOS
+      function loadVideoClip(srcUrl) {
+        videoTag.pause();
+        videoTag.muted = true; // Essential for iOS autoplay & preview
+        videoTag.innerHTML = ''; // Clear previous sources
+
+        var sourceTag = document.createElement('source');
+        sourceTag.src = encodeURI(srcUrl); // Handles spaces & brackets in filenames
+        sourceTag.type = srcUrl.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+        
+        videoTag.appendChild(sourceTag);
+        videoTag.load();
+        
+        var playPromise = videoTag.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(e) {
+            console.log("Autoplay handled/deferred:", e);
+          });
+        }
+      }
+
+      // Initial video load
+      loadVideoClip(videosArray[0]);
 
       videosArray.forEach(function(vSrc, index) {
         var btn = document.createElement('button');
@@ -942,9 +965,7 @@
         btn.innerText = 'Clip ' + (index + 1);
         btn.style.cssText = 'background:#1a1d28; color:#d4af37; border:1px solid #d4af37; border-radius:6px; padding:5px 12px; font-size:11px; cursor:pointer; font-weight:700; white-space:nowrap; flex-shrink:0;';
         btn.onclick = function() {
-          videoTag.src = vSrc;
-          videoTag.load();
-          videoTag.play();
+          loadVideoClip(vSrc);
         };
         tabStrip.appendChild(btn);
       });
@@ -966,44 +987,3 @@
     }
     document.getElementById('mediaPreviewModal').style.display = 'flex';
   }
-
-  function openFullImage(idx) {
-    currentImageIndex = idx;
-    updateSliderImage();
-    document.getElementById('fullImageModal').style.display = 'flex';
-  }
-
-  function updateSliderImage() {
-    if (currentGalleryImages.length === 0) return;
-    document.getElementById('fullImageView').src = currentGalleryImages[currentImageIndex];
-    document.getElementById('imageCounter').innerText = (currentImageIndex + 1) + ' / ' + currentGalleryImages.length;
-  }
-
-  function nextSlide(e) {
-    if (e) e.stopPropagation();
-    if (currentGalleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
-    updateSliderImage();
-  }
-
-  function prevSlide(e) {
-    if (e) e.stopPropagation();
-    if (currentGalleryImages.length === 0) return;
-    currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
-    updateSliderImage();
-  }
-
-  function closeFullImage() {
-    document.getElementById('fullImageModal').style.display = 'none';
-  }
-
-  function closeMediaPreview() {
-    var modal = document.getElementById('mediaPreviewModal');
-    var video = document.getElementById('previewVideoPlayer');
-    if (video) video.pause();
-    modal.style.display = 'none';
-  }
-</script>
-
-</body>
-</html>

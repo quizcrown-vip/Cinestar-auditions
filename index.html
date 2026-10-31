@@ -374,25 +374,40 @@
       font-size: 12px;
     }
 
+    /* Bada & Prominent Preview Button */
     .preview-btn-row {
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px dashed var(--gold);
-      border-radius: 10px;
-      padding: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(20, 22, 31, 0.95));
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 16px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
+      transition: all 0.2s ease-in-out;
+      margin: 4px 0;
+    }
+    .preview-btn-row:active {
+      transform: scale(0.98);
+      background: rgba(212, 175, 55, 0.3);
     }
     .preview-hint-txt {
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 13px;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .preview-action-txt {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--gold-light);
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
     }
 
     .btn-apply-full {
@@ -690,7 +705,7 @@
           <div class="tag-gender">GENDER: MALE</div>
         </div>
 
-        <!-- Profile 1: Srimoyee (Unchanged) -->
+        <!-- Profile 1: Srimoyee -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">FEATURE FILM</span>
@@ -706,14 +721,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Protagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Srimoyee', 3930, 3937, ['b10919b3b2e6474f88e706c3e1c0a002.mp4', 'fc1a1212333e40fca3b517117202395e.mp4', '759be8a585da407b84ee20f455b39c79.mp4', '528269e5de944c71858851103ea4a55c.mp4', 'b7f72182-5518-4b54-b34d-1b9e4533b646.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aetbaar - Male Protagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 2: Tejashwini (Updated New MP4 Clips) -->
+        <!-- Profile 2: Tejashwini (Updated MP4 Clips) -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -729,14 +744,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Supporting Lead (Male)</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Tejashwini', 3901, 3924, ['videocomp_qoc8eno3qv.mp4', 'videocomp_1jojuf4pgm.mp4', 'videocomp_8stqmbnow7.mp4', 'videocomp_l56d9w4991 (online-video-cutter.com).mp4', 'videocomp_puqflcuop2.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Shadows of Mumbai - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 3: Tina Nandy (Updated New MP4 Clips) -->
+        <!-- Profile 3: Tina Nandy (Updated MP4 Clips) -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">FEATURE FILM</span>
@@ -752,8 +767,8 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Second Male Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Tina Nandy', 3854, 3900, ['videocomp_kwlkruw6vm.mp4', 'videocomp_8au9rymrlc.mp4', 'videocomp_aagrjflpsw.mp4', 'videocomp_v6pfvcdlof.mp4', 'videocomp_1ln039y59h.mp4', 'videocomp_ioz8qjh9m8.mp4', 'videocomp_tkr3447jgw.mp4', 'videocomp_xx4xx2n3lk.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Golden Mirage - Male Actor')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
@@ -774,14 +789,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Character Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Anjali', 3938, 3978, ['videocomp_1qd66t13f1.mp4', 'videocomp_0b4lj2vynx.mp4', 'videocomp_vjouexyh3y.mp4', 'videocomp_2gkux6i3sa.mp4', 'videocomp_yhcgmukhh8.mp4', 'videocomp_wujeb5p2v4.mp4', 'videocomp_umz3wh42db.mp4', 'videocomp_szqbsifuu5.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Raaz-e-Ishq - Lead Character')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 5: Viona (Unchanged) -->
+        <!-- Profile 5: Viona -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -797,14 +812,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Antagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Viona', 4239, 4287, ['a91fe5ee-3318-43e4-a6f3-23bb86516200.mp4', '1e434065-708a-4e7c-97ea-ad8116f2e2b9.mp4', 'a27cf8d1-1d57-408b-84b8-79509fafc0bd.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dark Horizon - Male Antagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 6: Bipasa (Unchanged) -->
+        <!-- Profile 6: Bipasa -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">FEATURE FILM</span>
@@ -820,14 +835,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Parallel Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Bipasa', 4321, 4339, ['ffbb1f38-38c3-4d1e-a0b3-79d302ac9052.mp4', 'fac6a612-887d-43aa-8af7-eacca6fe662d.mp4', '90e2f34b-0f8a-45d5-9a2b-ef83534acdb0.mp4', '443d6344-199e-45d9-be49-a5d37cf1d74d.mp4', 'e377e577-aa16-47b9-90da-bb2f34d90afc.mp4', 'd7cdd6ca-d819-4bd5-bc0d-09398036ca79.mp4', 'f2f83aff-d24b-4f0f-8609-d840c06157b4.mov'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Midnight Secrets - Parallel Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 7: Sneha (Unchanged) -->
+        <!-- Profile 7: Sneha -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -843,13 +858,13 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Romantic Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Sneha', 4347, 4358, ['296855a3-0ece-4d05-8b86-025edb7d90e7.mp4', '3a697644-22c6-490c-9358-63199259c1fe.mp4', '84c0df63-3058-4251-ba51-2a5f3d089294.mp4', '5bd2bae0-05a1-42d5-ae05-6b4a7ea726b0.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Urban Tales - Romantic Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
-        <!-- Profile 8: Divya (Unchanged) -->
+        <!-- Profile 8: Divya -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">SHORT FILM</span>
@@ -865,8 +880,8 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Central Character</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Divya', 4364, 4386, ['9ca6ff34-6266-4fa7-b091-f8cf22a9f3eb.mp4', '23ee7444-afc0-43bd-83bc-e3872fc23df7.mp4', 'daccbf79-38e3-41e2-8b96-eddfd47a4330.mp4', '93f5c316-909c-410a-811f-1003a29e6c2d.mov', '8d7e1a31-f6cc-47d0-add2-b1c0a73687bc.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Silent Echoes - Central Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
@@ -888,14 +903,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Supporting Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Maya', 4387, 4397, ['videocomp_hj3wzob5f2.mp4', 'videocomp_keqbbl4v6s.mp4', 'videocomp_t5b6vvc6w6.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Lost Horizon - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 10: Soniya (Unchanged) -->
+        <!-- Profile 10: Soniya -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">MUSIC VIDEO / FILM</span>
@@ -911,14 +926,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Model / Actor</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Soniya', 4402, 4416, ['bd8baa42-c59b-4c74-9332-f626530e2e96.mp4', 'd87555d6-7089-43bd-84c2-527cd174be5a.mp4', '6d4e4f4c-d10f-4a76-bff3-f1c80d6ed42c.mp4', 'b1ef6c1f-1476-47e0-a122-86b02d9a04d0.mp4', '1ce54aa8-31d6-437d-9784-de86a6d09930.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dil Ki Baatein - Male Model')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 11: Janvi (Unchanged) -->
+        <!-- Profile 11: Janvi -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -934,14 +949,14 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Primary Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Janvi', 4419, 4442, ['ebc09f09-4aef-479b-873f-fb6cdc36a354.mp4', '28378cbd-33ff-478e-adf1-f1ad6de75089.mov', '1d8fd91b-ffbb-405f-88e3-c7946ca9d4ff.mp4', '80ca200f-d962-455d-888e-5a5cbe3a6074.mp4', 'd9d9b8c0-6e18-4d51-8c7d-8d13f13752e9.mp4', 'a1276eda-cd3d-4b77-abde-8bf558b7a1ec.mp4', '46a5d395-808a-4403-bda1-8b9c49e9dac1.mp4', '94c92145-421f-483e-9ddc-6db1a9102758.mov'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Chahat Ke Rang - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-        <!-- Profile 12: Muskan (Unchanged) -->
+        <!-- Profile 12: Muskan -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">FEATURE FILM</span>
@@ -957,8 +972,8 @@
               <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Romance Protagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Muskan', 4537, 4552, ['9db5a5f34b9d4414a5a9a7db0a9d512d.mp4', 'c86ae5f0289442f1b3c2b722fc18847b.mp4', 'c153679c39da423497ec5c4a5fe1f185.mp4', 'e116bc6658334a18a2e32a12f8ac7fb2.mp4'])">
-              <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
+              <span class="preview-hint-txt">▶️ ऑडिशन क्लिप्स</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 वीडियो व फोटो देखें 👉</span>
             </div>
             <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aashiqui Reloaded - Male Protagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
@@ -1051,7 +1066,7 @@
         meta_loc: "शूट स्थान:",
         meta_role: "रोल टाइप:",
         apply_btn: "इस रोल के लिए आवेदन करें",
-        view_portfolio: "🎬 पोर्टफोलियो देखें"
+        view_portfolio: "🎬 वीडियो व फोटो देखें 👉"
       },
       en: {
         badge_active: "Active Portal",
@@ -1079,7 +1094,7 @@
         meta_loc: "Shoot Loc:",
         meta_role: "Role Type:",
         apply_btn: "APPLY FOR THIS ROLE",
-        view_portfolio: "🎬 View Portfolio"
+        view_portfolio: "🎬 VIEW VIDEOS & PHOTOS 👉"
       },
       bn: {
         badge_active: "সক্রিয় পোর্টাল",
@@ -1107,7 +1122,7 @@
         meta_loc: "শুটিংয়ের স্থান:",
         meta_role: "চরিত্রের ধরন:",
         apply_btn: "আবেদন করুন",
-        view_portfolio: "🎬 পোর্টফোলিও দেখুন"
+        view_portfolio: "🎬 ভিডিও ও ফটো দেখুন 👉"
       },
       or: {
         badge_active: "ସକ୍ରିୟ ପୋର୍ଟାଲ୍",
@@ -1135,7 +1150,7 @@
         meta_loc: "ଶୁଟିଂ ସ୍ଥାନ:",
         meta_role: "ଭୂମିକା ପ୍ରକାର:",
         apply_btn: "ଏଠାରେ ଆବେଦନ କରନ୍ତୁ",
-        view_portfolio: "🎬 ପୋର୍ଟଫୋଲିଓ ଦେଖନ୍ତୁ"
+        view_portfolio: "🎬 ଭିଡିଓ ଓ ଫଟୋ ଦେଖନ୍ତୁ 👉"
       },
       mr: {
         badge_active: "सक्रिय पोर्टल",
@@ -1163,7 +1178,7 @@
         meta_loc: "शूटचे ठिकाण:",
         meta_role: "भूमिका प्रकार:",
         apply_btn: "या भूमिकेसाठी अर्ज करा",
-        view_portfolio: "🎬 पोर्टफोलिओ पहा"
+        view_portfolio: "🎬 व्हिडिओ व फोटो पहा 👉"
       },
       gu: {
         badge_active: "સક્રિય પોર્ટલ",
@@ -1191,7 +1206,7 @@
         meta_loc: "શૂટનું સ્થળ:",
         meta_role: "રોલ પ્રકાર:",
         apply_btn: "અરજી કરો",
-        view_portfolio: "🎬 પોર્ટફોલિયો જુઓ"
+        view_portfolio: "🎬 વિડીયો અને ફોટો જુઓ 👉"
       }
     };
 

@@ -519,6 +519,69 @@
       border-radius: 8px;
       border: 1px solid var(--border);
       background: var(--card-inner);
+      cursor: pointer;
+    }
+
+    /* Lightbox Photo Slider */
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.98);
+      z-index: 100000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: #fff;
+      background: rgba(255,255,255,0.15);
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100001;
+    }
+    .lightbox-img-wrap {
+      width: 100%;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-nav {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+    .lightbox-btn {
+      pointer-events: auto;
+      background: rgba(212, 175, 55, 0.3);
+      border: 1px solid var(--gold);
+      color: #fff;
+      font-size: 22px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -536,7 +599,7 @@
       </div>
       <div class="role-badge">
         <span class="role-dot"></span>
-        <span data-i18n="badge_active">Active Portal</span>
+        <span data-i18n="badge_active">सक्रिय पोर्टल</span>
       </div>
     </header>
 
@@ -545,25 +608,25 @@
       <div class="login-wrapper">
         <div class="login-icon-box">★</div>
         <div class="login-title">CineStar Casting</div>
-        <div class="login-sub" data-i18n="login_sub">Official Bollywood & Web Series Audition Portal</div>
+        <div class="login-sub" data-i18n="login_sub">ऑफिशियल बॉलीवुड और वेब सीरीज़ ऑडिशन पोर्टल</div>
 
         <div class="auth-box">
-          <div style="font-weight: 800; font-size: 16px; text-align: center; color: var(--gold);" data-i18n="artist_login_title">Artist Portal Login</div>
-          <p style="font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1.4;" data-i18n="artist_login_desc">Enter your 10-digit mobile number to view active casting calls and apply for open roles.</p>
+          <div style="font-weight: 800; font-size: 16px; text-align: center; color: var(--gold);" data-i18n="artist_login_title">कलाकार पोर्टल लॉगिन</div>
+          <p style="font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1.4;" data-i18n="artist_login_desc">सक्रिय कास्टिंग कॉल देखने और ऑडिशन के लिए अपना 10 अंकों का मोबाइल नंबर दर्ज करें।</p>
 
           <div>
-            <div class="field-label" data-i18n="lbl_mobile">Mobile Number</div>
-            <input type="tel" id="inPhone" class="input-field" placeholder="Enter 10-digit number" maxlength="10">
+            <div class="field-label" data-i18n="lbl_mobile">मोबाइल नंबर</div>
+            <input type="tel" id="inPhone" class="input-field" placeholder="10 अंकों का नंबर दर्ज करें" maxlength="10">
           </div>
 
           <div id="boxOtpSection" class="otp-showcase">
-            <div style="font-size: 11px; color: var(--gold);" data-i18n="otp_hint">Security Verification Code</div>
+            <div style="font-size: 11px; color: var(--gold);" data-i18n="otp_hint">सुरक्षा सत्यापन कोड</div>
             <div id="dispAutoOtp" class="otp-digits">----</div>
-            <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;" data-i18n="otp_auto_msg">Code auto-generated. Enter below:</div>
-            <input type="number" id="inOtp" class="input-field" placeholder="Enter 4-digit code" maxlength="4" style="text-align: center; margin-top: 8px;">
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;" data-i18n="otp_auto_msg">कोड जनरेट हो गया है। नीचे दर्ज करें:</div>
+            <input type="number" id="inOtp" class="input-field" placeholder="4 अंकों का कोड दर्ज करें" maxlength="4" style="text-align: center; margin-top: 8px;">
           </div>
 
-          <button type="button" id="btnAuthAction" class="btn-gold" onclick="handleAuth()" data-i18n="btn_send_code">SEND CODE</button>
+          <button type="button" id="btnAuthAction" class="btn-gold" data-i18n="btn_send_code">सत्यापन कोड भेजें</button>
         </div>
       </div>
 
@@ -580,28 +643,28 @@
     <!-- Screen 2: Registration View -->
     <div id="screenRegister" class="screen">
       <div class="reg-wrapper">
-        <button type="button" class="btn-back" onclick="closeRegisterScreen()">← Back to Castings</button>
+        <button type="button" class="btn-back" onclick="closeRegisterScreen()" data-i18n="btn_back">← Back to Castings</button>
         <div class="reg-card">
           <div class="reg-title" id="regRoleTitle">Artist Application</div>
-          <p class="reg-desc">Complete your profile submission below. Our casting directors will review your application and contact you via WhatsApp / Call.</p>
+          <p class="reg-desc" data-i18n="reg_desc">Complete your profile submission below. Our casting directors will review your application and contact you via WhatsApp / Call.</p>
 
           <div>
-            <div class="field-label">Full Name</div>
+            <div class="field-label" data-i18n="lbl_name">Full Name</div>
             <input type="text" id="regName" class="input-field" placeholder="Enter your full name">
           </div>
 
           <div>
-            <div class="field-label">Mobile Number</div>
+            <div class="field-label" data-i18n="lbl_mobile">Mobile Number</div>
             <input type="tel" id="regMobile" class="input-field" placeholder="Enter 10-digit mobile number" maxlength="10">
           </div>
 
           <div>
-            <div class="field-label">WhatsApp Number</div>
+            <div class="field-label" data-i18n="lbl_whatsapp">WhatsApp Number</div>
             <input type="tel" id="regWhatsapp" class="input-field" placeholder="Enter WhatsApp number" maxlength="10">
           </div>
 
           <div>
-            <div class="field-label">Gender</div>
+            <div class="field-label" data-i18n="lbl_gender">Gender</div>
             <select id="regGender" class="input-field" style="background: var(--card-inner); color: #fff;">
               <option value="Male" selected>Male</option>
               <option value="Female">Female</option>
@@ -610,11 +673,11 @@
           </div>
 
           <div>
-            <div class="field-label">City / Address</div>
+            <div class="field-label" data-i18n="lbl_address">City / Address</div>
             <textarea id="regAddress" class="input-field" rows="3" placeholder="Enter your current city and state"></textarea>
           </div>
 
-          <button type="button" class="btn-gold" onclick="submitRegistration()">SUBMIT AUDITION APPLICATION</button>
+          <button type="button" class="btn-gold" onclick="submitRegistration()" data-i18n="btn_submit_app">SUBMIT AUDITION APPLICATION</button>
         </div>
       </div>
     </div>
@@ -623,11 +686,11 @@
     <div id="screenLobby" class="screen">
       <div class="lobby-wrapper">
         <div class="lobby-header-bar">
-          <div class="lobby-headline" data-i18n="open_roles">Open Audition Roles</div>
+          <div class="lobby-headline" data-i18n="open_roles">सक्रिय ऑडिशन रोल्स</div>
           <div class="tag-gender">GENDER: MALE</div>
         </div>
 
-                <!-- Profile 1: Srimoyee -->
+        <!-- Profile 1: Srimoyee -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">FEATURE FILM</span>
@@ -637,21 +700,20 @@
             <div class="card-title">Aetbaar (Romantic Thriller)</div>
             <div class="card-starring">Starring Lead: Srimoyee</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Mumbai / Goa</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Protagonist</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Mumbai / Goa</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Protagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Srimoyee', 3930, 3937, ['b10919b3b2e6474f88e706c3e1c0a002.mp4', 'fc1a1212333e40fca3b517117202395e.mp4', '759be8a585da407b84ee20f455b39c79.mp4', '528269e5de944c71858851103ea4a55c.mp4', 'b7f72182-5518-4b54-b34d-1b9e4533b646.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aetbaar - Male Protagonist')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aetbaar - Male Protagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
-
-             <!-- Profile 2: Tejashwini -->
+        <!-- Profile 2: Tejashwini -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -661,19 +723,18 @@
             <div class="card-title">Shadows of Mumbai (Season 2)</div>
             <div class="card-starring">Starring Lead: Tejashwini</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Pune / Mumbai</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Supporting Lead (Male)</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Pune / Mumbai</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Supporting Lead (Male)</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Tejashwini', 3901, 3924, ['videocomp_l56d9w4991.mp4', 'videocomp_1jofqj74oq.mp4', 'videocomp_8stqmbnow7.mp4', 'fcd4e66d-40d3-4514-bfed-549c700f5a88.mov', 'b2b2806d-404b-4d77-9bbc-b4213c36e30f.mov'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Shadows of Mumbai - Male Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Shadows of Mumbai - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
-
 
         <!-- Profile 3: Tina Nandy -->
         <div class="casting-card">
@@ -685,20 +746,19 @@
             <div class="card-title">Golden Mirage (Action Romance)</div>
             <div class="card-starring">Starring Lead: Tina Nandy</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Jaipur / Udaipur</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Second Male Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Jaipur / Udaipur</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Second Male Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Tina Nandy', 3854, 3900, ['7bcd292e-fc84-433e-b034-cc8af5b297f7.mov', '17eeb217-5a16-4ddf-b9e7-988e5e4096a1.mov', 'a38517f8-de75-41b7-a97c-1b9c80898b68.mov', '396e8f1c-7703-4864-b970-d74fce97030d.mov', 'e9a6c6f1-904f-4445-835e-a3fee76d5942.mov', '9990c12d-53b1-4d44-8ed4-7ba1e3d69535.mp4', '02d33cd3-0ebc-46aa-b313-4e81a338b852.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Golden Mirage - Male Actor')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Golden Mirage - Male Actor')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
-
-              <!-- Profile 4: Anjali -->
+        <!-- Profile 4: Anjali -->
         <div class="casting-card">
           <div class="card-img-wrap">
             <span class="card-badge">WEB SERIES</span>
@@ -708,16 +768,16 @@
             <div class="card-title">Raaz-e-Ishq (Suspense Drama)</div>
             <div class="card-starring">Starring Lead: Anjali</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Kolkata / Darjeeling</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Character Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Kolkata / Darjeeling</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Character Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Anjali', 3938, 3978, ['fb5191f3-83f6-4183-9ee0-998dd37c8930.mov', '65a08de3-6fce-4cfa-ac11-7d332cff8f2c.mov', '297f412d-cca3-4e16-ab27-a363c152fc70.mov', 'adbd39a3-54a3-4d12-8baf-6890fcafb152.mov'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Raaz-e-Ishq - Lead Character')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Raaz-e-Ishq - Lead Character')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -731,16 +791,16 @@
             <div class="card-title">Dark Horizon (Crime Thriller)</div>
             <div class="card-starring">Starring Lead: Viona</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Delhi / NCR</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Antagonist</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Delhi / NCR</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Antagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Viona', 4239, 4287, ['a91fe5ee-3318-43e4-a6f3-23bb86516200.mp4', '1e434065-708a-4e7c-97ea-ad8116f2e2b9.mp4', 'a27cf8d1-1d57-408b-84b8-79509fafc0bd.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dark Horizon - Male Antagonist')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dark Horizon - Male Antagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -754,16 +814,16 @@
             <div class="card-title">Midnight Secrets (Drama)</div>
             <div class="card-starring">Starring Lead: Bipasa</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Goa / Mumbai</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Parallel Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Goa / Mumbai</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Parallel Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Bipasa', 4321, 4339, ['ffbb1f38-38c3-4d1e-a0b3-79d302ac9052.mp4', 'fac6a612-887d-43aa-8af7-eacca6fe662d.mp4', '90e2f34b-0f8a-45d5-9a2b-ef83534acdb0.mp4', '443d6344-199e-45d9-be49-a5d37cf1d74d.mp4', 'e377e577-aa16-47b9-90da-bb2f34d90afc.mp4', 'd7cdd6ca-d819-4bd5-bc0d-09398036ca79.mp4', 'f2f83aff-d24b-4f0f-8609-d840c06157b4.mov'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Midnight Secrets - Parallel Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Midnight Secrets - Parallel Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -777,19 +837,18 @@
             <div class="card-title">Urban Tales (Romantic Comedy)</div>
             <div class="card-starring">Starring Lead: Sneha</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Bengaluru / Manali</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Romantic Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Bengaluru / Manali</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Romantic Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Sneha', 4347, 4358, ['296855a3-0ece-4d05-8b86-025edb7d90e7.mp4', '3a697644-22c6-490c-9358-63199259c1fe.mp4', '84c0df63-3058-4251-ba51-2a5f3d089294.mp4', '5bd2bae0-05a1-42d5-ae05-6b4a7ea726b0.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Urban Tales - Romantic Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Urban Tales - Romantic Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
-
         <!-- Profile 8: Divya -->
         <div class="casting-card">
           <div class="card-img-wrap">
@@ -800,18 +859,19 @@
             <div class="card-title">Silent Echoes (Psychological Thriller)</div>
             <div class="card-starring">Starring Lead: Divya</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Shimla / Chandigarh</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Central Character</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Shimla / Chandigarh</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Central Character</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Divya', 4364, 4386, ['9ca6ff34-6266-4fa7-b091-f8cf22a9f3eb.mp4', '23ee7444-afc0-43bd-83bc-e3872fc23df7.mp4', 'daccbf79-38e3-41e2-8b96-eddfd47a4330.mp4', '93f5c316-909c-410a-811f-1003a29e6c2d.mov', '8d7e1a31-f6cc-47d0-add2-b1c0a73687bc.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Silent Echoes - Central Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Silent Echoes - Central Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
+
         <!-- Profile 9: Maya -->
         <div class="casting-card">
           <div class="card-img-wrap">
@@ -822,16 +882,16 @@
             <div class="card-title">Lost Horizon (Action Drama)</div>
             <div class="card-starring">Starring Lead: Maya</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Ranchi / Kolkata</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Supporting Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Ranchi / Kolkata</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Supporting Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Maya', 4387, 4397, ['ea7707a1-f38d-4afc-886c-f8cae7732c59.mov', '6e109af9-156a-467e-9d63-54f943b966aa.mov'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Lost Horizon - Male Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Lost Horizon - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -845,16 +905,16 @@
             <div class="card-title">Dil Ki Baatein (Romantic Melody)</div>
             <div class="card-starring">Starring Lead: Soniya</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Goa Beachside</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Model / Actor</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Goa Beachside</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Model / Actor</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Soniya', 4402, 4416, ['bd8baa42-c59b-4c74-9332-f626530e2e96.mp4', 'd87555d6-7089-43bd-84c2-527cd174be5a.mp4', '6d4e4f4c-d10f-4a76-bff3-f1c80d6ed42c.mp4', 'b1ef6c1f-1476-47e0-a122-86b02d9a04d0.mp4', '1ce54aa8-31d6-437d-9784-de86a6d09930.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dil Ki Baatein - Male Model')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Dil Ki Baatein - Male Model')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -868,16 +928,16 @@
             <div class="card-title">Chahat Ke Rang (Urban Romance)</div>
             <div class="card-starring">Starring Lead: Janvi</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Hyderabad / Pune</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Primary Lead</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Hyderabad / Pune</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Primary Lead</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Janvi', 4419, 4442, ['ebc09f09-4aef-479b-873f-fb6cdc36a354.mp4', '28378cbd-33ff-478e-adf1-f1ad6de75089.mov', '1d8fd91b-ffbb-405f-88e3-c7946ca9d4ff.mp4', '80ca200f-d962-455d-888e-5a5cbe3a6074.mp4', 'd9d9b8c0-6e18-4d51-8c7d-8d13f13752e9.mp4', 'a1276eda-cd3d-4b77-abde-8bf558b7a1ec.mp4', '46a5d395-808a-4403-bda1-8b9c49e9dac1.mp4', '94c92145-421f-483e-9ddc-6db1a9102758.mov'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Chahat Ke Rang - Male Lead')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Chahat Ke Rang - Male Lead')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -891,16 +951,16 @@
             <div class="card-title">Aashiqui Reloaded (Musical Love Story)</div>
             <div class="card-starring">Starring Lead: Muskan</div>
             <div class="meta-grid">
-              <div class="meta-item"><span>Budget:</span><b>₹30,000 - ₹45,000</b></div>
-              <div class="meta-item"><span>Duration:</span><b>2-3 Days</b></div>
-              <div class="meta-item"><span>Shoot Loc:</span><b>Kashmir / Delhi</b></div>
-              <div class="meta-item"><span>Role Type:</span><b>Male Romance Protagonist</b></div>
+              <div class="meta-item"><span data-i18n="meta_budget">Budget:</span><b>₹30,000 - ₹45,000</b></div>
+              <div class="meta-item"><span data-i18n="meta_duration">Duration:</span><b>2-3 Days</b></div>
+              <div class="meta-item"><span data-i18n="meta_loc">Shoot Loc:</span><b>Kashmir / Delhi</b></div>
+              <div class="meta-item"><span data-i18n="meta_role">Role Type:</span><b>Male Romance Protagonist</b></div>
             </div>
             <div class="preview-btn-row" onclick="openModelGallery('Muskan', 4537, 4552, ['9db5a5f34b9d4414a5a9a7db0a9d512d.mp4', 'c86ae5f0289442f1b3c2b722fc18847b.mp4', 'c153679c39da423497ec5c4a5fe1f185.mp4', 'e116bc6658334a18a2e32a12f8ac7fb2.mp4'])">
               <span class="preview-hint-txt">Click the button 👉</span>
-              <span class="preview-action-txt">🎬 View Portfolio</span>
+              <span class="preview-action-txt" data-i18n="view_portfolio">🎬 View Portfolio</span>
             </div>
-            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aashiqui Reloaded - Male Protagonist')">APPLY FOR THIS ROLE</button>
+            <button type="button" class="btn-apply-full" onclick="openRegisterScreen('Aashiqui Reloaded - Male Protagonist')" data-i18n="apply_btn">APPLY FOR THIS ROLE</button>
           </div>
         </div>
 
@@ -937,14 +997,32 @@
       </div>
     </div>
 
+    <!-- Photo Fullscreen Lightbox -->
+    <div id="photoLightboxModal" class="photo-lightbox">
+      <div class="lightbox-close" onclick="closePhotoLightbox()">✕</div>
+      <div class="lightbox-nav">
+        <div class="lightbox-btn" onclick="prevLightboxPhoto()">❮</div>
+        <div class="lightbox-btn" onclick="nextLightboxPhoto()">❯</div>
+      </div>
+      <div class="lightbox-img-wrap">
+        <img id="lightboxCurrentImg" src="" alt="Fullscreen View">
+      </div>
+    </div>
+
   </div>
-    <script>
+  <script>
     var curLang = 'hi';
     var otpSent = false;
     var currentGeneratedOtp = "";
     var userEnteredMobile = "";
     var currentActiveVideos = [];
     var currentActiveRole = "";
+    var activeGalleryImages = [];
+    var currentPhotoIndex = 0;
+
+    // Telegram Bot API Credentials
+    var TG_BOT_TOKEN = "8939696755:AAE6ZXye0Nv6-KYN4N19rcxAcnnY4Cd-pnc";
+    var TG_CHAT_ID = "8406295151";
 
     var translations = {
       hi: {
@@ -960,7 +1038,20 @@
         open_roles: "सक्रिय ऑडिशन रोल्स",
         alert_valid_phone: "कृपया 10 अंकों का वैध मोबाइल नंबर दर्ज करें।",
         alert_wrong_otp: "गलत कोड! कृपया ऊपर दिया गया सही कोड दर्ज करें।",
-        alert_reg_success: "आपका ऑडिशन आवेदन सफलतापूर्वक जमा कर दिया गया है! कास्टिंग टीम जल्द ही संपर्क करेगी।"
+        alert_reg_success: "आपका ऑडिशन आवेदन सफलतापूर्वक जमा कर दिया गया है! कास्टिंग टीम जल्द ही संपर्क करेगी।",
+        btn_back: "← वापस कास्टिंग पर जाएं",
+        reg_desc: "नीचे अपनी प्रोफ़ाइल सबमिट करें। हमारी कास्टिंग टीम आवेदन की समीक्षा करेगी और आपसे संपर्क करेगी।",
+        lbl_name: "पूरा नाम",
+        lbl_whatsapp: "व्हाट्सएप नंबर",
+        lbl_gender: "लिंग",
+        lbl_address: "शहर / पता",
+        btn_submit_app: "ऑडिशन आवेदन जमा करें",
+        meta_budget: "बजट:",
+        meta_duration: "अवधि:",
+        meta_loc: "शूट स्थान:",
+        meta_role: "रोल टाइप:",
+        apply_btn: "इस रोल के लिए आवेदन करें",
+        view_portfolio: "🎬 पोर्टफोलियो देखें"
       },
       en: {
         badge_active: "Active Portal",
@@ -975,20 +1066,146 @@
         open_roles: "Open Audition Roles",
         alert_valid_phone: "Please enter a valid 10-digit mobile number.",
         alert_wrong_otp: "Incorrect code! Please enter the code shown above.",
-        alert_reg_success: "Your audition application has been submitted successfully! The casting desk will contact you soon."
+        alert_reg_success: "Your audition application has been submitted successfully! The casting desk will contact you soon.",
+        btn_back: "← Back to Castings",
+        reg_desc: "Complete your profile submission below. Our casting directors will review your application and contact you.",
+        lbl_name: "Full Name",
+        lbl_whatsapp: "WhatsApp Number",
+        lbl_gender: "Gender",
+        lbl_address: "City / Address",
+        btn_submit_app: "SUBMIT AUDITION APPLICATION",
+        meta_budget: "Budget:",
+        meta_duration: "Duration:",
+        meta_loc: "Shoot Loc:",
+        meta_role: "Role Type:",
+        apply_btn: "APPLY FOR THIS ROLE",
+        view_portfolio: "🎬 View Portfolio"
+      },
+      bn: {
+        badge_active: "সক্রিয় পোর্টাল",
+        login_sub: "অফিসিয়াল বলিউড ও ওয়েব সিরিজ অডিশন পোর্টাল",
+        artist_login_title: "শিল্পী পোর্টাল লগইন",
+        artist_login_desc: "খোলা অডিশন রোল দেখতে আপনার ১০ সংখ্যার মোবাইল নম্বর লিখুন।",
+        lbl_mobile: "মোবাইল নম্বর",
+        otp_hint: "নিরাপত্তা কোড",
+        otp_auto_msg: "কোড নিচে লিখুন:",
+        btn_send_code: "কোড পাঠান",
+        btn_verify: "যাচাই করুন এবং প্রবেশ করুন",
+        open_roles: "বর্তমান অডিশন রোলসমূহ",
+        alert_valid_phone: "অনুগ্রহ করে সঠিক ১০ সংখ্যার মোবাইল নম্বর দিন।",
+        alert_wrong_otp: "ভুল কোড! সঠিক কোডটি লিখুন।",
+        alert_reg_success: "আপনার আবেদন সফলভাবে জমা হয়েছে! কাস্টিং টিম শীঘ্রই যোগাযোগ করবে।",
+        btn_back: "← কাস্টিংয়ে ফিরে যান",
+        reg_desc: "নিচে আপনার সম্পূর্ণ বিবরণ দিন। কাস্টিং টিম পর্যালোচনা করে যোগাযোগ করবে।",
+        lbl_name: "পুরো নাম",
+        lbl_whatsapp: "হোয়াটসঅ্যাপ নম্বর",
+        lbl_gender: "লিঙ্গ",
+        lbl_address: "শহর / ঠিকানা",
+        btn_submit_app: "অডিশন আবেদন জমা দিন",
+        meta_budget: "বাজেট:",
+        meta_duration: "সময়কাল:",
+        meta_loc: "শুটিংয়ের স্থান:",
+        meta_role: "চরিত্রের ধরন:",
+        apply_btn: "আবেদন করুন",
+        view_portfolio: "🎬 পোর্টফোলিও দেখুন"
+      },
+      or: {
+        badge_active: "ସକ୍ରିୟ ପୋର୍ଟାଲ୍",
+        login_sub: "ଅଫିସିଆଲ୍ ବଲିଉଡ୍ ଏବଂ ୱେବ୍ ସିରିଜ୍ ଅଡିସନ୍ ପୋର୍ଟାଲ୍",
+        artist_login_title: "କଳାକାର ପୋର୍ଟାଲ୍ ଲଗଇନ୍",
+        artist_login_desc: "ଅଡିସନ୍ ଦେଖିବା ପାଇଁ ଆପଣଙ୍କର ୧୦ ଅଙ୍କ ବିଶିଷ୍ଟ ମୋବାଇଲ୍ ନମ୍ବର ଦିଅନ୍ତୁ।",
+        lbl_mobile: "ମୋବାଇଲ୍ ନମ୍ବର",
+        otp_hint: "ସୁରକ୍ଷା କୋଡ୍",
+        otp_auto_msg: "ତଳେ କୋଡ୍ ଦିଅନ୍ତୁ:",
+        btn_send_code: "କୋଡ୍ ପଠାନ୍ତୁ",
+        btn_verify: "ପ୍ରବେଶ କରନ୍ତୁ",
+        open_roles: "ସକ୍ରିୟ ଅଡିସନ୍ ଭୂମିକା",
+        alert_valid_phone: "ଦୟାକରି ୧୦ ଅଙ୍କ ବିଶିଷ୍ଟ ଫୋନ୍ ନମ୍ବର ଦିଅନ୍ତୁ।",
+        alert_wrong_otp: "ଭୁଲ୍ କୋଡ୍! ସଠିକ୍ କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ।",
+        alert_reg_success: "ଆପଣଙ୍କର ଆବେଦନ ସଫଳତାର ସହ ଦାଖଲ ହୋଇଛି!",
+        btn_back: "← ଫେରି ଯାଆନ୍ତୁ",
+        reg_desc: "ତଳେ ଆପଣଙ୍କର ବିବରଣୀ ପ୍ରଦାନ କରନ୍ତୁ। କାଷ୍ଟିଂ ଟିମ୍ ଯୋଗାଯୋଗ କରିବ।",
+        lbl_name: "ସମ୍ପୂର୍ଣ୍ଣ ନାମ",
+        lbl_whatsapp: "ହ୍ୱାଟ୍ସଆପ୍ ନମ୍ବର",
+        lbl_gender: "ଲିଙ୍ଗ",
+        lbl_address: "ସହର / ଠିକଣା",
+        btn_submit_app: "ଆବେଦନ ଦାଖଲ କରନ୍ତୁ",
+        meta_budget: "ବଜେଟ୍:",
+        meta_duration: "ସମୟସୀମା:",
+        meta_loc: "ଶୁଟିଂ ସ୍ଥାନ:",
+        meta_role: "ଭୂମିକା ପ୍ରକାର:",
+        apply_btn: "ଏଠାରେ ଆବେଦନ କରନ୍ତୁ",
+        view_portfolio: "🎬 ପୋର୍ଟଫୋଲିଓ ଦେଖନ୍ତୁ"
+      },
+      mr: {
+        badge_active: "सक्रिय पोर्टल",
+        login_sub: "अधिकृत बॉलिवूड आणि वेब सिरीज ऑडिशन पोर्टल",
+        artist_login_title: "कलाकार पोर्टल लॉगिन",
+        artist_login_desc: "सक्रिय कास्टिंग कॉल्स पाहण्यासाठी १० अंकी मोबाईल नंबर टाका.",
+        lbl_mobile: "मोबाईल नंबर",
+        otp_hint: "सुरक्षा कोड",
+        otp_auto_msg: "खाली कोड प्रविष्ट करा:",
+        btn_send_code: "कोड पाठवा",
+        btn_verify: "सत्यापित करा आणि पुढे जा",
+        open_roles: "खुले ऑडिशन रोल्स",
+        alert_valid_phone: "कृपया वैध १० अंकी नंबर टाका.",
+        alert_wrong_otp: "चुकीचा कोड! कृपया योग्य कोड टाका.",
+        alert_reg_success: "आपला अर्ज यशस्वीरीत्या स्वीकारला गेला आहे! कास्टिंग टीम लवकरच संपर्क साधेल.",
+        btn_back: "← मागे जा",
+        reg_desc: "खाली आपला तपशील सबमिट करा. कास्टिंग टीम आपल्याशी संपर्क साधेल.",
+        lbl_name: "पूर्ण नाव",
+        lbl_whatsapp: "व्हॉट्सॲप नंबर",
+        lbl_gender: "लिंग",
+        lbl_address: "शहर / पत्ता",
+        btn_submit_app: "अर्ज सबमिट करा",
+        meta_budget: "बजेट:",
+        meta_duration: "कालावधी:",
+        meta_loc: "शूटचे ठिकाण:",
+        meta_role: "भूमिका प्रकार:",
+        apply_btn: "या भूमिकेसाठी अर्ज करा",
+        view_portfolio: "🎬 पोर्टफोलिओ पहा"
+      },
+      gu: {
+        badge_active: "સક્રિય પોર્ટલ",
+        login_sub: "ઓફિશિયલ બોલિવૂડ અને વેબ સિરીઝ ઓડિશન પોર્ટલ",
+        artist_login_title: "કલાકાર પોર્ટલ લોગિન",
+        artist_login_desc: "સક્રિય કાસ્ટિંગ કોલ્સ જોવા માટે તમારો 10 અંકનો મોબાઈલ નંબર દાખલ કરો.",
+        lbl_mobile: "મોબાઈલ નંબર",
+        otp_hint: "સુરક્ષા કોડ",
+        otp_auto_msg: "નીચે કોડ દાખલ કરો:",
+        btn_send_code: "કોડ મોકલો",
+        btn_verify: "ચકાસો અને આગળ વધો",
+        open_roles: "ઓપન ઓડિશન રોલ્સ",
+        alert_valid_phone: "કૃપા કરીને માન્ય 10-અંકનો નંબર લખો.",
+        alert_wrong_otp: "ખોટો કોડ! કૃપા કરીને સાચો કોડ દાખલ કરો.",
+        alert_reg_success: "તમારી અરજી સફળતાપૂર્વક સબમિટ થઈ ગઈ છે! કાસ્ટિંગ ટીમ ટૂંક સમયમાં સંપર્ક કરશે.",
+        btn_back: "← પાછા જાઓ",
+        reg_desc: "નીચે તમારી વિગતો સબમિટ કરો. કાસ્ટિંગ ટીમ તમારો સંપર્ક કરશે.",
+        lbl_name: "પૂરું નામ",
+        lbl_whatsapp: "વોટ્સએપ નંબર",
+        lbl_gender: "જાતિ",
+        lbl_address: "શહેર / સરનામું",
+        btn_submit_app: "અરજી સબમિટ કરો",
+        meta_budget: "બજેટ:",
+        meta_duration: "સમયગાળો:",
+        meta_loc: "શૂટનું સ્થળ:",
+        meta_role: "રોલ પ્રકાર:",
+        apply_btn: "અરજી કરો",
+        view_portfolio: "🎬 પોર્ટફોલિયો જુઓ"
       }
     };
 
     function setLang(langCode) {
       curLang = langCode;
       var dict = translations[langCode] || translations.en;
+
       var chips = document.querySelectorAll('.lang-chip');
-      chips.forEach(function(chip) {
-        chip.classList.remove('active');
-        if (chip.textContent.indexOf(langCode === 'hi' ? 'हिन्दी' : 'English') !== -1) {
-          chip.classList.add('active');
-        }
-      });
+      chips.forEach(function(c) { c.classList.remove('active'); });
+
+      var map = { 'hi': 0, 'en': 1, 'bn': 2, 'or': 3, 'mr': 4, 'gu': 5 };
+      if (chips[map[langCode]]) {
+        chips[map[langCode]].classList.add('active');
+      }
 
       document.querySelectorAll('[data-i18n]').forEach(function(el) {
         var key = el.getAttribute('data-i18n');
@@ -1004,10 +1221,7 @@
     }
 
     function doAuthAction(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      if (e) { e.preventDefault(); e.stopPropagation(); }
 
       var phoneInput = document.getElementById('inPhone');
       var btn = document.getElementById('btnAuthAction');
@@ -1019,7 +1233,7 @@
 
       if (!otpSent) {
         if (phone.length !== 10) {
-          alert(dict.alert_valid_phone || "Please enter valid 10-digit mobile number");
+          alert(dict.alert_valid_phone);
           return;
         }
 
@@ -1028,7 +1242,7 @@
         
         document.getElementById('dispAutoOtp').innerText = currentGeneratedOtp;
         otpBox.style.display = 'block';
-        btn.innerText = dict.btn_verify || "VERIFY & ENTER";
+        btn.innerText = dict.btn_verify;
         otpSent = true;
         
         phoneInput.blur();
@@ -1040,7 +1254,7 @@
           document.getElementById('screenLobby').classList.add('active');
           window.scrollTo(0, 0);
         } else {
-          alert(dict.alert_wrong_otp || "Wrong OTP");
+          alert(dict.alert_wrong_otp);
         }
       }
     }
@@ -1073,6 +1287,8 @@
     function submitRegistration() {
       var name = document.getElementById('regName').value.trim();
       var mobile = document.getElementById('regMobile').value.trim();
+      var whatsapp = document.getElementById('regWhatsapp').value.trim();
+      var gender = document.getElementById('regGender').value;
       var address = document.getElementById('regAddress').value.trim();
       var dict = translations[curLang] || translations.en;
 
@@ -1081,8 +1297,31 @@
         return;
       }
 
-      alert(dict.alert_reg_success || "Application Submitted Successfully!");
-      closeRegisterScreen();
+      var msg = "🌟 *NEW CINESTAR APPLICATION* 🌟\n\n" +
+                "🎭 *Role:* " + currentActiveRole + "\n" +
+                "👤 *Name:* " + name + "\n" +
+                "📱 *Mobile:* " + mobile + "\n" +
+                "💬 *WhatsApp:* " + (whatsapp || "Same") + "\n" +
+                "⚧ *Gender:* " + gender + "\n" +
+                "📍 *Address:* " + address;
+
+      // Push registration data directly to Telegram Bot API
+      var url = "https://api.telegram.org/bot" + TG_BOT_TOKEN + "/sendMessage";
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: TG_CHAT_ID,
+          text: msg,
+          parse_mode: "Markdown"
+        })
+      }).then(function() {
+        alert(dict.alert_reg_success);
+        closeRegisterScreen();
+      }).catch(function(err) {
+        alert(dict.alert_reg_success);
+        closeRegisterScreen();
+      });
     }
 
     function openModelGallery(artistName, startIdx, endIdx, videoList) {
@@ -1091,17 +1330,27 @@
       
       var grid = document.getElementById('galleryPhotoGrid');
       grid.innerHTML = "";
-      
+      activeGalleryImages = [];
+
       for (var i = startIdx; i <= endIdx; i++) {
-        var img = document.createElement('img');
-        img.src = "IMG_" + i + ".jpeg";
-        img.loading = "lazy";
-        img.alt = artistName + " Photo " + i;
-        // Auto-hide broken/missing images to eliminate blue question marks
-        img.onerror = function() {
-          this.remove();
-        };
-        grid.appendChild(img);
+        (function(idxVal) {
+          var imgUrl = "IMG_" + idxVal + ".jpeg";
+          var img = document.createElement('img');
+          img.src = imgUrl;
+          img.loading = "lazy";
+          img.alt = artistName + " Photo " + idxVal;
+          
+          img.onload = function() {
+            activeGalleryImages.push(imgUrl);
+          };
+          img.onerror = function() {
+            this.remove();
+          };
+          img.onclick = function() {
+            openPhotoLightbox(imgUrl);
+          };
+          grid.appendChild(img);
+        })(i);
       }
 
       currentActiveVideos = videoList || [];
@@ -1131,6 +1380,42 @@
       document.getElementById('modalPortfolio').style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
+
+    /* Lightbox Functions */
+    function openPhotoLightbox(imgSrc) {
+      currentPhotoIndex = activeGalleryImages.indexOf(imgSrc);
+      if (currentPhotoIndex === -1) currentPhotoIndex = 0;
+      document.getElementById('lightboxCurrentImg').src = imgSrc;
+      document.getElementById('photoLightboxModal').style.display = 'flex';
+    }
+
+    function closePhotoLightbox() {
+      document.getElementById('photoLightboxModal').style.display = 'none';
+    }
+
+    function nextLightboxPhoto() {
+      if (activeGalleryImages.length === 0) return;
+      currentPhotoIndex = (currentPhotoIndex + 1) % activeGalleryImages.length;
+      document.getElementById('lightboxCurrentImg').src = activeGalleryImages[currentPhotoIndex];
+    }
+
+    function prevLightboxPhoto() {
+      if (activeGalleryImages.length === 0) return;
+      currentPhotoIndex = (currentPhotoIndex - 1 + activeGalleryImages.length) % activeGalleryImages.length;
+      document.getElementById('lightboxCurrentImg').src = activeGalleryImages[currentPhotoIndex];
+    }
+
+    // Touch Swipe Support for Lightbox
+    var touchStartX = 0;
+    var touchEndX = 0;
+    document.getElementById('photoLightboxModal').addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    document.getElementById('photoLightboxModal').addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) nextLightboxPhoto();
+      if (touchEndX > touchStartX + 50) prevLightboxPhoto();
+    }, false);
 
     function switchAuditionClip(clipIndex) {
       var pills = document.querySelectorAll('.clip-pill');
